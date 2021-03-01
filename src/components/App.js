@@ -4,23 +4,26 @@ import "../style/App.css";
 import Navbar from "./Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { setLocation } from "../state/location";
+import Player from "./Player";
 
 function App() {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-  console.log({ state });
 
   useEffect(() => {
     const timezone = new Date().getTimezoneOffset() / 60;
 
-    const location = timezone >= 5 ? "USA" : "Europe";
+    const player =
+      timezone >= 5
+        ? "http://play.organlive.com:7000/320;.mp3"
+        : "http://play2.organlive.com:7000/320;.mp3";
 
-    dispatch(setLocation(location));
+    dispatch(setLocation(player));
   });
 
   return (
     <div className="App">
       <Navbar />
+      <Player />
     </div>
   );
 }

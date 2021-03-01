@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 
 const Bar = () => {
@@ -9,7 +8,3 @@ const Bar = () => {
 };
 
 export default Bar;
-
-const timeArr = new Date().getTimezoneOffset() / 60;
-
-console.log(timeArr);
