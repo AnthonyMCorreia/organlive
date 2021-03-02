@@ -3,3 +3,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.player {
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  margin: 5px;
+}
+
+.player > * {
+  margin: 3px;
+}
