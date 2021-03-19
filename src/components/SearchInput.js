@@ -1,8 +1,22 @@
 import React from "react";
+import Select from "react-select";
+
+const options = [
+  { value: "name", label: "Name" },
+  { value: "composer", label: "Composer" },
+  { value: "organist", label: "Organist" },
+  { value: "album", label: "Album" }
+];
+
+const optionsStyles = {};
 
 const Search = () => {
+  const submitHandler = (event) => {
+    event.preventDefault();
+  };
+
   return (
-    <form id="search-form">
+    <form id="search-form" onSubmit={submitHandler}>
       <input id="text-input" name="text" placeholder="search library" />
       <select
         placeholder="options"
@@ -23,6 +37,9 @@ const Search = () => {
           Album
         </option>
       </select>
+      <button type="submit" className="button link" id="form-button">
+        Search
+      </button>
     </form>
   );
 };

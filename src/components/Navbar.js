@@ -6,7 +6,11 @@ import Search from "./SearchInput";
 const Bar = () => {
   return (
     <header id="header">
-      <h1 id="title">OrganLive</h1>
+      <h1 id="title">
+        <Link className="link" to="/">
+          OrganLive
+        </Link>
+      </h1>
       <div id="header-content">
         <Search />
         <div id="header-divider">|</div>
