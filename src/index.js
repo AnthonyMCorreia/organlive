@@ -5,11 +5,16 @@ import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 import store from "./state";
 import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
+import history from "./history";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router history={history}>
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

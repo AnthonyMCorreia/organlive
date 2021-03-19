@@ -1,10 +1,9 @@
 import { useEffect, useRef } from "react";
-import logo from "../logo.svg";
-import "../style/App.css";
 import Navbar from "./Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { setLocation } from "../state/location";
 import Player from "./Player";
+import Routes from "./Routes";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,13 +16,14 @@ function App() {
         ? "http://play.organlive.com:7000/320;.mp3"
         : "http://play2.organlive.com:7000/320;.mp3";
 
-    dispatch(setLocation(player));
+    dispatch(setLocation("https://stream.rcast.live/66783"));
   });
 
   return (
     <div className="App">
+      <Routes />
       <Navbar />
-      <Player />
+      {/* <Player /> */}
     </div>
   );
 }
