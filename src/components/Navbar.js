@@ -7,7 +7,7 @@ const Bar = () => {
   return (
     <header id="header">
       <h1 id="title">
-        <Link className="link" to="/">
+        <Link className="link-animation" to="/">
           OrganLive
         </Link>
       </h1>
@@ -15,13 +15,13 @@ const Bar = () => {
         <Search />
         <div id="header-divider">|</div>
         <div id="links">
-          <Link className="link" to="/otherStations">
+          <Link className="link link-animation" to="/otherStations">
             Other Stations
           </Link>
-          <Link className="link" to="/aboutUs">
+          <Link className="link link-animation" to="/aboutUs">
             About Us
           </Link>
-          <Link className="link" to="/contact">
+          <Link className="link link-animation" to="/contact">
             Contact
           </Link>
         </div>
