@@ -21,8 +21,8 @@ function App() {
 
   return (
     <div className="App">
-      <Routes />
       <Navbar />
+      <Routes />
       {/* <Player /> */}
     </div>
   );
