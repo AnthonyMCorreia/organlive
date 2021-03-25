@@ -27,9 +27,6 @@ const Bar = () => {
           <Link className="link link-animation" to="/contact">
             Contact
           </Link>
-          <Link className="link link-animation" to="/donate">
-            Donate
-          </Link>
           <Link
             onClick={clickHandler}
             className="link link-animation"

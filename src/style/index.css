@@ -142,17 +142,29 @@ option {
 
 .dropdown {
   position: absolute;
-  top: 6.9rem;
-  /* width: ; */
-}
-
-.dropdown-item {
-  text-decoration: none;
+  top: 7.2rem;
+  transform: translateX(45%);
+  background-color: black;
+  border: 0.11rem solid white;
+  border-radius: 1rem;
 }
 
 .dropdown-links:visited,
 .dropdown-links:link {
   text-decoration: none;
+  color: white;
+  font-size: 1.6rem;
+  border: 0.1rem solid white;
+  display: block;
+  text-align: center;
+  padding: 0.4rem;
+}
+
+.dropdown-links:hover {
+  /* color: white; */
+  background-color: rgb(119, 119, 119);
+  border: 0.1rem solid black;
+  border-radius: 0.4rem;
 }
 
 #menu-toggle {
