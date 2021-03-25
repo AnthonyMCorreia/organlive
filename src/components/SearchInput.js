@@ -2,6 +2,7 @@ import React from "react";
 import DropdownMenu from "./DropdownMenu";
 import { setSearchText } from "../state/search";
 import { useDispatch, useSelector } from "react-redux";
+import history from "../history";
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -9,6 +10,10 @@ const Search = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
+  };
+
+  const clickHandler = () => {
+    history.push("/search");
   };
 
   return (
@@ -23,6 +28,7 @@ const Search = () => {
       </select>
       <button
         type="submit"
+        onClick={clickHandler}
         className="button link-animation link"
         id="form-button">
         Search

@@ -939,6 +939,17 @@
 		"sC": 3,
 		"tS": 0
 		},
+	"/src/components/MoreDropdown.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/src/components/MoreDropdown-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
 	"/src/components/Navbar.js": {
 		"bF": 0,
 		"ft": 64,
@@ -968,6 +979,17 @@
 		"mi": 1,
 		"oA": 1,
 		"oAP": "/src/components/Routes-min.js",
+		"oF": 0,
+		"sC": 3,
+		"tS": 0
+		},
+	"/src/components/Search.js": {
+		"bF": 0,
+		"ft": 64,
+		"ma": 0,
+		"mi": 1,
+		"oA": 1,
+		"oAP": "/src/components/Search-min.js",
 		"oF": 0,
 		"sC": 3,
 		"tS": 0
@@ -1101,16 +1123,6 @@
 		"ma": 0,
 		"oA": 0,
 		"oAP": "/src/style/App-min.css",
-		"oF": 0,
-		"oS": 3
-		},
-	"/src/style/index-min.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "/src/style/index-min-min.css",
 		"oF": 0,
 		"oS": 3
 		},

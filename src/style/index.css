@@ -27,8 +27,8 @@ body {
   justify-content: space-between;
   background-color: black;
   color: whitesmoke;
-  width: ;
   width: 100vw;
+  height: 7rem;
 }
 
 #header-content {
@@ -57,17 +57,20 @@ body {
   margin: 0 0.8rem;
 }
 
+.link-animation:hover {
+  color: darkgray;
+}
+
 .link {
   font-size: 1.8rem;
 }
 
 .link:hover {
-  transform: translateY(-0.32rem);
   color: darkgray;
 }
 
 .link:active {
-  transform: translateY(0);
+  transform: translateY(0.2rem);
 }
 
 #header-divider {
@@ -85,13 +88,8 @@ body {
   font-size: 3.5rem;
 }
 
-#title:hover {
-  transform: translateY(-0.2rem);
-  cursor: pointer;
-}
-
 #title:active {
-  transform: translateY(0);
+  transform: translateY(0.2rem);
 }
 
 #spec-option {
@@ -142,6 +140,21 @@ option {
   font-weight: 300;
 }
 
+.dropdown {
+  position: absolute;
+  top: 6.9rem;
+  /* width: ; */
+}
+
+.dropdown-item {
+  text-decoration: none;
+}
+
+.dropdown-links:visited,
+.dropdown-links:link {
+  text-decoration: none;
+}
+
 #menu-toggle {
   font-family: "Quicksand", sans-serif;
   font-weight: 300;
@@ -158,16 +171,6 @@ option {
   margin-right: 0.8rem;
 }
 
-#dropdown-container {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 62px;
-  border: pink;
-  background-color: black;
-  border: 0.1rem solid gray;
-}
-
 #home {
   height: 100vh;
   background-image: linear-gradient(
@@ -179,6 +182,16 @@ option {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  position: fixed;
+  top: 7rem;
+  display: flex;
+  align-items: center;
+  padding: 20rem;
+}
+
+#home-main-text {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 @keyframes moveInLeft {
