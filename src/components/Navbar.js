@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Search from "./SearchInput";
 import MoreDropdown from "./MoreDropdown";
 
 const Bar = () => {
   const [aboutMore, setAboutMore] = useState(0);
-  const clickHandler = () => {
-    setAboutMore(!aboutMore);
-  };
 
   return (
     <header id="header">
@@ -18,7 +14,7 @@ const Bar = () => {
       </h1>
       <div id="header-content">
         <div id="links">
-          <Link className="link link-animation" to="/Library">
+          <Link className="link link-animation" to="/library">
             Library
           </Link>
           <Link className="link link-animation" to="/nowPlaying">
@@ -27,13 +23,13 @@ const Bar = () => {
           <Link className="link link-animation" to="/contact">
             Contact
           </Link>
-          <Link
-            onClick={clickHandler}
+          <button
+            onClick={() => setAboutMore(!aboutMore)}
             className="link link-animation"
-            id="about-us"
-            to="/aboutUs">
+            id="more-button"
+            to="/">
             More
-          </Link>
+          </button>
           {aboutMore ? <MoreDropdown /> : null}
         </div>
       </div>

@@ -1,32 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import DropdownItem from "./MoreDropdownItem";
 
 const MoreDropdown = () => {
   return (
-    <div className="dropdown">
-      <ul id="dropdown-list">
-        <li className="dropdown-item">
-          <Link className="dropdown-links" to="/schedule">
-            Schedule
-          </Link>
-        </li>
-        <li className="dropdown-item">
-          <Link className="dropdown-links" to="/submitRecording">
-            Submit Recordings
-          </Link>
-        </li>
-        <li className="dropdown-item">
-          <Link className="dropdown-links" to="/otherStations">
-            Other Stations
-          </Link>
-        </li>
-        <li className="dropdown-item">
-          <Link className="dropdown-links" to="/Donate">
-            Donate
-          </Link>
-        </li>
-      </ul>
-    </div>
+    // <div className="dropdown">
+    <ul className="dropdown-list">
+      <DropdownItem num="1" link="/schedule" text="Schedule" />
+      <DropdownItem num="1" link="/submitRecording" text="Submit Recording" />
+      <DropdownItem num="1" link="/otherStations" text="Other Stations" />
+      <DropdownItem num="1" link="/donate" text="Donate" />
+    </ul>
+    // {/* </div> */}
   );
 };
 

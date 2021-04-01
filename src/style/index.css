@@ -16,6 +16,7 @@ html {
 
 body {
   font-weight: 300;
+  background-color: black;
 }
 
 #header {
@@ -29,6 +30,7 @@ body {
   color: whitesmoke;
   width: 100vw;
   height: 7rem;
+  z-index: 1;
 }
 
 #header-content {
@@ -92,41 +94,6 @@ body {
   transform: translateY(0.2rem);
 }
 
-#spec-option {
-  background: white;
-  color: black;
-}
-
-#search-content {
-  margin: 0;
-}
-
-#text-input {
-  font-family: "Quicksand", sans-serif;
-  font-size: 1.6rem;
-  font-weight: 300;
-  background-color: black;
-  color: white;
-  border: 0.11rem solid white;
-  border-radius: 2rem 0 0 2rem;
-  height: 0.8rem;
-  width: 15.1rem;
-  border-right-style: none;
-  outline: none;
-  padding: 1.2rem;
-}
-
-option {
-  font-family: "Quicksand", sans-serif;
-  font-size: 1.6rem;
-  font-weight: 500;
-}
-
-#text-input::placeholder {
-  text-align: center;
-  color: white;
-}
-
 .button {
   font-family: "Quicksand", sans-serif;
   font-weight: 300;
@@ -140,13 +107,32 @@ option {
   font-weight: 300;
 }
 
-.dropdown {
+#more-button {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 300;
+  background: none;
+  border: none;
+  color: white;
+  outline: none;
+}
+
+#more-button:hover {
+  color: darkgray;
+  transition: all 0.2s;
+}
+
+.dropdown-list {
   position: absolute;
-  top: 7.2rem;
-  transform: translateX(45%);
-  background-color: black;
-  border: 0.11rem solid white;
+  top: 4.6rem;
+  transform: translateX(77%);
+  padding: 0.3rem;
+  height: 10rem;
   border-radius: 1rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 15rem;
 }
 
 .dropdown-links:visited,
@@ -154,17 +140,20 @@ option {
   text-decoration: none;
   color: white;
   font-size: 1.6rem;
-  border: 0.1rem solid white;
-  display: block;
+  font-weight: 300;
   text-align: center;
   padding: 0.4rem;
+  border-radius: 0.4rem;
 }
 
 .dropdown-links:hover {
-  /* color: white; */
-  background-color: rgb(119, 119, 119);
-  border: 0.1rem solid black;
-  border-radius: 0.4rem;
+  background-color: rgb(85, 85, 85);
+}
+
+.dropdown-item {
+  list-style-type: none;
+  align-items: center;
+  margin: 0.25rem;
 }
 
 #menu-toggle {
@@ -185,6 +174,7 @@ option {
 
 #home {
   height: 100vh;
+  margin: 0 3rem;
   background-image: linear-gradient(
       to right bottom,
       rgba(128, 128, 128, 0.8),
@@ -204,6 +194,16 @@ option {
 #home-main-text {
   text-align: center;
   color: rgba(255, 255, 255, 0.8);
+}
+
+/* Library Component Styles */
+
+#library {
+  color: white;
+  border: 1px solid white;
+  position: relative;
+  height: 100px;
+  top: 7.1rem;
 }
 
 @keyframes moveInLeft {
