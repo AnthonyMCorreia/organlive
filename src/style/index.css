@@ -16,6 +16,7 @@ html {
 
 body {
   font-weight: 300;
+  background-color: black;
 }
 
 #header {
@@ -29,6 +30,8 @@ body {
   color: whitesmoke;
   width: 100vw;
   height: 7rem;
+  z-index: 1;
+  border-bottom: solid 1px white;
 }
 
 #header-content {
@@ -92,41 +95,6 @@ body {
   transform: translateY(0.2rem);
 }
 
-#spec-option {
-  background: white;
-  color: black;
-}
-
-#search-content {
-  margin: 0;
-}
-
-#text-input {
-  font-family: "Quicksand", sans-serif;
-  font-size: 1.6rem;
-  font-weight: 300;
-  background-color: black;
-  color: white;
-  border: 0.11rem solid white;
-  border-radius: 2rem 0 0 2rem;
-  height: 0.8rem;
-  width: 15.1rem;
-  border-right-style: none;
-  outline: none;
-  padding: 1.2rem;
-}
-
-option {
-  font-family: "Quicksand", sans-serif;
-  font-size: 1.6rem;
-  font-weight: 500;
-}
-
-#text-input::placeholder {
-  text-align: center;
-  color: white;
-}
-
 .button {
   font-family: "Quicksand", sans-serif;
   font-weight: 300;
@@ -140,19 +108,53 @@ option {
   font-weight: 300;
 }
 
-.dropdown {
-  position: absolute;
-  top: 6.9rem;
-  /* width: ; */
+#more-button {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 300;
+  background: none;
+  border: none;
+  color: white;
+  outline: none;
 }
 
-.dropdown-item {
-  text-decoration: none;
+#more-button:hover {
+  color: darkgray;
+  transition: all 0.2s;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 4.6rem;
+  transform: translateX(77%);
+  padding: 0.3rem;
+  height: 10rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 15rem;
 }
 
 .dropdown-links:visited,
 .dropdown-links:link {
   text-decoration: none;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 300;
+  text-align: center;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+}
+
+.dropdown-links:hover {
+  background-color: rgb(85, 85, 85);
+}
+
+.dropdown-item {
+  list-style-type: none;
+  align-items: center;
+  margin: 0.25rem;
 }
 
 #menu-toggle {
@@ -192,6 +194,66 @@ option {
 #home-main-text {
   text-align: center;
   color: rgba(255, 255, 255, 0.8);
+}
+
+/* Library Component Styles */
+
+#library {
+  color: white;
+  border: 1px solid white;
+  position: relative;
+  top: 7.1rem;
+  bottom: 0;
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.library-item {
+  display: inline-block;
+  margin: 0.5rem;
+}
+
+/* Player Component Styles */
+
+.player {
+  display: flex;
+  position: fixed;
+  bottom: 4rem;
+  background-color: rgb(18, 18, 18);
+  border-radius: 5rem;
+  height: 5.2rem;
+  width: 60rem;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#play-button {
+  border: none;
+  background: rgb(18, 18, 18);
+  height: 1.5em;
+  width: 2.5rem;
+  clip-path: polygon(0 100%, 100% 50%, 100% 50%, 0 0);
+}
+
+.play-button-container {
+  padding: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.2rem;
+  width: 5rem;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.player-pic {
+  /* color: white; */
+}
+
+.pics {
+  max-width: 100%;
 }
 
 @keyframes moveInLeft {

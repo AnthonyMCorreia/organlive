@@ -6,12 +6,12 @@ import { composeWithDevTools } from "redux-devtools-extension";
 //reducers
 import location from "./location";
 import player from "./player";
-import search from "./search";
+import library from "./library";
 
 const reducer = combineReducers({
   location,
   player,
-  search
+  library
 });
 
 const middleware = composeWithDevTools(

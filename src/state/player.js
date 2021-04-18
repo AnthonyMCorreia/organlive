@@ -35,7 +35,7 @@ export const mutePlayer = (previousVolume) => ({
 
 export const getSong = () => {
   return async (dispatch) => {
-    const { data: song } = await axios.get("http://api.organlive.com/playing");
+    const { data: song } = await axios.get("https://api.organlive.com/playing");
     dispatch(setSong(song));
   };
 };
