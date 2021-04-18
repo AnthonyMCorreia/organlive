@@ -31,6 +31,7 @@ body {
   width: 100vw;
   height: 7rem;
   z-index: 1;
+  border-bottom: solid 1px white;
 }
 
 #header-content {
@@ -174,7 +175,6 @@ body {
 
 #home {
   height: 100vh;
-  margin: 0 3rem;
   background-image: linear-gradient(
       to right bottom,
       rgba(128, 128, 128, 0.8),
@@ -202,8 +202,58 @@ body {
   color: white;
   border: 1px solid white;
   position: relative;
-  height: 100px;
   top: 7.1rem;
+  bottom: 0;
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.library-item {
+  display: inline-block;
+  margin: 0.5rem;
+}
+
+/* Player Component Styles */
+
+.player {
+  display: flex;
+  position: fixed;
+  bottom: 4rem;
+  background-color: rgb(18, 18, 18);
+  border-radius: 5rem;
+  height: 5.2rem;
+  width: 60rem;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#play-button {
+  border: none;
+  background: rgb(18, 18, 18);
+  height: 1.5em;
+  width: 2.5rem;
+  clip-path: polygon(0 100%, 100% 50%, 100% 50%, 0 0);
+}
+
+.play-button-container {
+  padding: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.2rem;
+  width: 5rem;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.player-pic {
+  /* color: white; */
+}
+
+.pics {
+  max-width: 100%;
 }
 
 @keyframes moveInLeft {

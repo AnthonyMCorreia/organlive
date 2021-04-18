@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import Navbar from "./Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { setLocation } from "../state/location";
