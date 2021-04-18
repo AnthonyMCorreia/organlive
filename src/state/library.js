@@ -68,7 +68,10 @@ function reducer(state = initialState, action) {
           composers: Array.isArray(action.library.composers)
             ? action.library.composers
             : Object.entries(action.library.composers)
-        }
+        },
+        selectedList: Array.isArray(action.library.albums)
+          ? action.library.albums
+          : Object.entries(action.library.albums)
       };
     case SET_LENGTH:
       return {

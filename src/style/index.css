@@ -198,9 +198,10 @@ body {
 
 /* Library Component Styles */
 
-#library {
+#library-list {
   color: white;
   border: 1px solid white;
+  border-radius: 1rem;
   position: relative;
   top: 7.1rem;
   bottom: 0;
@@ -208,11 +209,28 @@ body {
   display: flex;
   flex-wrap: wrap;
   overflow-y: auto;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 5rem;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+  padding: 2.5em;
+  width: 22rem;
+  height: 15rem;
+  border: 0.1rem solid white;
+  border-radius: 0.7rem;
 }
 
 .library-item {
   display: inline-block;
   margin: 0.5rem;
+  max-width: 100%;
 }
 
 /* Player Component Styles */
@@ -248,12 +266,18 @@ body {
   background-color: white;
 }
 
-.player-pic {
-  /* color: white; */
+.library-item {
+  text-decoration: none;
+  color: white;
+}
+
+.album {
+  max-width: 10rem;
+  border: 0.1rem solid white;
 }
 
 .pics {
-  max-width: 100%;
+  max-width: 12rem;
 }
 
 @keyframes moveInLeft {
