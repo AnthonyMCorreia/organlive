@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 //state
 import { getItem } from "../../state/library";
 
-const LibraryItem = ({ item, index }) => {
+const LibraryItem = (item, index) => {
   const dispatch = useDispatch();
 
   const clickHandler = () => {

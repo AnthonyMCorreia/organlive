@@ -3,6 +3,7 @@ import axios from "axios";
 const SET_LIBRARY = "SET_LIBRARY";
 const SET_LENGTH = "SET_LENGTH";
 const SET_LIST = "SET_LIST";
+const SET_ITEM = "SET_ITEM";
 
 const setLibrary = (library) => ({
   type: SET_LIBRARY,
@@ -17,6 +18,11 @@ export const setListLength = (length) => ({
 export const setList = (list) => ({
   type: SET_LIST,
   list
+});
+
+const setItem = (item) => ({
+  type: SET_ITEM,
+  item
 });
 
 export const getLibrary = () => {
@@ -45,6 +51,10 @@ export const getLibrary = () => {
       console.log(err);
     }
   };
+};
+
+export const getItem = (id) => {
+  return async (dispatch) => {};
 };
 
 const initialState = {
