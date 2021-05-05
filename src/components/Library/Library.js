@@ -11,15 +11,7 @@ import { getLibrary, setListLength, setList } from "../../state/library";
 
 const Library = () => {
   const dispatch = useDispatch();
-  const {
-    lists: { albums, composers, artists },
-    selectedList,
-    listLength
-  } = useSelector((state) => state.library);
-
-  useEffect(() => {
-    dispatch(getLibrary());
-  }, []);
+  const { selectedList, listLength } = useSelector((state) => state.library);
 
   const clickHandler = (val) => {
     console.log(val);

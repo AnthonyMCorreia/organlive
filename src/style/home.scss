@@ -1,0 +1,23 @@
+#home {
+  height: 100vh;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(128, 128, 128, 0.8),
+      rgba(0, 0, 0, 0.8)
+    ),
+    url(../images/organ-pipes.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: fixed;
+  top: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rem;
+}
+
+#home-main-text {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+}

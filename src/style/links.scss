@@ -1,0 +1,31 @@
+#links {
+  align-self: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.link-animation:link,
+.link-animation:visited {
+  text-decoration: none;
+  padding: 0.8rem;
+  color: white;
+  position: relative;
+  transition: all 0.2s;
+  margin: 0 0.8rem;
+}
+
+.link-animation:hover {
+  color: darkgray;
+}
+
+.link {
+  font-size: 1.8rem;
+}
+
+.link:hover {
+  color: darkgray;
+}
+
+.link:active {
+  transform: translateY(0.2rem);
+}

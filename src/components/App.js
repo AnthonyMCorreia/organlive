@@ -5,6 +5,9 @@ import { setLocation } from "../state/location";
 import Player from "./Player";
 import Routes from "./Routes";
 
+// State
+import { getLibrary, setListLength, setList } from "./../state/library";
+
 function App() {
   const dispatch = useDispatch();
 
@@ -17,13 +20,14 @@ function App() {
         : "http://play2.organlive.com:7000/320;.mp3";
 
     dispatch(setLocation("https://stream.rcast.live/66783"));
+    dispatch(getLibrary());
   });
 
   return (
     <div className="App">
       <Navbar />
       <Routes />
-      {/* <Player /> */}
+      <Player />
     </div>
   );
 }

@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Quicksand:300,500");
+
+@import "./button.scss";
+@import "./header.scss";
+@import "./library.scss";
+@import "./links.scss";
+@import "./player.scss";
+@import "./home";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Quicksand", sans-serif;
+}
+
+body {
+  font-weight: 300;
+  background-color: black;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

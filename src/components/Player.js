@@ -7,6 +7,9 @@ import {
   setTimer
 } from "../state/player";
 
+// Styles
+import "../style/player.scss";
+
 const secondsToMinutesAndSeconds = (seconds) => {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds - minutes * 60;
@@ -28,27 +31,20 @@ const Player = () => {
     audio.volume = e.target.value / 100;
   };
 
-  const tick = (seconds) => {
-    dispatch(updateCurrentTime((seconds += 1)));
-  };
-
   const playHandler = (e) => {
     e.preventDefault();
 
-    if (audio.paused) {
-      audio.play();
-      e.target.id = "play-button";
-      dispatch(setPlayerState(!audio.paused));
-
-      // const interval = setInterval(() => {
-
-      // }, 1);
-
-      dispatch(getSong());
-    } else {
-      audio.pause();
-      e.target.id = "pause-button";
-      dispatch(setPlayerState(!audio.paused));
+    if (audio) {
+      if (audio.paused) {
+        audio.play();
+        dispatch(setPlayerState(!audio.paused));
+        dispatch(getSong());
+      } else {
+        audio.pause();
+        // e.target.id = "pause-button";
+        console.log(audio.paused);
+        dispatch(setPlayerState(audio.paused));
+      }
     }
   };
 
@@ -57,18 +53,6 @@ const Player = () => {
 
     audio.volume = 0;
   };
-
-  const playButton = (
-    <div className="play-button-container">
-      <button id="play-button" />
-    </div>
-  );
-
-  const pauseButton = (
-    <div className="play-button-container">
-      <button id="pause-button" />
-    </div>
-  );
 
   return (
     <div className="player">
@@ -81,7 +65,17 @@ const Player = () => {
           className="player-pic"
           alt={song.album.title}></img>
       ) : null}
-      <span onClick={playHandler}>{isPlaying ? pauseButton : playButton}</span>
+      <span>
+        <div
+          onClick={playHandler}
+          className={
+            isPlaying
+              ? "pause" + "-button-container"
+              : "play" + "-button-container"
+          }>
+          <button id={isPlaying ? "play" + "-button" : "pause" + "-button"} />
+        </div>
+      </span>
       <button id="mute" onClick={muteHandler}>
         Mute
       </button>
@@ -102,7 +96,7 @@ const Player = () => {
         ) : null}
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default Player;
