@@ -1,44 +1,59 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import autoComplete from "autocompleter";
-import { getLibrary } from "../../state/library";
+import { useDispatch, useSelector } from "react-redux"
+import autoComplete from "autocompleter"
+
+// State
+import { selectList } from "../../state/search"
+import { setList } from "../../state/library"
 
 const Search = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch()
 
-  const library = useSelector((state) => state.library);
-  const input = document.getElementById("search-input");
+	const {
+		lists: { albums, artists, composers }
+	} = useSelector((state) => state.library)
+	const input = document.getElementById("search-input")
 
-  if (input) {
-    autoComplete({
-      input,
-      fetch: function (text, update) {
-        text = text.toLowerCase();
+	if (input) {
+		autoComplete({
+			input,
+			fetch: function (text, update) {
+				text = text.toLowerCase()
 
-        const albumsArray = Object.keys(library.albums);
-        const composersArray = Object.value(library.composers)
-          .map((person) => {
-            return person
-              .split(" ")
-              .map((word, index) =>
-                index === 0 ? word.substring(0, -1) : word
-              );
-          })
-          .reverse()
-          .join(" ");
-        const artistsArray = Object.keys(library.artists);
+				const albumsArray = Object.keys(albums)
+				const composersArray = Object.value(composers)
+				const artistsArray = Object.keys(artists)
+			}
+		})
+	}
 
-        // const suggestions = Object.keys(library).
-      }
-    });
-  }
+	const selectList = (evt) => {
+		// evt.preventDefault()
+		// const value = evt.target.innerText.toLowerCase()
+		// console.log(evt.target.innerHTML)
+		dispatch(selectList(evt.target.innerText.toLowerCase()))
+		dispatch(setList(evt.target.innerText.toLowerCase()))
+	}
 
-  return (
-    <div id="search">
-      test
-      <input id="search-input" placeholder="Search our Library" />
-    </div>
-  );
-};
+	return (
+		<div id="search">
+			test
+			<input id="search-input" placeholder="Search our Library" />
+			<ul id="list-options-container">
+				<li className="list-option" name="all" onClick={selectList}>
+					All
+				</li>
+				<li className="list-option" name="albums" onClick={selectList}>
+					Albums
+				</li>
+				<li className="list-option" name="artists" onClick={selectList}>
+					Arists
+				</li>
+				<li className="list-option" name="composers" onClick={selectList}>
+					Composers
+				</li>
+			</ul>
+		</div>
+	)
+}
 
-export default Search;
+export default Search
