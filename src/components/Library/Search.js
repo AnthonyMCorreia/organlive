@@ -5,7 +5,7 @@ import autoComplete from "autocompleter"
 import { selectList } from "../../state/search"
 import { setList } from "../../state/library"
 
-const Search = () => {
+function Search() {
 	const dispatch = useDispatch()
 
 	const {
@@ -27,11 +27,14 @@ const Search = () => {
 	}
 
 	const selectList = (evt) => {
-		// evt.preventDefault()
-		// const value = evt.target.innerText.toLowerCase()
-		// console.log(evt.target.innerHTML)
-		dispatch(selectList(evt.target.innerText.toLowerCase()))
-		dispatch(setList(evt.target.innerText.toLowerCase()))
+		const value = evt.target?.innerText?.toLowerCase()
+		// console.log(evt.target.innerText.toLowerCase())
+
+		if (evt.target.innerHTML) {
+			console.log(value)
+			dispatch(selectList(value))
+			dispatch(setList(value))
+		}
 	}
 
 	return (
@@ -42,7 +45,10 @@ const Search = () => {
 				<li className="list-option" name="all" onClick={selectList}>
 					All
 				</li>
-				<li className="list-option" name="albums" onClick={selectList}>
+				<li
+					className="list-option"
+					name="albums"
+					onClick={(e) => selectList(e)}>
 					Albums
 				</li>
 				<li className="list-option" name="artists" onClick={selectList}>

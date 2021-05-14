@@ -89,7 +89,7 @@ function reducer(state = initialState, action) {
 				listLength: action.length
 			}
 		case SET_LIST:
-			return { ...state, selectedList: state.lists[action.list] }
+			return { ...state, selectedList: action.list }
 		default:
 			return state
 	}
