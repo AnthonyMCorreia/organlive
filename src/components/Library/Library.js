@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react"
 
 // Components
-import Search from './Search';
-import LibraryList from './LibraryList';
+import Search from "./Search"
+import LibraryList from "./LibraryList"
 
 const Library = () => {
 	return (
@@ -10,7 +10,7 @@ const Library = () => {
 			<Search />
 			<LibraryList />
 		</div>
-	);
-};
+	)
+}
 
-export default Library;
+export default Library

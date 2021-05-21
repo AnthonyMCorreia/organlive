@@ -1,13 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Quicksand:300,500');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Quicksand:300,500");
 
-@import './button.scss';
-@import './header.scss';
-@import './library.scss';
-@import './links.scss';
-@import './player.scss';
-@import './home';
-@import './search';
+@import "./button.scss";
+@import "./header.scss";
+@import "./library.scss";
+@import "./links.scss";
+@import "./player.scss";
+@import "./home";
+@import "./search";
+
+$blue-one: #020024;
+$blue-two: #090979;
+$blue-three: #00d4ff;
+$off-white: #f5f9ff;
 
 *,
 *::after,
@@ -19,12 +24,13 @@
 
 html {
 	font-size: 62.5%;
-	font-family: 'Quicksand', sans-serif;
+	font-family: "Quicksand", sans-serif;
 }
 
 body {
 	font-weight: 300;
-	background-color: black;
+	background-color: $off-white;
+	color: white;
 }
 
 @keyframes moveInLeft {

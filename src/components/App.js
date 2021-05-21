@@ -1,26 +1,26 @@
-import { useEffect } from 'react';
-import Navbar from './Navbar';
-import { useSelector, useDispatch } from 'react-redux';
-import Player from './Player';
-import Routes from './Routes';
+import { useEffect } from "react"
+import Navbar from "./Navbar"
+import { useSelector, useDispatch } from "react-redux"
+import Player from "./Player"
+import Routes from "./Routes"
 
 // State
-import { getLibrary, setListLength, setList } from './../state/library';
+import { getLibrary, setListLength, setList } from "./../state/library"
 
 function App() {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch()
 
 	useEffect(() => {
-		dispatch(getLibrary());
-	});
+		dispatch(getLibrary())
+	})
 
 	return (
 		<div className="App">
 			<Navbar />
 			<Routes />
-			<Player />
+			{/* <Player /> */}
 		</div>
-	);
+	)
 }
 
-export default App;
+export default App

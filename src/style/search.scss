@@ -1,8 +1,18 @@
+$blue-one: #020024;
+$blue-two: #090979;
+$blue-three: #00d4ff;
+$off-white: #f5f9ff;
+
 #search {
-	position: relative;
-	top: 8rem;
+	// position: relative;
+	top: 15rem;
 	margin: 2rem;
 	display: flex;
+	align-items: center;
+	justify-content: center;
+	// background-color: $off-white;
+	color: black;
+	width: 100vw;
 }
 
 #list-options-container {
@@ -10,7 +20,6 @@
 	padding: 0.25rem;
 	display: flex;
 	flex-direction: row;
-	color: white;
 }
 
 .list-option {
@@ -25,21 +34,6 @@
 		color: darkgrey;
 		transition: all 0.25s;
 	}
-
-	// &:after {
-	// 	cursor: pointer;
-	// 	display: block;
-	// 	content: "";
-	// 	border-bottom: 1.5px solid white;
-
-	// 	transform-origin: bottom right;
-	// 	transform: scaleX(0);
-	// 	transition: transform 0.2s ease-out;
-	// }
-	// &:hover:after {
-	// 	transform: scaleX(1);
-	// 	transform-origin: bottom left;
-	// }
 }
 
 #search-input {

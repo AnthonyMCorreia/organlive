@@ -28,7 +28,7 @@ const setItem = (item) => ({
 export const getLibrary = () => {
 	return async (dispatch) => {
 		try {
-			const { data: artists } = await axios.get(
+			const { data: organists } = await axios.get(
 				"https://api.organlive.com/list/artists"
 			)
 
@@ -41,7 +41,7 @@ export const getLibrary = () => {
 			)
 
 			const library = {
-				artists,
+				organists,
 				composers,
 				albums
 			}
@@ -66,22 +66,35 @@ const initialState = {
 function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_LIBRARY:
+			const albums = Object.entries(action.library.albums).map(
+				([key, album]) => {
+					return { ...album, type: "album" }
+				}
+			)
+
+			const organists = Object.entries(action.library.organists).map(
+				([key, artist]) => {
+					return { ...artist, type: "organist" }
+				}
+			)
+
+			const composers = Object.entries(action.library.composers).map(
+				([key, composer]) => {
+					return { ...composer, type: "composer" }
+				}
+			)
+
+			const all = [...albums, ...organists, ...composers]
+
 			return {
 				...state,
 				lists: {
-					albums: Array.isArray(action.library.albums)
-						? action.library.albums
-						: Object.entries(action.library.albums),
-					artists: Array.isArray(action.library.artists)
-						? action.library.artists
-						: Object.entries(action.library.artists),
-					composers: Array.isArray(action.library.composers)
-						? action.library.composers
-						: Object.entries(action.library.composers)
+					all: all,
+					albums,
+					organists,
+					composers
 				},
-				selectedList: Array.isArray(action.library.albums)
-					? action.library.albums
-					: Object.entries(action.library.albums)
+				selectedList: all
 			}
 		case SET_LENGTH:
 			return {
@@ -89,7 +102,7 @@ function reducer(state = initialState, action) {
 				listLength: action.length
 			}
 		case SET_LIST:
-			return { ...state, selectedList: action.list }
+			return { ...state, selectedList: state.lists[action.list] }
 		default:
 			return state
 	}

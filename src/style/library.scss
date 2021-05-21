@@ -1,62 +1,66 @@
+$blue-one: #020024;
+$blue-two: #040059c0;
+$blue-three: #00d4ff;
+$off-white: #f5f9ff;
+
 #library {
+	position: relative;
+	top: 7rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	top: 7.1rem;
-	// background-image: linear-gradient(
-	// 		to right bottom,
-	// 		rgba(128, 128, 128, 0.8),
-	// 		rgba(0, 0, 0, 0.8)
-	// 	),
-	// 	url(../images/silver-pipes.jpeg);
-	// background-size: cover;
-	// background-repeat: no-repeat;
-	// background-position: center center;
+	width: 100vw;
+	background-color: rgb(87, 87, 87);
 }
 
 #library-list {
-	color: white;
-	border: 1px solid rgba(255, 255, 255, 0.3);
-	border-radius: 1rem;
+	margin: 1rem;
 	position: relative;
-	top: 7.1rem;
 	display: flex;
 	flex-wrap: wrap;
-	overflow-y: auto;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
-	margin: 1rem;
 }
 
 .list-container {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin: 2rem 2rem;
+	justify-content: flex-start;
+	align-items: left;
+	margin: 3rem 1rem;
 	padding: 3em;
-	width: 22rem;
+	width: 25rem;
+	height: 20rem;
+	color: white;
 	height: 15rem;
-	border-radius: 0.7rem;
-	background-color: rgb(7, 7, 7);
+	background-color: $blue-two;
+	border-radius: 1rem;
 
 	&:hover {
-		box-shadow: 0 0 1.2rem -0.5rem rgba(255, 255, 255, 0.65);
-		background-color: rgb(14, 14, 14);
 		transition: all 0.1s;
 	}
 }
 
+.list-link {
+	text-decoration: none;
+}
+
 .library-item {
 	display: inline-block;
-	margin: 0.5rem;
 	max-width: 100%;
-	background-color: rgb(14, 14, 14);
-	text-align: center;
-	text-decoration: none;
-	color: white;
+	margin: 0.5rem;
+	text-align: left;
+	color: $off-white;
+	font-weight: 500;
+	font-size: 1.2rem;
 }
 
 .pics {
-	max-width: 12rem;
+	// display: block;
+	// max-width: 22rem;
+	// max-height: 39rem;
+	width: 15rem;
+	height: 10rem;
+	border: 0.8px solid rgba(0, 0, 0, 0.74);
+	border-radius: 1rem;
 }
