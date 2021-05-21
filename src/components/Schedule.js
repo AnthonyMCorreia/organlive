@@ -16,7 +16,7 @@ const Schedule = () => {
 			</p>
 			<p class="day">
 				Friday - We stick to a playlist of your favorites, as determined by your
-				ratings.
+				ratings.|
 			</p>
 			<p class="day">
 				Saturday - We focus on tracks that haven't been heard by many listeners,
