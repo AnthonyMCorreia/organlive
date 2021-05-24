@@ -2,6 +2,7 @@
 	"name": "organlive",
 	"version": "0.1.0",
 	"dependencies": {
+		"@craco/craco": "^6.1.2",
 		"@react-aria/select": "^3.3.0",
 		"@tarekraafat/autocomplete.js": "^8.3.2",
 		"@testing-library/jest-dom": "^5.11.4",
@@ -24,13 +25,13 @@
 		"redux-devtools-extension": "^2.13.8",
 		"redux-logger": "^3.0.6",
 		"redux-thunk": "^2.3.0",
+		"url-loader": "^4.1.1",
 		"web-vitals": "^1.0.1"
 	},
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scrpts eject"
 	},
 	"eslintConfig": {
 		"extends": [

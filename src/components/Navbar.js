@@ -1,17 +1,20 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
+
+// Components
 import MoreDropdown from "./MoreDropdown"
+import OrganliveLogo from "../images/organliveLogo.png"
 
 const Bar = () => {
 	const [aboutMore, setAboutMore] = useState(0)
 
 	return (
 		<header id="header">
-			<h1 id="title">
-				<Link className="link" id="title-link" to="/">
-					OrganLive
-				</Link>
-			</h1>
+			<Link className="link" id="title-link" to="/">
+				<h1>
+					<img src={OrganliveLogo} alt="Organlive" id="title-logo" />
+				</h1>
+			</Link>
 			<div id="header-content">
 				<div id="links">
 					<Link className="link link-animation" to="/library">

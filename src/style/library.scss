@@ -1,7 +1,4 @@
-$blue-one: #020024;
-$blue-two: #040059c0;
-$blue-three: #00d4ff;
-$off-white: #f5f9ff;
+@import "./_variables";
 
 #library {
 	position: relative;
@@ -33,7 +30,7 @@ $off-white: #f5f9ff;
 	height: 20rem;
 	color: white;
 	height: 15rem;
-	background-color: $blue-two;
+	background-color: $blue-light;
 	border-radius: 1rem;
 
 	&:hover {
@@ -56,7 +53,7 @@ $off-white: #f5f9ff;
 }
 
 .pics {
-	// display: block;
+	display: inline-block;
 	// max-width: 22rem;
 	// max-height: 39rem;
 	width: 15rem;

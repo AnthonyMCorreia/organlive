@@ -3,22 +3,22 @@ import React from "react"
 const Schedule = () => {
 	return (
 		<div id="schedule">
-			<h1>Schedule</h1>
-			<p class="day">
+			<h1 id="schedule-title">Schedule</h1>
+			<p className="day">
 				Sunday - We feature hymns, choral music, and other music of the church.
 			</p>
-			<p class="day">
+			<p className="day">
 				Monday - You'll mostly hear music written in the past 200 years.
 			</p>
-			<p class="day">
+			<p className="day">
 				Wednesdays - You'll hear music of the Baroque period, with a large
 				number of works by J.S. Bach.{" "}
 			</p>
-			<p class="day">
+			<p className="day">
 				Friday - We stick to a playlist of your favorites, as determined by your
 				ratings.|
 			</p>
-			<p class="day">
+			<p className="day">
 				Saturday - We focus on tracks that haven't been heard by many listeners,
 				tracks that haven't been played in a long time, and organists that
 				haven't been played recently.

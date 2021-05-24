@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Quicksand:300,500");
 
+@import "./_variables";
 @import "./button.scss";
 @import "./header.scss";
 @import "./library.scss";
@@ -8,11 +9,7 @@
 @import "./player.scss";
 @import "./home";
 @import "./search";
-
-$blue-one: #020024;
-$blue-two: #090979;
-$blue-three: #00d4ff;
-$off-white: #f5f9ff;
+@import "./schedule";
 
 *,
 *::after,
@@ -25,6 +22,7 @@ $off-white: #f5f9ff;
 html {
 	font-size: 62.5%;
 	font-family: "Quicksand", sans-serif;
+	text-rendering: auto;
 }
 
 body {

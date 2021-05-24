@@ -1,19 +1,17 @@
-$blue-one: #020024;
-$blue-two: #090979;
-$blue-three: #00d4ff;
-$off-white: #f5f9ff;
+@import "./_variables";
 
 #header {
 	position: fixed;
 	top: 0;
 	margin: 0;
-	padding: 0.8rem;
+	padding: 1rem;
 	display: flex;
 	justify-content: space-between;
-	background-color: $blue-one;
+	align-items: center;
+	background-color: $dark-blue;
 	color: whitesmoke;
 	width: 100vw;
-	height: 7rem;
+	height: 8rem;
 	z-index: 1;
 	border-bottom: solid 1px white;
 }
@@ -33,14 +31,14 @@ $off-white: #f5f9ff;
 	margin: 0 8px 0 8px;
 }
 
-#title {
+#title-logo {
 	align-self: center;
 	margin-left: 2rem;
 	animation: moveInLeft 1.1s ease-out;
-	font-weight: 500;
 	transition: all 0.2s;
 	position: relative;
-	font-size: 3.5rem;
+	max-width: 10rem;
+	max-height: 8rem;
 }
 
 #title-link:hover {

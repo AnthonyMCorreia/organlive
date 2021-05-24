@@ -1,11 +1,6 @@
-$blue-one: #020024;
-$blue-two: #090979;
-$blue-three: #00d4ff;
-$off-white: #f5f9ff;
-
 #home {
 	color: black;
-	background-color: rgb(94, 94, 94);
+	background-color: $off-white;
 	height: 100vh;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -18,13 +13,39 @@ $off-white: #f5f9ff;
 	padding: 20rem;
 }
 
-#home-main-text {
+.home-section {
+	top: 1rem;
+	text-align: right;
+	margin: 0 40rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 100vw;
+	border-radius: 1rem;
+	width: 83vw;
+	height: 30rem;
 	padding: 5rem 10rem;
-	// background-color: #050059;
+}
+
+.right-blue {
+	background: $blue-light;
+	box-shadow: 1.2rem 1.2rem 0.01rem 0.1rem $black;
+}
+
+.section-icons {
+	display: flex;
+	align-items: center;
+	font-size: 30rem;
 	text-align: center;
-	color: black;
+}
+
+.sections-text {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	color: $off-white;
+	height: 100%;
+	width: 100rem;
+	font-size: 2.4rem;
+	color: $black;
 }

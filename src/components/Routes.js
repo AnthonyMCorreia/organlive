@@ -8,10 +8,6 @@ import LibraryItem from "./Library/AlbumItem"
 import Schedule from "./Schedule"
 
 const Routes = () => {
-	const routeHandler = (params) => {
-		console.log(params)
-	}
-
 	return (
 		<Switch>
 			<Route exact path="/">
@@ -28,6 +24,9 @@ const Routes = () => {
 			</Route>
 			<Route exact path="nowPlaying">
 				now Playing
+			</Route>
+			<Route exact path="/schedule">
+				<Schedule />
 			</Route>
 		</Switch>
 	)
