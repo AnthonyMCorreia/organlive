@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux"
 //state
 import { getItem } from "../../state/library"
 
+// Images
+import errorPic from "../../images/not-found.png"
+
 const AlbumItem = ({ val, index }) => {
 	const dispatch = useDispatch()
 
@@ -27,7 +30,7 @@ const AlbumItem = ({ val, index }) => {
 					src={
 						val.picture !== " "
 							? "https://pictures.organlive.com/" + val.picture
-							: "/not-found.png"
+							: errorPic
 					}
 					onError={imageError}
 					num={index}
