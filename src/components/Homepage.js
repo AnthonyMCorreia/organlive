@@ -1,12 +1,16 @@
 import React from "react"
 
 // Components
-import HomepageEighthNotes from "./HomepageEighthNotes"
+import HomepageSection from "./HomepageSection"
+
+const sectionProps = ["left", "right", "left"]
 
 const Homepage = () => {
 	return (
 		<div id="home">
-			<HomepageEighthNotes />
+			{sectionProps.map((color, index) => {
+				return <HomepageSection key={index} className={color} />
+			})}
 		</div>
 	)
 }

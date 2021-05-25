@@ -1,7 +1,7 @@
 #home {
 	color: black;
 	background-color: $off-white;
-	height: 100vh;
+	height: 95vh;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -10,42 +10,56 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 20rem;
+	flex-wrap: wrap;
+	overflow: auto;
+	background-image: url(../images/hands-organ.webp);
 }
 
-.home-section {
-	top: 1rem;
+.home-section-inner {
 	text-align: right;
 	margin: 0 40rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	border-radius: 1rem;
-	width: 83vw;
+	width: 63vw;
 	height: 30rem;
-	padding: 5rem 10rem;
+	padding: 1rem 10rem;
+	margin: 5rem;
+	background-color: $blue-light;
 }
 
-.right-blue {
-	background: $blue-light;
-	box-shadow: 1.2rem 1.2rem 0.01rem 0.1rem $black;
+.section-left {
+	flex-direction: row-reverse;
 }
 
 .section-icons {
 	display: flex;
 	align-items: center;
-	font-size: 30rem;
+	font-size: 28rem;
 	text-align: center;
 }
 
-.sections-text {
-	position: relative;
+// light blue background/logo on the right
+.text-right {
 	display: flex;
 	align-items: center;
-	justify-content: flex-end;
-	color: $off-white;
+	justify-content: center;
+	align-self: flex-end;
+	text-align: center;
 	height: 100%;
-	width: 100rem;
-	font-size: 2.4rem;
-	color: $black;
+	width: 80rem;
+	font-size: 1.8rem;
+	background: $blue-light;
+}
+
+// dark blue background/logo on the left
+.text-left {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 80rem;
+	font-size: 1.8rem;
+	text-align: center;
 }

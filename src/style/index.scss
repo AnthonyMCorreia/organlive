@@ -25,22 +25,14 @@ html {
 	text-rendering: auto;
 }
 
+::selection {
+	background-color: grey;
+}
+
 body {
 	font-weight: 300;
 	background-color: $off-white;
 	color: white;
-}
-
-@keyframes moveInLeft {
-	0% {
-		opacity: 0;
-		transform: translateX(-100px);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translateX(0);
-	}
 }
 
 .App {

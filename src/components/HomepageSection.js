@@ -1,12 +1,12 @@
 import React from "react"
 
-const HomepageSection = () => {
+const HomepageSection = ({ className }) => {
 	return (
-		<div id="music-container" className="home-section right-blue">
-			<h2 id="eighth-note" className="section-icons" alt="Eighth Notes">
+		<div className={"home-section-inner " + "section-" + className}>
+			<h2 className="section-icons" alt="Eighth Notes">
 				♫
 			</h2>
-			<h2 id="home-main-text" className="sections-text" alt="Muic Info">
+			<h2 className={"text-" + className} alt="Muic Info">
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
 				veniam, quis nostrud exercitation.

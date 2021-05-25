@@ -5,14 +5,14 @@ import Player from "./Player"
 import Routes from "./Routes"
 
 // State
-import { getLibrary, setListLength, setList } from "./../state/library"
+import { getLibrary } from "./../state/library"
 
 function App() {
 	const dispatch = useDispatch()
 
 	useEffect(() => {
 		dispatch(getLibrary())
-	})
+	}, [])
 
 	return (
 		<div className="App">

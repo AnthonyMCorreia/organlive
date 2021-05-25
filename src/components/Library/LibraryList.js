@@ -16,8 +16,6 @@ const LibraryList = () => {
 			{Array.isArray(selectedList)
 				? selectedList.slice(0, listLength + 1).map((val, index) => {
 						const type = val.type
-						if (type === "organist") {
-						}
 
 						if (type === "album") {
 							return <AlbumItem val={val} key={index} />

@@ -2,8 +2,9 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 const LibraryListItem = ({ val, index }) => {
-	const clickHandler = (e) => {}
-	console.log(val)
+	const clickHandler = (e) => {
+		console.log(val)
+	}
 	return (
 		<div className="list-container" key={index}>
 			<Link to="item" className="list-link">
