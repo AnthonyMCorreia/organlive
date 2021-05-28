@@ -7,17 +7,17 @@ const LibraryListItem = ({ val, index }) => {
 	return (
 		<div className="list-container" key={index}>
 			<Link to="item" className="list-link">
-				{/* <img
+				<img
 					className="pics"
 					src={
-						val.picture !== ""
-							? "https://pictures.organlive.com/" + val.picture
-							: "../../images/not-found.png"
+						val?.picture.trim()
+							? `https://pictures.organlive.com/${val.picture}`
+							: "/not-found"
 					}
 					num={index}
 					onClick={() => clickHandler(val)}
 					alt={val.album}
-				/> */}
+				/>
 			</Link>
 			<p key={index} className="library-item">
 				{val.album}

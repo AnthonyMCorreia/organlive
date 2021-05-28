@@ -8,16 +8,18 @@ import { getItem } from "../../state/library"
 const ComposerItem = ({ val, index }) => {
 	const dispatch = useDispatch()
 
-	// const imageString =
-	// 	val.composer
-	// 		.toLowerCase()
-	// 		.split("")
-	// 		.filter((char) => {
-	// 			return char.match(/[a-zA-Z]/) || char === " "
-	// 		})
-	// 		.join("")
-	// 		.split(" ")
-	// 		.join("_") + ".jpg"
+	const imageString =
+		val.composer
+			.toLowerCase()
+			.split("")
+			.filter((char) => {
+				return char.match(/[a-zA-Z]/) || char === " "
+			})
+			.join("")
+			.split(" ")
+			.join("_") + ".jpg"
+
+	console.log(imageString, val?.picture.trim())
 
 	const clickHandler = () => {
 		dispatch(getItem(val.id))
@@ -32,9 +34,9 @@ const ComposerItem = ({ val, index }) => {
 				<img
 					className="pics"
 					src={
-						val.picture && val.picture !== " "
-							? "http://pictures.organlive.com/" + val.picture
-							: "/not-found.png"
+						val?.picture.trim()
+							? `https://pictures.organlive.com/${imageString}`
+							: "/not-found"
 					}
 					num={index}
 					alt={val.composer}

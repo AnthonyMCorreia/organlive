@@ -15,18 +15,19 @@
 	background-image: url(../images/hands-organ.webp);
 }
 
-.home-section-inner {
+.home-section {
 	text-align: right;
 	margin: 0 40rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-radius: 1rem;
+	border-radius: 0.3rem;
 	width: 63vw;
 	height: 30rem;
 	padding: 1rem 10rem;
 	margin: 5rem;
 	background-color: $blue-light;
+	box-shadow: 10px 15px 0 $gray;
 }
 
 .section-left {
@@ -50,7 +51,6 @@
 	height: 100%;
 	width: 80rem;
 	font-size: 1.8rem;
-	background: $blue-light;
 }
 
 // dark blue background/logo on the left

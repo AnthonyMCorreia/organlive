@@ -16,7 +16,8 @@ const AlbumItem = ({ val, index }) => {
 	}
 
 	const imageError = (elm) => {
-		elm.target.src = "/not-found.png"
+		elm.target.onError = null
+		elm.target.src = errorPic
 	}
 
 	return (
@@ -28,9 +29,9 @@ const AlbumItem = ({ val, index }) => {
 				<img
 					className="pics"
 					src={
-						val.picture !== " "
-							? "https://pictures.organlive.com/" + val.picture
-							: errorPic
+						val?.picture.trim()
+							? `https://pictures.organlive.com/${val.picture}`
+							: "/not-found"
 					}
 					onError={imageError}
 					num={index}

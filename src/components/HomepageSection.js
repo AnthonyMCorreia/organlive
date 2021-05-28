@@ -2,7 +2,7 @@ import React from "react"
 
 const HomepageSection = ({ className }) => {
 	return (
-		<div className={"home-section-inner " + "section-" + className}>
+		<div className={"home-section " + "section-" + className}>
 			<h2 className="section-icons" alt="Eighth Notes">
 				♫
 			</h2>
