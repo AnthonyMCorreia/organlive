@@ -33,7 +33,7 @@ const Bar = () => {
 						to="/">
 						More
 					</button>
-					{!aboutMore ? <MoreDropdown /> : null}
+					{aboutMore ? <MoreDropdown /> : null}
 				</div>
 			</div>
 		</header>
