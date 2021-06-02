@@ -1,37 +1,68 @@
 #home {
 	color: black;
-	background-color: $off-white;
+
 	height: 95vh;
+	top: 7rem;
+	padding: 3rem;
+
+	background: url(../images/hands-organ.webp);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
-	position: fixed;
-	top: 7rem;
+
+	position: relative;
+	overflow: auto;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-	overflow: auto;
-	background-image: url(../images/hands-organ.webp);
 }
 
 .home-section {
 	text-align: right;
-	margin: 0 40rem;
+
+	padding: 1rem 10rem;
+	margin: 5rem;
+
+	border-radius: 3rem;
+	background-color: $blue-light;
+	box-shadow: 6px 10px 0 $gray;
+
+	width: 63vw;
+	height: 30rem;
+	font-size: 1.8rem;
+
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-radius: 0.3rem;
-	width: 63vw;
-	height: 30rem;
-	padding: 1rem 10rem;
-	margin: 5rem;
-	background-color: $blue-light;
-	box-shadow: 10px 15px 0 $gray;
+
+	@media (min-width: $mobile-max) and (orientation: portrait) {
+		position: relative;
+		right: 0.8rem;
+		margin: 5rem 0.5rem;
+	}
+
+	@media (max-width: $tablet-max) {
+		width: 90vw;
+	}
+
+	@media (max-width: $mobile-max) {
+		position: relative;
+
+		height: 15rem;
+		width: 93vw;
+
+		margin: 0.2rem;
+		padding: 2rem;
+	}
 }
 
 .section-left {
 	flex-direction: row-reverse;
+}
+
+.section-right {
 }
 
 .section-icons {
@@ -39,27 +70,43 @@
 	align-items: center;
 	font-size: 28rem;
 	text-align: center;
+
+	@media (max-width: $mobile-max) {
+		font-size: 10rem;
+	}
+}
+
+// Class targeting all home sections
+.home-section-text {
+	font-size: 1.8rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: start;
+
+	height: 100%;
+	width: 80rem;
+	padding: 0.5rem;
+
+	@media (max-width: $mobile-max) {
+		font-size: 1.1rem;
+		width: 70%;
+	}
 }
 
 // light blue background/logo on the right
 .text-right {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	align-self: flex-end;
-	text-align: center;
-	height: 100%;
-	width: 80rem;
-	font-size: 1.8rem;
+	text-align: end;
 }
 
 // dark blue background/logo on the left
 .text-left {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-	width: 80rem;
-	font-size: 1.8rem;
-	text-align: center;
+	text-align: start;
+	// @media (min-width: $tablet-max) {
+	// 	width:
+	// }
+
+	// @media (min-width: $mobile-max) {
+	// }
 }

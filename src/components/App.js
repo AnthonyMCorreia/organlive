@@ -1,6 +1,6 @@
 import { useEffect } from "react"
-import Navbar from "./Navbar"
-import { useSelector, useDispatch } from "react-redux"
+import Navbar from "./Navbar/"
+import { useDispatch } from "react-redux"
 import Player from "./Player"
 import Routes from "./Routes"
 

@@ -1,5 +1,3 @@
-@import "./_variables";
-
 .link-animation {
 	font-size: 2.4rem;
 
@@ -24,6 +22,7 @@
 	&:link,
 	&:visited {
 		text-decoration: none;
+		margin: 1rem;
 		padding: 0.8rem;
 		color: white;
 		position: relative;

@@ -1,6 +1,14 @@
+// Colors
 $blue-light: #384f77;
 $dark-blue: #00051a;
 $off-white: #f5f9ff;
 $white: #ffffff;
 $black: #000000;
 $gray: #666666;
+
+$transparent-lightblue: rgba($blue-light, 0.1);
+$transparent-darkblue: rgba($dark-blue, 0.1);
+
+// Breakpoints
+$tablet-max: 1024px;
+$mobile-max: 500px;
