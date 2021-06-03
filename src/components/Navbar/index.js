@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 // Components
@@ -9,13 +9,9 @@ import PhoneMenu from "./PhoneMenu"
 const Navbar = () => {
 	const [aboutMore, setAboutMore] = useState(0)
 
-	document.addEventListener("click", (evt) => {
-		const id = evt.target.id
-
-		if (id !== "more-button" && aboutMore === true) {
-			setAboutMore(false)
-		}
-	})
+	useEffect(() => {
+		setAboutMore(false)
+	}, [])
 
 	return (
 		<header id="header">
@@ -25,10 +21,31 @@ const Navbar = () => {
 				</h1>
 			</Link>
 			<div id="header-content">
-				{window.innerWidth <= 768 ? <PhoneMenu /> : <MainMenu />}
+				{window.innerWidth <= 768 &&
+				Screen.orientation !== "landscape-primary" ? (
+					<PhoneMenu aboutMore={aboutMore} setAboutMore={setAboutMore} />
+				) : (
+					<MainMenu aboutMore={aboutMore} setAboutMore={setAboutMore} />
+				)}
 			</div>
 		</header>
 	)
 }
 
 export default Navbar
+
+/*
+
+Library
+
+no playing
+
+contact schedule
+
+submit recording
+
+other stations
+
+donate
+
+*/

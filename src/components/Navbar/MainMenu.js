@@ -4,15 +4,23 @@ import { Link } from "react-router-dom"
 // Components
 import MoreDropdown from "./MoreDropdown"
 
-const MainMenu = () => {
-	const [aboutMore, setAboutMore] = useState(0)
+const MainMenu = ({ aboutMore, setAboutMore }) => {
+	// const [aboutMore, setAboutMore] = useState(0)
+
+	document.addEventListener("click", (evt) => {
+		const id = evt.target.id
+
+		if (id !== "more-button" && aboutMore) {
+			setAboutMore(false)
+		}
+	})
 
 	return (
 		<div id="links">
 			<Link className="link link-animation" to="/library">
 				Library
 			</Link>
-			<Link className="link link-animation" to="/nowPlaying">
+			<Link className="link link-animation" to="/nowplaying">
 				Now Playing
 			</Link>
 			<Link className="link link-animation" to="/contact">

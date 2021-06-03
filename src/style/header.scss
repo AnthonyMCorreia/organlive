@@ -66,10 +66,10 @@
 .dropdown-list {
 	position: absolute;
 
-	width: 17rem;
-	height: 12rem;
+	width: 20rem;
+	height: 15rem;
 	padding: 0.3rem;
-	transform: translate(-17.7rem, 5.8rem);
+	transform: translate(-20rem, 5.8rem);
 
 	display: flex;
 	flex-direction: column;
@@ -104,4 +104,33 @@
 	align-items: center;
 	margin: 0.25rem;
 	padding: 0.1rem;
+}
+
+// Mobile Menu Style
+.hamgurger-icon {
+	font-size: 4rem;
+}
+
+@media (max-width: $mobile-max) {
+	#header {
+		height: 9rem;
+	}
+
+	#title-logo {
+		max-width: 9rem;
+		max-height: 7rem;
+		margin: 0rem;
+	}
+
+	#mobile-menu {
+		position: absolute;
+		top: 6.8rem;
+		right: 0.1rem;
+	}
+}
+
+@media (max-width: $mobile-max) and (orientation: landscape) {
+	.hamgurger-icon {
+		font-size: 5rem;
+	}
 }

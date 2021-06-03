@@ -27,7 +27,7 @@
 		"web-vitals": "^1.0.1"
 	},
 	"scripts": {
-		"start": "react-scripts start",
+		"start": "HOST=0.0.0.0 react-scripts start",
 		"build": "react-scripts build",
 		"eject": "react-scrpts eject"
 	},
@@ -53,5 +53,8 @@
 		"hooks": {
 			"pre-commit": "lint-staged"
 		}
+	},
+	"devDependencies": {
+		"react-app-rewired": "^2.1.8"
 	}
 }
