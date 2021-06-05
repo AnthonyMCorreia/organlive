@@ -3,15 +3,18 @@ import { Link } from "react-router-dom"
 
 // Components
 import OrganliveLogo from "../../images/organliveLogo.png"
-import MainMenu from "./MainMenu"
-import PhoneMenu from "./PhoneMenu"
+import MainMenu from "./Main/Menu"
+import PhoneMenu from "./Mobile/Menu"
 
-const Navbar = () => {
-	const [aboutMore, setAboutMore] = useState(0)
+const Header = () => {
+	const [aboutMore, setAboutMore] = useState(false)
+	const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
-	useEffect(() => {
-		setAboutMore(false)
-	}, [])
+	window.addEventListener("resize", (evt) => {
+		const width = evt.target.innerWidth
+
+		setScreenWidth(width)
+	})
 
 	return (
 		<header id="header">
@@ -21,8 +24,7 @@ const Navbar = () => {
 				</h1>
 			</Link>
 			<div id="header-content">
-				{window.innerWidth <= 768 &&
-				Screen.orientation !== "landscape-primary" ? (
+				{screenWidth <= 990 ? (
 					<PhoneMenu aboutMore={aboutMore} setAboutMore={setAboutMore} />
 				) : (
 					<MainMenu aboutMore={aboutMore} setAboutMore={setAboutMore} />
@@ -32,20 +34,4 @@ const Navbar = () => {
 	)
 }
 
-export default Navbar
-
-/*
-
-Library
-
-no playing
-
-contact schedule
-
-submit recording
-
-other stations
-
-donate
-
-*/
+export default Header

@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import Navbar from "./Navbar/"
+import Header from "./Header/"
 import { useDispatch } from "react-redux"
 import Player from "./Player"
 import Routes from "./Routes"
@@ -16,7 +16,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<Navbar />
+			<Header />
 			<Routes />
 			{/* <Player /> */}
 		</div>

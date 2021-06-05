@@ -10,13 +10,23 @@
 	background-repeat: no-repeat;
 	background-position: center center;
 
-	position: relative;
+	position: fixed;
 	overflow: auto;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
+
+	@media (min-width: $mobile-max) and (orientation: landscape) {
+		// margin: 5rem 0.5rem;
+		padding: 1rem;
+	}
+
+	@media (min-width: $mobile-max) and (orientation: landscape) {
+		// margin: 5rem 0.5rem;
+		// padding: 1rem;
+	}
 }
 
 .home-section {
@@ -43,6 +53,13 @@
 		margin: 5rem 0.5rem;
 	}
 
+	@media (min-width: $mobile-max) and (orientation: landscape) {
+		position: relative;
+		left: 2rem;
+		height: 30rem;
+		padding: 0.5rem;
+	}
+
 	@media (max-width: $tablet-max) {
 		width: 90vw;
 	}
@@ -62,9 +79,6 @@
 	flex-direction: row-reverse;
 }
 
-.section-right {
-}
-
 .section-icons {
 	display: flex;
 	align-items: center;
@@ -72,7 +86,7 @@
 	text-align: center;
 
 	@media (max-width: $mobile-max) {
-		font-size: 10rem;
+		font-size: 7rem;
 	}
 }
 
@@ -83,14 +97,14 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	text-align: start;
+	text-align: flex-start;
 
 	height: 100%;
 	width: 80rem;
 	padding: 0.5rem;
 
 	@media (max-width: $mobile-max) {
-		font-size: 1.1rem;
+		font-size: 1.2rem;
 		width: 70%;
 	}
 }
@@ -102,7 +116,7 @@
 
 // dark blue background/logo on the left
 .text-left {
-	text-align: start;
+	text-align: flex-start;
 	// @media (min-width: $tablet-max) {
 	// 	width:
 	// }

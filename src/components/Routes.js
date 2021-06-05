@@ -2,8 +2,8 @@ import React from "react"
 import { Route, Switch } from "react-router-dom"
 
 // Components
-import Home from "./Homepage"
-import Library from "./Library/Library"
+import Home from "./Homepage/"
+import Library from "./Library/"
 import LibraryItem from "./Library/AlbumItem"
 import Schedule from "./Schedule"
 
