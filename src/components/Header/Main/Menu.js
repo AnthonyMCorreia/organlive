@@ -12,7 +12,7 @@ const MainMenu = ({ aboutMore, setAboutMore }) => {
 			setAboutMore(false)
 		}
 
-		window.addEventListener('resize', (evt) => {
+		window.addEventListener("resize", (evt) => {
 			const screenSize = evt.target
 		})
 	})

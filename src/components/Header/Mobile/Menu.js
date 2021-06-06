@@ -7,7 +7,7 @@ const PhoneMenu = () => {
 	const [aboutMore, setAboutMore] = useState(false)
 
 	return (
-		<div id="mobile-menu">
+		<>
 			{!aboutMore ? (
 				<div
 					className="material-icons"
@@ -18,19 +18,17 @@ const PhoneMenu = () => {
 					menu
 				</div>
 			) : (
-				<div id="mobile-dropdown-menu">
-					<div
-						className="material-icons x-icon"
-						id="x-toggle"
-						onClick={() => {
-							setAboutMore(false)
-						}}>
-						close
-					</div>
-					<Dropdown />
+				<div
+					className="material-icons x-icon"
+					id="x-toggle"
+					onClick={() => {
+						setAboutMore(false)
+					}}>
+					close
 				</div>
 			)}
-		</div>
+			<Dropdown visible={aboutMore ? "1" : "0"} />
+		</>
 	)
 }
 
