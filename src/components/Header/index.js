@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
 // Components
@@ -7,13 +7,10 @@ import MainMenu from "./Main/Menu"
 import PhoneMenu from "./Mobile/Menu"
 
 const Header = () => {
-	const [aboutMore, setAboutMore] = useState(false)
-	const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+	const [width, setWidth] = useState(window.innerWidth)
 
 	window.addEventListener("resize", (evt) => {
-		const width = evt.target.innerWidth
-
-		setScreenWidth(width)
+		setWidth(evt.innerWidth)
 	})
 
 	return (
@@ -24,11 +21,7 @@ const Header = () => {
 				</h1>
 			</Link>
 			<div id="header-content">
-				{screenWidth <= 990 ? (
-					<PhoneMenu aboutMore={aboutMore} setAboutMore={setAboutMore} />
-				) : (
-					<MainMenu aboutMore={aboutMore} setAboutMore={setAboutMore} />
-				)}
+				{width <= 768 ? <PhoneMenu /> : <MainMenu />}
 			</div>
 		</header>
 	)

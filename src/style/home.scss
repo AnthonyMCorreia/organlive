@@ -1,126 +1,219 @@
+@mixin mobile-innerSection-style {
+	flex-direction: column;
+	padding: 0 0 3rem;
+	width: 100%;
+	height: 85%;
+}
+
+@mixin mobile-section-text {
+	@media (max-width: $mobile-max-width) and (orientation: portrait) {
+		text-align: center;
+		font-size: 2rem;
+		padding: 2rem;
+	}
+}
+
 #home {
-	color: black;
+	position: relative;
+	width: 100vw;
+	height: calc(100vh - 10rem);
+	top: 10.1rem;
 
-	height: 95vh;
-	top: 7rem;
-	padding: 3rem;
-
-	background: url(../images/hands-organ.webp);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
-
-	position: fixed;
 	overflow: auto;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-wrap: wrap;
+	flex-direction: column;
 
-	@media (min-width: $mobile-max) and (orientation: landscape) {
-		// margin: 5rem 0.5rem;
-		padding: 1rem;
+	background: linear-gradient($blueGray, $darkBlue);
+
+	@media (max-width: $tablet-max) {
 	}
 
-	@media (min-width: $mobile-max) and (orientation: landscape) {
-		// margin: 5rem 0.5rem;
-		// padding: 1rem;
+	@media (max-width: $mobile-max-width) and (orientation: portrait) {
 	}
+
+	@media (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
+	}
+}
+
+#home-inner {
+	height: 100%;
+	width: 100%;
+	padding: 1rem;
 }
 
 .home-section {
-	text-align: right;
-
-	padding: 1rem 10rem;
-	margin: 5rem;
-
-	border-radius: 3rem;
-	background-color: $blue-light;
-	box-shadow: 6px 10px 0 $gray;
-
-	width: 63vw;
-	height: 30rem;
-	font-size: 1.8rem;
+	width: 100vw;
+	height: 40rem;
 
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 
-	@media (min-width: $mobile-max) and (orientation: portrait) {
-		position: relative;
-		right: 0.8rem;
-		margin: 5rem 0.5rem;
-	}
-
-	@media (min-width: $mobile-max) and (orientation: landscape) {
-		position: relative;
-		left: 2rem;
-		height: 30rem;
-		padding: 0.5rem;
-	}
-
 	@media (max-width: $tablet-max) {
-		width: 90vw;
 	}
 
-	@media (max-width: $mobile-max) {
-		position: relative;
+	@media (max-width: $mobile-max-width) {
+	}
 
-		height: 15rem;
-		width: 93vw;
+	@media (max-width: $mobile-max-width) and (orientation: portrait) {
+	}
 
-		margin: 0.2rem;
-		padding: 2rem;
+	@media (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
 	}
 }
 
-.section-left {
-	flex-direction: row-reverse;
+.home-section-inner {
+	width: 30%;
+	height: 100%;
+	padding: 2rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	@media (max-width: $tablet-max) {
+		width: 65%;
+	}
+
+	@media (max-width: $mobile-max-width) and (orientation: portrait) {
+		@include mobile-innerSection-style;
+	}
+}
+
+// Class targeting all home sections text
+
+.home-section-text {
+	font-size: 2.5rem;
+	font-weight: 500;
+
+	width: 30rem;
+	padding: 2rem 4rem 2rem 0;
+	text-align: left;
+
+	color: $off-white;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: start;
+
+	@include mobile-section-text;
+
+	@media (max-width: $mobile-max-width) {
+	}
+
+	@media (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
+	}
+}
+
+.section-pic {
+	max-width: 30rem;
+	max-height: 30rem;
+	border-radius: 1rem;
+
+	@media (max-width: $tablet-max) {
+		max-height: 25rem;
+		max-width: 25rem;
+	}
+}
+
+#main-section {
+	height: 40rem;
+	border-bottom: 1px solid $darkGray;
+	border-top: 1px solid $darkGray;
+
+	@media (max-height: $mobile-max-height) and (orientation: portrait) {
+		height: 55rem;
+	}
+
+	@media (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
+	}
+
+	@media (max-width: $tablet-max) and (orientation: landscape) {
+	}
+}
+
+#main-section-inner {
+	width: 30%;
+	height: 100%;
+	padding: 2rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	@media (max-width: $tablet-max) {
+		width: 75%;
+	}
+
+	@media (max-height: $mobile-max-height) and (orientation: portrait) {
+		@include mobile-innerSection-style;
+		width: 100%;
+	}
+}
+
+#main-section-content {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	flex-direction: column;
+
+	width: 40%;
+	height: 100%;
+}
+
+#main-section-text {
+	width: 30rem;
+	padding: 2rem 4rem 2rem 0;
+	text-align: left;
+}
+
+#listen-now {
+	width: 15rem;
+	height: 5rem;
+	margin: 2rem 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 2.5rem;
+
+	color: $off-white;
+	background-color: $black;
+	border-radius: 1.1rem;
+
+	transition: all 0.5s;
+
+	&:hover {
+		color: $darkGray;
+		transition: all 0.29s;
+	}
+
+	&:active {
+		transition: all 40ms;
+		color: $darkGray;
+	}
+
+	@media (max-width: $tablet-max) {
+		margin: 0;
+	}
+}
+
+#main-section-image {
+	max-width: 30rem;
+	max-height: 30rem;
 }
 
 .section-icons {
 	display: flex;
 	align-items: center;
-	font-size: 28rem;
+	font-size: 20rem;
 	text-align: center;
 
-	@media (max-width: $mobile-max) {
-		font-size: 7rem;
+	@media (max-width: $mobile-max-width) {
 	}
-}
-
-// Class targeting all home sections
-.home-section-text {
-	font-size: 1.8rem;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: flex-start;
-
-	height: 100%;
-	width: 80rem;
-	padding: 0.5rem;
-
-	@media (max-width: $mobile-max) {
-		font-size: 1.2rem;
-		width: 70%;
-	}
-}
-
-// light blue background/logo on the right
-.text-right {
-	text-align: end;
-}
-
-// dark blue background/logo on the left
-.text-left {
-	text-align: flex-start;
-	// @media (min-width: $tablet-max) {
-	// 	width:
-	// }
-
-	// @media (min-width: $mobile-max) {
-	// }
 }

@@ -2,7 +2,9 @@
 	"name": "organlive",
 	"version": "0.1.0",
 	"dependencies": {
-		"@craco/craco": "^6.1.2",
+		"@material-ui/core": "^4.11.4",
+		"@material-ui/icons": "^4.11.2",
+		"@material-ui/styles": "^4.11.4",
 		"@react-aria/select": "^3.3.0",
 		"@tarekraafat/autocomplete.js": "^8.3.2",
 		"@testing-library/jest-dom": "^5.11.4",
@@ -12,6 +14,7 @@
 		"axios": "^0.21.1",
 		"husky": "^6.0.0",
 		"lint-staged": "^10.5.4",
+		"material-design-icons": "^3.0.1",
 		"node-sass": "^5.0.0",
 		"prettier": "^2.2.1",
 		"react": "^17.0.1",
@@ -41,7 +44,8 @@
 		"production": [
 			">0.2%",
 			"not dead",
-			"not op_mini all"
+			"not op_mini all",
+			"since 2010"
 		],
 		"development": [
 			"last 1 chrome version",

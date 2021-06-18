@@ -1,33 +1,40 @@
-import React, { useState } from "react"
+import React from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 // Components
 import Dropdown from "./Dropdown"
 
+// State
+import { toggleMenu } from "../../../state/dropdown"
+
 const PhoneMenu = () => {
-	const [aboutMore, setAboutMore] = useState(false)
+	const dispatch = useDispatch()
+	const dropdownState = useSelector((state) => state.menu.open)
 
 	return (
 		<>
-			{!aboutMore ? (
+			{!dropdownState ? (
 				<div
 					className="material-icons"
 					id="hamburger-icon"
 					onClick={() => {
-						setAboutMore(true)
+						dispatch(toggleMenu(true))
 					}}>
 					menu
 				</div>
 			) : (
-				<div
-					className="material-icons x-icon"
-					id="x-toggle"
-					onClick={() => {
-						setAboutMore(false)
-					}}>
-					close
+				<div id="mobile-menu" visible={dispatch ? "1" : "0"}>
+					<div
+						className="material-icons x-icon"
+						id="x-toggle"
+						onClick={() => {
+							dispatch(toggleMenu(false))
+						}}>
+						close
+					</div>
+					<Dropdown />
 				</div>
 			)}
-			<Dropdown visible={aboutMore ? "1" : "0"} />
 		</>
 	)
 }

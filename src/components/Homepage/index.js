@@ -1,29 +1,18 @@
-import React from "react"
+import React, { useState } from "react"
 
 // Components
-import HomepageSection from "./HomepageSection"
+import HomepageInfo from "./HomepageInfo"
+// import HomepageCalendar from "./HomepageCalendar"
 
-const sectionProps = [
-	{
-		side: "left",
-		icon: "e405"
-	},
-	{
-		side: "right",
-		icon: ""
-	},
-	{
-		side: "left",
-		icon: ""
-	}
-]
+// Icon Library
+import "material-design-icons"
 
 const Homepage = () => {
 	return (
 		<div id="home">
-			{sectionProps.map(({ side, icon }, index) => {
-				return <HomepageSection key={index} className={side} icon={icon} />
-			})}
+			<div id="home-inner">
+				<HomepageInfo />
+			</div>
 		</div>
 	)
 }

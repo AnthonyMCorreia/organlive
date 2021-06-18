@@ -5,10 +5,10 @@ import {
 	getSong,
 	updateCurrentTime,
 	setTimer
-} from "../state/player"
+} from "../../state/player"
 
 // Styles
-import "../style/player.scss"
+import "../../style/player.scss"
 
 const secondsToMinutesAndSeconds = (seconds) => {
 	const minutes = Math.floor(seconds / 60)

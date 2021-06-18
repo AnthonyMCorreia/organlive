@@ -4,30 +4,20 @@ import { Route, Switch } from "react-router-dom"
 // Components
 import Home from "./Homepage/"
 import Library from "./Library/"
+import Radio from "./Radio"
 import LibraryItem from "./Library/AlbumItem"
 import Schedule from "./Schedule"
 
 const Routes = () => {
 	return (
 		<Switch>
-			<Route exact path="/">
-				<Home />
-			</Route>
-			<Route exact path="/contact">
-				contact
-			</Route>
-			<Route exact path="/:type/:name">
-				<LibraryItem />
-			</Route>
-			<Route exact path="/library">
-				<Library />
-			</Route>
-			<Route exact path="nowPlaying">
-				now Playing
-			</Route>
-			<Route exact path="/schedule">
-				<Schedule />
-			</Route>
+			<Route exact path="/" component={Home} />
+			<Route exact path="/contact" component={"contact"} />
+			<Route exact path="/library" component={Library} />
+			{/* <Route exact path="/library/:type/:id" component={LibraryItem} /> */}
+			<Route exact path="/nowPlaying" />
+			<Route exact path="/schedule" component={Schedule} />
+			<Route exact path="/radio" component={Radio} />
 		</Switch>
 	)
 }

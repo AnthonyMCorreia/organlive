@@ -1,14 +1,16 @@
 import { useEffect } from "react"
 import Header from "./Header/"
-import { useDispatch } from "react-redux"
-import Player from "./Player"
+import { useDispatch, useSelector } from "react-redux"
 import Routes from "./Routes"
 
 // State
-import { getLibrary } from "./../state/library"
+import { getLibrary } from "../state/library"
 
 function App() {
 	const dispatch = useDispatch()
+	const {
+		menu: { isOpen }
+	} = useSelector((state) => state)
 
 	useEffect(() => {
 		dispatch(getLibrary())
@@ -16,9 +18,8 @@ function App() {
 
 	return (
 		<div className="App">
-			<Header />
+			{isOpen ? null : <Header />}
 			<Routes />
-			{/* <Player /> */}
 		</div>
 	)
 }

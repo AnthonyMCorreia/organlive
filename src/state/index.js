@@ -7,11 +7,13 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import player from "./player"
 import library from "./library"
 import search from "./search"
+import menu from "./dropdown"
 
 const reducer = combineReducers({
 	player,
 	library,
-	search
+	search,
+	menu
 })
 
 const middleware = composeWithDevTools(
