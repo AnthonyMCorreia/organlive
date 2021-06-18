@@ -6,6 +6,9 @@ import Routes from "./Routes"
 // State
 import { getLibrary } from "../state/library"
 
+// Components
+import Radio from "./Radio"
+
 function App() {
 	const dispatch = useDispatch()
 	const {
@@ -20,6 +23,7 @@ function App() {
 		<div className="App">
 			{isOpen ? null : <Header />}
 			<Routes />
+			<Radio />
 		</div>
 	)
 }

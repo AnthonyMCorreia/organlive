@@ -1,38 +1,72 @@
-.player {
-	display: flex;
+@import "./_variables";
+
+#radio {
 	position: fixed;
-	bottom: 4rem;
-	height: 5.5rem;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: rgb(56, 56, 56);
-	border-radius: 5rem;
-	width: 40vw;
-	justify-content: space-around;
-	align-items: center;
-	border: 0.5px solid rgba(255, 255, 255, 0.5);
-}
+	height: 10rem;
+	width: 45vw;
+	bottom: 1rem;
+	padding: 1rem;
 
-#play-button {
-	border: none;
-	background: rgb(18, 18, 18);
-	height: 1.5em;
-	width: 2.5rem;
-	clip-path: polygon(0 100%, 100% 50%, 100% 50%, 0 0);
-}
+	background-color: $player-background;
+	border-radius: 2rem;
+	box-shadow: 0 0.2rem 2.5rem $transparent-black;
 
-.play-button-container {
-	padding: 1.4rem;
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	height: 3.2rem;
-	width: 5rem;
-	border-radius: 50%;
-	background-color: white;
+	justify-content: space-between;
+}
+
+#stream {
+	position: relative;
+	width: 10rem;
+	height: 10rem;
+	top: 15rem;
+}
+
+// Pause/Play button & progress bar styles
+
+#play-progress-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+#playback-button {
+	background: none;
+	border: none;
+	color: $white;
+	font-size: 4rem;
+}
+
+#progress {
+	width: 46em;
+	color: black;
+}
+
+#volume-controls {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#mute {
+	height: 3rem;
+	width: 6rem;
+	background-color: $midnightBlue;
+	outline: none;
+	border: none;
+	border-radius: 50rem;
+	margin: 2rem;
+	color: $white;
+}
+
+#music-info {
+	width: 10rem;
+	height: 10rem;
 }
 
 .album {
-	max-width: 10rem;
-	border: 0.1rem solid white;
+	// max-width: 10rem;
+	// border: 0.1rem solid white;
 }

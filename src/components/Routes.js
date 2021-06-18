@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom"
 import Home from "./Homepage/"
 import Library from "./Library/"
 import Radio from "./Radio"
-import LibraryItem from "./Library/AlbumItem"
+// import LibraryItem from "./Library/AlbumItem"
 import Schedule from "./Schedule"
 
 const Routes = () => {
@@ -17,7 +17,6 @@ const Routes = () => {
 			{/* <Route exact path="/library/:type/:id" component={LibraryItem} /> */}
 			<Route exact path="/nowPlaying" />
 			<Route exact path="/schedule" component={Schedule} />
-			<Route exact path="/radio" component={Radio} />
 		</Switch>
 	)
 }

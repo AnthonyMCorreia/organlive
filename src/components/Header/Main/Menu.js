@@ -26,6 +26,9 @@ const MainMenu = () => {
 
 	return (
 		<div id="links">
+			<Link className="link link-animation" to="/">
+				Home
+			</Link>
 			<Link className="link link-animation" to="/library">
 				Library
 			</Link>

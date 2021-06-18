@@ -7,11 +7,13 @@ $off-white: #d1d1d1;
 $white: #ffffff;
 $black: #000000;
 $darkGray: #1f1f1f;
+$player-background: #030303;
 
 // Transparent Colors
 $transparent-blueGray: rgba($blueGray, 0.4);
 $transparent-darkBlue: rgba($darkBlue, 0.5);
-$transparent-midnightBlue: rgba($black, 0.5);
+$transparent-midnightBlue: rgba($midnightBlue, 0.5);
+$transparent-black: rgba($black, 0.5);
 
 // Breakpoints
 $tablet-max: 1500px;

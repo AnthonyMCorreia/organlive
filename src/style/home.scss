@@ -6,10 +6,10 @@
 }
 
 @mixin mobile-section-text {
-	@media (max-width: $mobile-max-width) and (orientation: portrait) {
+	@media (max-width: $tablet-max) and (orientation: portrait) {
 		text-align: center;
 		font-size: 2rem;
-		padding: 2rem;
+		padding: 1.8rem;
 	}
 }
 
@@ -19,7 +19,8 @@
 	height: calc(100vh - 10rem);
 	top: 10.1rem;
 
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 
 	display: flex;
 	align-items: center;
@@ -28,10 +29,8 @@
 
 	background: linear-gradient($blueGray, $darkBlue);
 
-	@media (max-width: $tablet-max) {
-	}
-
-	@media (max-width: $mobile-max-width) and (orientation: portrait) {
+	@media (max-height: $mobile-max-height) and (orientation: portrait) {
+		width: 100vw;
 	}
 
 	@media (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
@@ -74,11 +73,16 @@
 	align-items: center;
 	justify-content: space-between;
 
-	@media (max-width: $tablet-max) {
-		width: 65%;
+	@media (max-width: $tablet-max) and (orientation: portrait) {
+		width: 75%;
 	}
 
-	@media (max-width: $mobile-max-width) and (orientation: portrait) {
+	@media (max-width: $tablet-max) and (orientation: landscape) {
+		width: 65%;
+		justify-content: space-evenly;
+	}
+
+	@media (orientation: portrait) and (max-width: $tablet-max) {
 		@include mobile-innerSection-style;
 	}
 }
@@ -102,9 +106,6 @@
 
 	@include mobile-section-text;
 
-	@media (max-width: $mobile-max-width) {
-	}
-
 	@media (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
 	}
 }
@@ -126,7 +127,7 @@
 	border-top: 1px solid $darkGray;
 
 	@media (max-height: $mobile-max-height) and (orientation: portrait) {
-		height: 55rem;
+		height: 45rem;
 	}
 
 	@media (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
@@ -147,10 +148,14 @@
 
 	@media (max-width: $tablet-max) {
 		width: 75%;
+		padding: 4rem;
+		justify-content: space-evenly;
 	}
 
 	@media (max-height: $mobile-max-height) and (orientation: portrait) {
 		@include mobile-innerSection-style;
+		height: 100%;
+		padding: 2rem 3rem;
 		width: 100%;
 	}
 }
@@ -163,12 +168,20 @@
 
 	width: 40%;
 	height: 100%;
+
+	@media (max-height: $mobile-max-height) and (orientation: portrait) {
+		width: 100%;
+		margin-bottom: 4rem;
+		align-items: center;
+		justify-content: space-between;
+	}
 }
 
 #main-section-text {
 	width: 30rem;
 	padding: 2rem 4rem 2rem 0;
 	text-align: left;
+	@include mobile-section-text;
 }
 
 #listen-now {
