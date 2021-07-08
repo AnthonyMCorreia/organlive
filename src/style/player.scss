@@ -3,17 +3,15 @@
 #radio {
 	position: fixed;
 	height: 10rem;
-	width: 45vw;
+	width: 100rem;
 	bottom: 1rem;
-	padding: 1rem;
 
-	background-color: $player-background;
+	background-color: $playerBackground;
 	border-radius: 2rem;
-	box-shadow: 0 0.2rem 2.5rem $transparent-black;
+	box-shadow: 0 0.2rem 2.5rem $transparent-playerBackground;
 
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 }
 
 #stream {
@@ -28,8 +26,11 @@
 #play-progress-container {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	flex-direction: column;
+
+	width: 33%;
+	height: 70%;
 }
 
 #playback-button {
@@ -39,21 +40,61 @@
 	font-size: 4rem;
 }
 
-#progress {
-	width: 46em;
-	color: black;
+#progress-container {
+	display: flex;
+
+	width: 85%;
+}
+
+#progress::-webkit-progress-bar {
+	-webkit-appearance: none;
+	outline: none;
+
+	width: 50rem;
+	color: yellow;
 }
 
 #volume-controls {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
+
+	width: 33%;
+
+
+
+	& > * {
+		margin: .2em;
+	}
+}
+
+#volumeBar {
+	border: none;
+	outline: none;
+	appearance:black;
+	-webkit-appearance: none !important;
+	cursor: pointer;
+
+	width: 20rem;
+	height: .2rem;
+	background: $blueGray;
+	color: yellow;
+
+	&::-webkit-slider-thumb {
+		appearance: none;
+		-webkit-appearance: none !important;
+		background: $playerBackground;
+		border: .1rem solid $blueGray;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 50%;
+	}
 }
 
 #mute {
 	height: 3rem;
 	width: 6rem;
-	background-color: $midnightBlue;
+	background-color: $playerBackground;
 	outline: none;
 	border: none;
 	border-radius: 50rem;
@@ -62,10 +103,9 @@
 }
 
 #music-info {
-	width: 10rem;
-	height: 10rem;
+	width: 33%;
+	height: 100%;
 }
-
 .album {
 	// max-width: 10rem;
 	// border: 0.1rem solid white;

@@ -4,13 +4,13 @@ import thunkMiddleware from "redux-thunk"
 import { composeWithDevTools } from "redux-devtools-extension"
 
 //reducers
-import player from "./player"
+import radio from "./radio"
 import library from "./library"
 import search from "./search"
 import menu from "./dropdown"
 
 const reducer = combineReducers({
-	player,
+	radio,
 	library,
 	search,
 	menu

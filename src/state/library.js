@@ -48,7 +48,7 @@ export const getLibrary = () => {
 
 			dispatch(setLibrary(library))
 		} catch (err) {
-			console.log(err)
+			new Error(err.message)
 		}
 	}
 }

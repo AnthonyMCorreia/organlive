@@ -19,7 +19,6 @@ const ComposerItem = ({ val, index }) => {
 			.split(" ")
 			.join("_") + ".jpg"
 
-	console.log(imageString, val?.picture.trim())
 
 	const clickHandler = () => {
 		dispatch(getItem(val.id))
