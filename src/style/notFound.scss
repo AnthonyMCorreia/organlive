@@ -1,0 +1,14 @@
+#not-found {
+	position: relative;
+	font-size: 1.5rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-self: center;
+
+	top: $main-height;
+	height: calc(100vh - 10rem);
+	width: 100vw;
+	background-color: $black;
+}

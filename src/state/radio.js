@@ -1,15 +1,34 @@
 import axios from "axios"
 
-const PLAYER_STATE = "PLAYER_STATE"
 const GET_SONG_INFO = "GET_SONG_INFO"
-const UPDATE_CURRENT_TIME = "UPDATE_CURRENT_TIME"
-const SET_TIMER = "SET_TIMER"
 const SET_VOLUME = "SET_VOLUME"
 const TOGGLE_MUTE = "TOGGLE_MUTE"
+const SET_PREVIOUS_VOLUME = "SET_PREVIOUS_VOLUME"
+const SET_SIZE = "SET_SIZE"
+const PLAYING_STATE = "PLAYING_STATE"
+const CHANGE_CURRENT_TIME = "CHANGE_CURRENT_TIME"
+const SET_SECONDS_ARRAY = "SET_SECONDS_ARRAY"
+const SET_CURRENT_DATE = "SET_CURRENT_DATE"
+const SONG_DONE = "SONG_DONE"
 
-export const setPlayerState = (isPlaying) => ({
-	type: PLAYER_STATE,
-	isPlaying
+export const setSongDone = (isDone) => ({
+	type: SONG_DONE,
+	isDone
+})
+
+export const setDate = (date) => ({
+	type: SET_CURRENT_DATE,
+	date
+})
+
+export const setSecondsArray = (arr) => ({
+	type: SET_SECONDS_ARRAY,
+	arr
+})
+
+export const changeCurrentTime = (currentTime) => ({
+	type: CHANGE_CURRENT_TIME,
+	currentTime
 })
 
 export const setSong = (song) => ({
@@ -17,79 +36,199 @@ export const setSong = (song) => ({
 	song
 })
 
-export const updateCurrentTime = (currentTime) => ({
-	type: UPDATE_CURRENT_TIME,
-	currentTime
-})
-
-export const setTimer = (timer) => ({
-	type: SET_TIMER,
-	timer
-})
-
 export const setVolume = (volume) => ({
 	type: SET_VOLUME,
 	volume
 })
 
-export const toggleMute = (previousVolume) => ({
+export const toggleMute = (muted) => ({
 	type: TOGGLE_MUTE,
+	muted
+})
+
+export const setPreviousVolume = (previousVolume) => ({
+	type: SET_PREVIOUS_VOLUME,
 	previousVolume
 })
 
-// Thunks
+export const radioSize = () => ({
+	type: SET_SIZE
+})
 
+export const changePlaying = (isPlaying) => ({
+	type: PLAYING_STATE,
+	isPlaying
+})
+
+// Thunks
 export const getSong = () => {
 	return async (dispatch) => {
-		const { data: song } = await axios.get("https://api.organlive.com/playing")
-		console.log(song)
-		dispatch(setSong(song))
+		try {
+			console.log("get song func")
+			const { data: song } = await axios.get(
+				"https://api.organlive.com/playing"
+			)
+			const {
+				timetotal,
+				millisecondsremaining,
+				timeelapsed,
+				workid
+			} = song.housekeeping
+
+			console.log(song.housekeeping.workid)
+
+			dispatch(setSong(song))
+			dispatch(changeCurrentTime(timeelapsed))
+			setTimeout(() => {
+				console.log("get song timeout")
+				dispatch(checkForRefresh(workid))
+				console.log(millisecondsremaining)
+			}, millisecondsremaining)
+		} catch (err) {
+			console.log(err)
+		}
 	}
 }
 
-// export const startSong = () => {
-// 	return (dispatch) => {}
-// }
+export const checkForRefresh = (currentSongId) => {
+	return async (dispatch) => {
+		console.log("check for refresh func")
+		try {
+			const { data: response } = await axios.get(
+				`https://api.organlive.com/playing/${currentSongId}`
+			)
+
+			if (response.housekeeping.refresh === "yes") {
+				console.log("refresh yes")
+				dispatch(setSong(response))
+			} else if (response.housekeeping.refresh === "no") {
+				console.log("refresh no")
+				setTimeout(() => {
+					console.log("timeout", response.housekeeping.secondsRemaining)
+					dispatch(checkForRefresh(currentSongId))
+				}, response.housekeeping.secondsRemaining)
+			}
+		} catch (err) {
+			console.log(err)
+		}
+	}
+}
 
 const initialState = {
-	stream: "https://play.organlive.com:7010/320",
+	expanded: true,
 	song: {},
 	currentPlayerInfo: {
-		currentTime: null,
-		isPlaying: false,
+		isDone: false,
 		volume: {
 			isMuted: false,
-			currentVolume: 0.25,
-			previousVolume: null
+			currentVolume: 0.5,
+			previousVolume: 0.5
 		},
-		songLength: null
+		time: {
+			isPlaying: false,
+			currentTime: null,
+			currentDate: null
+		},
+		songListCache: [],
+		lastSongUpdateRequest: null
 	}
 }
 
 export default function Player(state = initialState, action) {
 	switch (action.type) {
-		case PLAYER_STATE:
-			return {
-				...state,
-				currentPlayerInfo: {
-					...state.currentPlayerInfo,
-					isPlaying: action.isPlaying
-				}
-			}
 		case GET_SONG_INFO:
-			return { ...state, song: action.song }
-		case UPDATE_CURRENT_TIME:
 			return {
 				...state,
+				song: action.song,
 				currentPlayerInfo: {
 					...state.currentPlayerInfo,
-					currentTime: action.currentTime
+					time: {
+						...state.currentPlayerInfo.time,
+						currentTime: action.song.housekeeping.timeelapsed,
+						currentDate: Date.now()
+					}
 				}
 			}
 		case SET_VOLUME:
-			return {...state, currentPlayerInfo: {...state.currentPlayerInfo, volume: action.volume}}
+			return {
+				...state,
+				currentPlayerInfo: {
+					...state.currentPlayerInfo,
+					volume: {
+						...state.currentPlayerInfo.volume,
+						currentVolume: action.volume
+					}
+				}
+			}
 		case TOGGLE_MUTE:
-			return { ...state, currentPlayerInfo: {...state.currentPlayerInfo, volume: {...state.volume, isMuted: !state.muted, previousVolume: action.previousVolume}}}
+			return {
+				...state,
+				currentPlayerInfo: {
+					...state.currentPlayerInfo,
+					volume: {
+						...state.currentPlayerInfo.volume,
+						isMuted: action.muted,
+						previousVolume: state.currentPlayerInfo.volume.previousVolume
+					}
+				}
+			}
+		case SET_PREVIOUS_VOLUME:
+			return {
+				...state,
+				currentPlayerInfo: {
+					...state.currentPlayerInfo,
+					volume: {
+						...state.currentPlayerInfo.volume,
+						previousVolume: action.previousVolume
+					}
+				}
+			}
+		case SET_SIZE:
+			return {
+				...state,
+				expanded: !state.expanded
+			}
+		case PLAYING_STATE:
+			return {
+				...state,
+				currentPlayerInfo: {
+					...state.currentPlayerInfo,
+					time: {
+						...state.currentPlayerInfo.time,
+						isPlaying: action.isPlaying
+					}
+				}
+			}
+		case CHANGE_CURRENT_TIME:
+			return {
+				...state,
+				currentPlayerInfo: {
+					...state.currentPlayerInfo,
+					time: {
+						...state.currentPlayerInfo.time,
+						currentTime: action.currentTime
+					}
+				}
+			}
+		case SET_CURRENT_DATE:
+			return {
+				...state,
+				currentPlayerInfo: {
+					...state.currentPlayerInfo,
+					time: {
+						...state.currentPlayerInfo.time,
+						currentDate: action.date
+					}
+				}
+			}
+		case SONG_DONE:
+			return {
+				...state,
+				currentPlayerInfo: {
+					...state.currentPlayerInfo,
+					isDone: action.isDone
+				}
+			}
 		default:
 			return state
 	}

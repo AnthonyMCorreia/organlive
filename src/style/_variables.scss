@@ -1,24 +1,30 @@
 // Colors
 $babyBlue: #c3e0e5;
-$darkBlue: #274472;
+$darkBlue: #112649;
 $blueGray: #5885af;
 $midnightBlue: #41729f;
 $off-white: #d1d1d1;
 $white: #ffffff;
 $black: #000000;
+$gray: gray;
 $darkGray: #1f1f1f;
 $playerBackground: #0f0f0f;
+$offBlack: #141414;
 
 // Transparent Colors
 $transparent-blueGray: rgba($blueGray, 0.4);
-$transparent-darkBlue: rgba($darkBlue, 0.5);
+$transparent-darkBlue: rgba($darkBlue, 0.8);
 $transparent-midnightBlue: rgba($midnightBlue, 0.5);
 $transparent-black: rgba($black, 0.5);
 $transparent-playerBackground: rgba($playerBackground, 0.5);
+$transparent-gray: rgba($gray, 0.5);
 
 // Breakpoints
 $tablet-max: 1500px;
 
-$mobile-max-width: 490px;
+$mobile-max-width-portrait: 490px;
 $mobile-max-height: 850px;
 $mobile-max-landscape-width: 830px;
+
+// Main Content Height
+$main-height: calc(100vh - 10rem);

@@ -9,7 +9,7 @@
 
 		transform: scaleX(0);
 		transform-origin: bottom right;
-		transition: transform 180ms ease-out;
+		transition: transform 300ms ease-out;
 	}
 	&:hover:after {
 		cursor: pointer;

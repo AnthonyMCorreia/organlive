@@ -1,29 +1,84 @@
 #schedule {
-	position: absolute;
+	position: relative;
+
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+
+	color: $white;
+	font-size: 2rem;
+
+	top: 10rem;
+	height: $main-height;
+	width: 100vw;
+	padding: 5rem;
+
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	background-image: linear-gradient(rgba($black, 0.5), rgba($black, 0.5)),
+		url(../images/organHands.webp);
+	background-size: cover;
+	background-position: top;
+
+	@media (max-width: $tablet-max) and (orientation: portrait) {
+		// font-size: 1rem;
+		padding: 1.75rem;
+	}
+
+	@media (max-width: $tablet-max) and (orientation: landscape) {
+		padding: 2rem;
+		// font-size: 1rem;
+	}
+}
+
+#schedule-inner {
+	position: relative;
+
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	align-items: flex-start;
-	font-size: 2rem;
-	padding: 2rem;
-	top: 7rem;
-	height: 100%;
-	color: black;
+	align-items: center;
+
 	background-color: $darkBlue;
-	right: -6rem;
+	box-shadow: 0.3rem 0.3rem $off-white;
+	border-radius: 1.4rem;
+
+	width: 45%;
+	margin: 1rem;
+
+	@media (max-width: $tablet-max) and (orientation: portrait) {
+		width: 90%;
+		margin: 0.1rem;
+	}
+
+	@media (max-width: $tablet-max) and (orientation: landscape) {
+		width: 95%;
+		right: 0.4rem;
+	}
 }
 
 #schedule-title {
 	display: block;
-	width: 100vw;
-	text-decoration: underline;
-	margin-right: 0.5rem;
 }
 
 .day {
-	margin: 2rem 0;
-	border-bottom: 1px solid;
+	font-size: 2.6rem;
 	display: inline-block;
-	width: 100vw;
-	color: $off-white;
+}
+
+.schedule-item {
+	margin: 1rem 0;
+	padding: 1rem;
+	width: 95%;
+
+	border-bottom: 1px solid $white;
+}
+
+.schedule-item-text {
+	margin-top: 1rem;
+}
+
+#schedule-APOBA {
+	padding: 2.5rem;
 }
