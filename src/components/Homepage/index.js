@@ -2,7 +2,7 @@ import React from "react"
 
 // Components
 import HomepageMain from "./HomepageMain"
-import Socials from "./Socials"
+import SocialsOtherStations from "./SocialsOtherStations"
 
 // Icon Library
 import "material-design-icons"
@@ -12,7 +12,7 @@ const Homepage = () => {
 		<div id="home">
 			<div id="home-inner">
 				<HomepageMain />
-				{/* <Socials /> */}
+				{/* <SocialsOtherStations /> */}
 			</div>
 		</div>
 	)

@@ -4,7 +4,6 @@ const GET_SONG_INFO = "GET_SONG_INFO"
 const SET_VOLUME = "SET_VOLUME"
 const TOGGLE_MUTE = "TOGGLE_MUTE"
 const SET_PREVIOUS_VOLUME = "SET_PREVIOUS_VOLUME"
-const SET_SIZE = "SET_SIZE"
 const PLAYING_STATE = "PLAYING_STATE"
 const CHANGE_CURRENT_TIME = "CHANGE_CURRENT_TIME"
 const SET_SECONDS_ARRAY = "SET_SECONDS_ARRAY"
@@ -49,10 +48,6 @@ export const toggleMute = (muted) => ({
 export const setPreviousVolume = (previousVolume) => ({
 	type: SET_PREVIOUS_VOLUME,
 	previousVolume
-})
-
-export const radioSize = () => ({
-	type: SET_SIZE
 })
 
 export const changePlaying = (isPlaying) => ({
@@ -182,11 +177,6 @@ export default function Player(state = initialState, action) {
 						previousVolume: action.previousVolume
 					}
 				}
-			}
-		case SET_SIZE:
-			return {
-				...state,
-				expanded: !state.expanded
 			}
 		case PLAYING_STATE:
 			return {

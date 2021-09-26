@@ -1,5 +1,3 @@
-import React from "react"
-
 import { useDispatch, useSelector } from "react-redux"
 
 // State
@@ -8,6 +6,7 @@ import { toggleMute, setVolume, setPreviousVolume } from "../../state/radio"
 const VolumeControls = () => {
 	const audio = document.getElementById("stream")
 	const volumeBar = document.getElementById("volumeBar")
+
 	const dispatch = useDispatch()
 
 	const { isMuted, currentVolume, previousVolume } = useSelector(
@@ -33,7 +32,7 @@ const VolumeControls = () => {
 		if (isMuted && audio.muted) {
 			dispatch(toggleMute(false))
 
-			volumeBar.value = previousVolume * 100
+			// volumeBar.value = previousVolume * 100
 		} else if (!audio.muted && !isMuted) {
 			dispatch(toggleMute(true))
 			dispatch(setPreviousVolume(currentVolume))
@@ -45,7 +44,7 @@ const VolumeControls = () => {
 
 	return (
 		<div id="volume-controls">
-			{isMuted === true || currentVolume === 0 ? (
+			{isMuted || currentVolume === 0 ? (
 				<span className="material-icons" onClick={muteFunc}>
 					volume_off
 				</span>
@@ -60,6 +59,7 @@ const VolumeControls = () => {
 				max="100"
 				onChange={volumeHandler}
 				id="volumeBar"
+				value={isMuted ? "0" : `${currentVolume * 100}`}
 			/>
 		</div>
 	)

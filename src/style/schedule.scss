@@ -1,6 +1,4 @@
 #schedule {
-	position: relative;
-
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
@@ -8,13 +6,9 @@
 	color: $white;
 	font-size: 2rem;
 
-	top: 10rem;
-	height: $main-height;
+	min-height: $main-height;
 	width: 100vw;
 	padding: 5rem;
-
-	overflow-x: hidden;
-	overflow-y: auto;
 
 	background-image: linear-gradient(rgba($black, 0.5), rgba($black, 0.5)),
 		url(../images/organHands.webp);

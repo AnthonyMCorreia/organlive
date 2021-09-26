@@ -1,19 +1,18 @@
-import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 // Components
 import Dropdown from "./Dropdown"
 
 // State
-import { toggleMenu } from "../../../state/dropdown"
+import { toggleMenu } from "../../../state/ui"
 
 const PhoneMenu = () => {
 	const dispatch = useDispatch()
-	const dropdownState = useSelector((state) => state.menu.open)
+	const dropdownMenu = useSelector((state) => state.ui.dropdownMenu)
 
 	return (
 		<>
-			{!dropdownState ? (
+			{!dropdownMenu ? (
 				<div
 					className="material-icons"
 					id="hamburger-icon"
@@ -23,7 +22,7 @@ const PhoneMenu = () => {
 					menu
 				</div>
 			) : (
-				<div id="mobile-menu" visible={dispatch ? "1" : "0"}>
+				<div id="mobile-menu">
 					<div
 						className="material-icons x-icon"
 						id="x-toggle"

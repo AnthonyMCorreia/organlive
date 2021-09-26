@@ -29,15 +29,15 @@ export const getLibrary = () => {
 	return async (dispatch) => {
 		try {
 			const { data: organists } = await axios.get(
-				"https://api.organlive.com/list/artists"
+				"https://api.organlive.com/library/artist"
 			)
 
 			const { data: composers } = await axios.get(
-				"https://api.organlive.com/list/composers"
+				"https://api.organlive.com/library/composer"
 			)
 
 			const { data: albums } = await axios.get(
-				"https://api.organlive.com/list/albums"
+				"https://api.organlive.com/library/album"
 			)
 
 			const library = {

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 
 // State
-import { toggleMenu } from "../../../state/dropdown"
+import { toggleMenu } from "../../../state/ui"
 
 const MobileDropdownItem = ({ link, innerHTML }) => {
 	const dispatch = useDispatch()

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -6,23 +6,12 @@ import { useDispatch, useSelector } from "react-redux"
 import MoreDropdown from "./MoreDropdown"
 
 // State
-import { toggleMenu } from "../../../state/dropdown"
+import { toggleMenu } from "../../../state/ui"
 
 const MainMenu = () => {
 	const dispatch = useDispatch()
 
-	const {
-		menu: { open }
-	} = useSelector((state) => state)
-
-	document.addEventListener("click", (evt) => {
-		const id = evt.target.id
-
-		if (id !== "more-button" && open) {
-			toggleMenu(false)
-			dispatch(toggleMenu(false))
-		}
-	})
+	const dropdownMenu = useSelector((state) => state.ui.dropdownMenu)
 
 	return (
 		<div id="links">
@@ -39,12 +28,12 @@ const MainMenu = () => {
 				Contact
 			</Link>
 			<div
-				onClick={() => dispatch(toggleMenu(!open))}
+				onClick={() => dispatch(toggleMenu(!dropdownMenu))}
 				className="link link-animation"
 				id="more-button">
 				More
 			</div>
-			{open ? <MoreDropdown /> : null}
+			{dropdownMenu ? <MoreDropdown /> : null}
 		</div>
 	)
 }

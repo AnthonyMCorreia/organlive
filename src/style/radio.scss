@@ -149,6 +149,11 @@
 	border-radius: 50%;
 
 	cursor: pointer;
+
+	@media (max-width: $mobile-max-width-portrait) {
+		bottom: 9rem;
+		right: 0.5rem;
+	}
 }
 
 #radio-small-icon {

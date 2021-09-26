@@ -7,7 +7,7 @@ const Menu = ({ visible }) => {
 		<div id="mobile-menu-list" style={{ opacity: visible }}>
 			<DropdownItem link="/Library" innerHTML="Library" />
 			<DropdownItem link="/radio" innerHTML="Listen Now" />
-			<DropdownItem link="/ontact" innerHTML="Contact" />
+			<DropdownItem link="/contact" innerHTML="Contact" />
 			<DropdownItem link="/schedule" innerHTML="Schedule" />
 			<DropdownItem link="/submitrecording" innerHTML="Submit Recording" />
 			<DropdownItem link="/otherstations" innerHTML="Other Stations" />

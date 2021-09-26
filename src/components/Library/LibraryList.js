@@ -12,21 +12,23 @@ const LibraryList = () => {
 	const { selectedList, listLength } = useSelector((state) => state.library)
 
 	return (
-		<div id="library-list">
-			{Array.isArray(selectedList)
-				? selectedList.slice(0, listLength + 1).map((val, index) => {
-						const type = val.type
+		<div id="library-list-wrapper">
+			<div id="library-list">
+				{Array.isArray(selectedList)
+					? selectedList.slice(0, listLength + 1).map((val, index) => {
+							const type = val.type
 
-						if (type === "album") {
-							return <AlbumItem val={val} key={index} />
-						} else if (type === "organist") {
-							return <OrganistItem val={val} key={index} />
-						} else {
-							return <ComposerItem val={val} key={index} />
-						}
-				  })
-				: null}
-			<LoadMoreButton />
+							if (type === "album") {
+								return <AlbumItem val={val} key={index} />
+							} else if (type === "organist") {
+								return <OrganistItem val={val} key={index} />
+							} else {
+								return <ComposerItem val={val} key={index} />
+							}
+					  })
+					: null}
+				<LoadMoreButton />
+			</div>
 		</div>
 	)
 }

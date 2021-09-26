@@ -1,5 +1,10 @@
 import React from "react"
+import { useDispatch, useSelector } from "react-redux"
 
+// State
+import { changePlaying, getSong } from "../../state/radio"
+
+// Image
 import sheetMusic from "../../images/sheetMusic.webp"
 
 const { text, sectionClass, textClass } = {
@@ -10,12 +15,33 @@ const { text, sectionClass, textClass } = {
 }
 
 const HomepageMain = () => {
+	const dispatch = useDispatch()
+
+	const song = useSelector((state) => state.radio.song)
+
+	const playRadio = () => {
+		const audio = document.getElementById("stream")
+
+		if (audio) {
+			if (audio.paused) {
+				if (!song.housekeeping) {
+					dispatch(getSong())
+				}
+				dispatch(changePlaying(true))
+				audio.play()
+			}
+		}
+	}
+
 	return (
-		<div className={sectionClass}>
-			<div className="home-section-inner">
-				<p className={textClass}>{text}</p>
-				<img src={sheetMusic} alt="filler" className="section-pic" />
+		<div className="home-section">
+			<div id="home-main-inner">
+				<p id="home-main-text">{text}</p>
+				<h2 id="listen-now" onClick={playRadio}>
+					Listen Now
+				</h2>
 			</div>
+			{/* <img src={sheetMusic} alt="filler" id="home-main-pic" /> */}
 		</div>
 	)
 }

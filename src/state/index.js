@@ -7,18 +7,20 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import radio from "./radio"
 import library from "./library"
 import search from "./search"
-import menu from "./dropdown"
+import ui from "./ui"
 
 const reducer = combineReducers({
 	radio,
 	library,
 	search,
-	menu
+	ui
 })
 
-const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware))
+const middleware = composeWithDevTools(
+	applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+)
 //redux logger
-// , createLogger({ collapsed: true })
+//
 
 const store = createStore(reducer, middleware)
 

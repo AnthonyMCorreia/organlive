@@ -1,5 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 // Components
 import OrganliveLogo from "../../images/organliveLogo.png"
@@ -7,11 +8,7 @@ import MainMenu from "./Main/Menu"
 import PhoneMenu from "./Mobile/Menu"
 
 const Header = () => {
-	const [width, setWidth] = useState(window.innerWidth)
-
-	window.addEventListener("resize", (evt) => {
-		setWidth(evt.innerWidth)
-	})
+	const { isMobile } = useSelector((state) => state.ui)
 
 	return (
 		<header id="header">
@@ -20,9 +17,7 @@ const Header = () => {
 					<img src={OrganliveLogo} alt="Organlive" id="title-logo" />
 				</h1>
 			</Link>
-			<div id="header-content">
-				{width <= 768 ? <PhoneMenu /> : <MainMenu />}
-			</div>
+			<div id="header-content">{isMobile ? <PhoneMenu /> : <MainMenu />}</div>
 		</header>
 	)
 }

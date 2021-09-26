@@ -90,6 +90,8 @@
 	align-items: center;
 	margin: 0.25rem;
 	padding: 0.1rem;
+	width: 100%;
+	text-align: right;
 }
 
 // Mobile Menu Style
@@ -102,7 +104,7 @@
 	}
 
 	#mobile-menu {
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		height: 100vh;
@@ -110,13 +112,17 @@
 		margin: 0;
 		background-color: $black;
 
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
 		display: flex;
 		justify-content: center;
 		align-items: flex-end;
 		flex-direction: column;
 
 		@media (max-height: $mobile-max-landscape-width) and (orientation: landscape) {
-			overflow: auto;
+			// overflow: hidden;
 		}
 	}
 

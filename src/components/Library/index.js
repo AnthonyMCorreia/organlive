@@ -6,7 +6,7 @@ import Search from "./Search"
 import LibraryList from "./LibraryList"
 
 // State
-import getLibrary from "../../state/library"
+import { getLibrary } from "../../state/library"
 
 const Library = () => {
 	const dispatch = useDispatch()

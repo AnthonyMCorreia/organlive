@@ -1,19 +1,33 @@
 #library {
-	position: relative;
-	top: 7rem;
+	// position: fixed;
+	// top: 7rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	width: 100vw;
 	background-color: rgb(87, 87, 87);
+
+	// display: flex;
+	// align-items: center;
+	// justify-content: center;
+}
+
+#library-list-wrapper {
+	width: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #library-list {
+	width: 80%;
 	margin: 1rem;
 	position: relative;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 }
 
@@ -24,8 +38,8 @@
 	align-items: left;
 	margin: 3rem 1rem;
 	padding: 3em;
-	width: 25rem;
-	height: 20rem;
+	// width: 25rem;
+	// height: 20rem;
 	color: white;
 	height: 15rem;
 	background-color: $blueGray;
@@ -52,10 +66,14 @@
 
 .pics {
 	display: inline-block;
-	max-width: 22rem;
-	max-height: 39rem;
+	max-width: 20rem;
+	max-height: 200rem;
 	// width: 15rem;
 	// height: 10rem;
 	border: 0.8px solid rgba(0, 0, 0, 0.74);
 	border-radius: 1rem;
+	// object-fit: cover;
+}
+
+.error-pic {
 }

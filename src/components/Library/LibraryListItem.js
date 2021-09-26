@@ -11,7 +11,7 @@ const LibraryListItem = ({ val, index }) => {
 					className="pics"
 					src={
 						val?.picture.trim()
-							? `https://pictures.organlive.com/${val.picture}`
+							? `https://pictures.organlive.com/large/${val.picture}`
 							: "/not-found"
 					}
 					num={index}

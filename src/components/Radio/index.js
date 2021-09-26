@@ -1,41 +1,23 @@
-import React, { useState } from "react"
+import { useSelector } from "react-redux"
 
 // Components
-import MusicInfo from "./MusicInfo"
-import PlayProgress from "./PlayProgress"
-import VolumeControls from "./VolumeControls"
+import RadioMain from "./RadioMain"
+import RadioSmall from "./RadioSmall"
 
 const Player = () => {
-	const [radioBig, changeSize] = useState(true)
-
-	const audio = document.getElementById("stream")
+	const { dropdownMenu, radioOpen, isMobile } = useSelector((state) => state.ui)
 
 	return (
-		<div id={radioBig ? "radio" : "radio-small"}>
-			{radioBig ? (
-				<>
-					<audio id="stream" src="https://play.organlive.com:7010/320">
-						Your browser does not support this player.
-					</audio>
-					<MusicInfo />
-					<PlayProgress />
-					<VolumeControls />
-					<span
-						id="radio-x"
-						className="material-icons"
-						onClick={() => changeSize(false)}>
-						close
-					</span>
-				</>
-			) : (
-				<span
-					id="radio-small-icon"
-					className="material-icons"
-					onClick={() => changeSize(true)}>
-					radio
-				</span>
+		<>
+			<audio id="stream" src="https://play.organlive.com:7010/320">
+				Your browser does not support this player.
+			</audio>
+			{radioOpen ? (
+				<RadioMain />
+			) : isMobile && dropdownMenu ? null : (
+				<RadioSmall />
 			)}
-		</div>
+		</>
 	)
 }
 

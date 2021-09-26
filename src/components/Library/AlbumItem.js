@@ -18,7 +18,11 @@ const AlbumItem = ({ val, index }) => {
 	const imageError = (elm) => {
 		elm.target.onError = null
 		elm.target.src = errorPic
+
+		elm.target.classList.add("error-pic")
 	}
+
+	const imageSrc = `https://pictures.organlive.com/${val.picture}`
 
 	return (
 		<Link
@@ -28,11 +32,7 @@ const AlbumItem = ({ val, index }) => {
 			<div className="list-container" key={index}>
 				<img
 					className="pics"
-					src={
-						val?.picture.trim()
-							? `https://pictures.organlive.com/${val.picture}`
-							: "/not-found"
-					}
+					src={imageSrc}
 					onError={imageError}
 					num={index}
 					alt={val.album}
