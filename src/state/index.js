@@ -19,8 +19,6 @@ const reducer = combineReducers({
 const middleware = composeWithDevTools(
 	applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 )
-//redux logger
-//
 
 const store = createStore(reducer, middleware)
 

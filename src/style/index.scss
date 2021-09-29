@@ -2,18 +2,22 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand:300,500");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
-@import "./_variables.scss";
+// Base
+@import "base/variables";
+@import "base/animations";
+
+// Components
 @import "./header";
 @import "./library";
-@import "./links.scss";
+@import "./links";
 @import "./radio";
 @import "./home";
 @import "./search";
-@import "./schedule";
-@import "./button.scss";
-@import "./notFound.scss";
-@import "./footer.scss";
-@import "./contact.scss";
+@import "schedule";
+@import "button";
+@import "notFound";
+@import "footer";
+@import "contact";
 
 *,
 *::after,

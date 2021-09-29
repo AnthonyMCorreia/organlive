@@ -5,16 +5,17 @@
 		cursor: pointer;
 		display: block;
 		content: "";
-		border-bottom: 0.15rem solid white;
+		// border-bottom: 0.15rem solid white;
 
-		transform: scaleX(0);
-		transform-origin: bottom right;
-		transition: transform 200ms ease-out;
+		// transform: scaleX(0);
+		// transform-origin: bottom right;
+		// transition: transform 200ms ease-out;
 	}
 	&:hover:after {
 		cursor: pointer;
-		transform: scaleX(1);
-		transform-origin: bottom left;
+		color: $gray;
+		// transform: scaleX(1);
+		// transform-origin: bottom left;
 	}
 }
 
@@ -28,5 +29,17 @@
 		position: relative;
 		transition: all 180ms;
 		margin: 0 0.8rem;
+		&:hover {
+			// cursor: pointer;
+			color: $gray;
+			// transform: scaleX(1);
+			// transform-origin: bottom left;
+		}
+	}
+	&:hover {
+		// cursor: pointer;
+		color: $gray;
+		// transform: scaleX(1);
+		// transform-origin: bottom left;
 	}
 }

@@ -6,7 +6,7 @@ import OtherStations from "./OtherStations"
 import DonateSubmit from "./DonateSubmit"
 
 // Icon Library
-import "material-design-icons"
+// import "material-design-icons"
 
 const Homepage = () => {
 	return (

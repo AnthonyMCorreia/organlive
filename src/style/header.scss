@@ -21,11 +21,8 @@
 
 	@media (max-height: $mobile-max), (max-width: $mobile-max) {
 		height: 7rem;
+		padding: 1rem 0;
 	}
-
-	// @media (max-width: $mobile-max) and (orientation: landscape) {
-	// 	height: 7rem;
-	// }
 }
 
 #header-content {
@@ -94,6 +91,9 @@
 
 	box-shadow: 0 0 1rem $black;
 	border-radius: 1rem;
+
+	animation: slideDown 0.8s ease;
+	overflow: hidden;
 }
 
 .dropdown-links:visited,
