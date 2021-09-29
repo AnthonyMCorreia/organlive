@@ -131,6 +131,8 @@
 
 // Small Radio Button
 
+// Styles for large devices
+
 #radio-small {
 	position: fixed;
 
@@ -150,14 +152,25 @@
 
 	cursor: pointer;
 
-	@media (max-width: $mobile-max-width-portrait) {
+	@media (max-height: $mobile-max) and (orientation: portrait) {
 		bottom: 9rem;
 		right: 0.5rem;
 	}
 }
 
+//Mobile Small Radio
+
+#radio-small-mobile {
+	width: 6;
+	height: 5;
+}
+
 #radio-small-icon {
 	font-size: 4rem;
+
+	@media (max-width: $mobile-max) and (max-height: $mobile-max) {
+		font-size: 3.4rem;
+	}
 }
 
 #timer {

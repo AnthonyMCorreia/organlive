@@ -41,7 +41,6 @@ const HomepageMain = () => {
 					Listen Now
 				</h2>
 			</div>
-			{/* <img src={sheetMusic} alt="filler" id="home-main-pic" /> */}
 		</div>
 	)
 }

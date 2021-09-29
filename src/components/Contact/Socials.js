@@ -1,16 +1,7 @@
-import React from "react"
-
 import facebook from "../../images/facebook.png"
 import twitter from "../../images/twitter.png"
 import youtube from "../../images/youtube.png"
 import instagram from "../../images/instagram.png"
-
-const links = {
-	facebook: "https://www.facebook.com/Organlive/",
-	twitter: "https://twitter.com/organlive",
-	instagram: "https://www.instagram.com/organmediafoundation/",
-	youtube: "https://www.youtube.com/organmediafoundation"
-}
 
 const Socials = () => {
 	return (

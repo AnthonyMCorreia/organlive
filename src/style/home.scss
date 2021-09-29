@@ -17,7 +17,7 @@
 }
 
 #home {
-	position: relative;
+	position: static;
 	width: 100vw;
 	min-height: $main-height;
 
@@ -25,8 +25,6 @@
 	align-items: center;
 	justify-content: flex-start;
 	flex-direction: column;
-
-	// overflow: hidden;
 
 	background-image: linear-gradient(rgba($black, 0.5), rgba($black, 0.5)),
 		url(../images/organHands.webp);
@@ -75,9 +73,14 @@
 		font-size: 2rem;
 	}
 
-	@media (max-width: $mobile-max-width-portrait) {
-		width: 95%;
+	@media (max-height: $mobile-max) and (orientation: portrait) {
+		width: 98%;
 		height: auto;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: landscape) {
+		height: 35rem;
+		width: 80%;
 	}
 }
 
@@ -100,9 +103,16 @@
 		width: 90%;
 	}
 
-	@media (max-width: $mobile-max-width-portrait) {
+	@media (max-height: $mobile-max) and (orientation: portrait) {
 		width: 100%;
 		height: auto;
+		padding: 0;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: landscape) {
+		justify-content: space-evenly;
+
+		margin: 0;
 		padding: 0;
 	}
 }
@@ -110,7 +120,7 @@
 // Targeting homepage main section text
 
 #home-main-text {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	font-weight: 500;
 
 	height: 50%;
@@ -123,41 +133,40 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	text-align: justify;
+	text-align: left;
 
-	@media (max-width: $mobile-max-width-portrait) {
-		font-size: 2rem;
+	@media (max-height: $mobile-max) and (orientation: portrait) {
+		font-size: 1.8rem;
+		text-align: center;
 		padding: 0.5rem;
-		text-align: start;
 	}
-}
 
-// main section sheet music picture
+	@media (max-width: $mobile-max) and (orientation: landscape) {
+		font-size: 1.8rem;
+		text-align: center;
 
-#home-main-pic {
-	max-width: 40rem;
-	max-height: 40rem;
-	border-radius: 1rem;
-
-	@media (max-width: $tablet-max) {
-		max-height: 25rem;
-		max-width: 25rem;
+		margin: 0.5rem;
+		width: 95%;
 	}
 }
 
 // Listen now button in main section
 
-#listen-now {
-	width: 25rem;
-	height: 8rem;
-	margin: 2rem 2rem;
+#listen-now,
+.home-bttn {
+	border: none;
+	outline: none;
+
+	width: 20rem;
+	height: 6.5rem;
+	margin: 2rem;
 	text-align: center;
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
-	font-size: 3.5rem;
+	font-size: 3.2rem;
 
 	overflow: hidden;
 
@@ -165,83 +174,203 @@
 	background-color: $black;
 	border-radius: 1.1rem;
 
-	transition: all 0.4s;
-
 	cursor: pointer;
 
-	&:hover {
-		color: $darkGray;
-		transition: all 0.29s;
-	}
-
 	&:active {
-		transition: all 40ms;
-		color: $darkGray;
+		color: $darkBlue;
 	}
 
 	@media (max-width: $tablet-max) {
 		margin: 0;
 	}
+
+	@media (max-width: $mobile-max) {
+		margin: 3rem 0 2rem 0;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: landscape) {
+		margin: 0;
+	}
 }
 
-// Home social media section and other stations
+// Home Other Stations
 
-.home-social-stations {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
+.home-other-stations {
+	height: 50rem;
 
-#home-section-social {
-	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
-	flex-direction: column;
+	@media (max-height: $mobile-max) {
+		height: auto;
+	}
 
-	height: 80%;
-}
-
-#home-social-icons-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.home-social-icons {
-	font-size: 13rem;
-
-	margin: 1rem;
-}
-
-#home-social-text {
-	margin: 1rem;
-
-	font-size: 5rem;
-	text-align: start;
-}
-
-#social-media-icon-test {
-	max-height: 10rem;
-	max-width: 10rem;
+	@media (max-width: $tablet-max) {
+		height: auto;
+	}
 }
 
 #other-stations {
 	height: 100%;
-	margin: 5rem;
+	padding: 2rem;
+
+	display: grid;
+	justify-items: center;
+
+	@media (max-width: $tablet-max) {
+		height: auto;
+	}
+}
+
+.other-station-section {
+	width: 80%;
+	height: 23rem;
 
 	display: flex;
-	align-items: center;
 	justify-content: center;
-	flex-direction: column;
+	align-items: center;
+
+	@media (max-height: $mobile-max) and (orientation: portrait) {
+		width: 100%;
+		height: auto;
+		padding: 2rem 0;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-direction: column;
+
+		text-align: center;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: landscape) {
+		width: 100%;
+		height: auto;
+		padding: 2rem 0;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-direction: column;
+
+		text-align: center;
+	}
+
+	@media (max-width: $tablet-max) {
+		height: auto;
+		margin: 1rem;
+	}
+}
+
+.other-station-title-text-container {
+	// margin-left: 0;
+
+	@media (min-width: $tablet-max) {
+		margin-left: 4rem;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: landscape) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 }
 
 .other-station-section-title {
 	font-size: 4rem;
+	margin-bottom: 0.5rem;
 }
 
-#social-other-divider {
-	width: 0.1rem;
+.other-station-section-text {
+	font-size: 1.8rem;
+	width: 100%;
+}
+
+.other-station-logo {
+	max-width: 19rem;
+	max-height: 19rem;
+	border-radius: 3rem;
+
+	background-size: cover;
+	background-position: top;
+
+	@media (max-width: $tablet-max) {
+		margin-right: 2rem;
+	}
+}
+
+// Donate Section
+
+#donate-submit {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+
+	@media (max-height: $mobile-max) and (orientation: portrait) {
+		flex-direction: column;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: landscape) {
+		flex-direction: column;
+	}
+}
+
+#donate {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: flex-start;
+	flex-direction: column;
+	text-align: left;
+
+	width: 40%;
+
+	@media (max-height: $mobile-max) and (orientation: portrait) {
+		width: 90%;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: landscape) {
+		flex-direction: column;
+	}
+}
+
+#donate-title {
+	font-size: 4rem;
+	margin-bottom: 1rem;
+}
+
+#donate-text {
+	font-size: 1.8rem;
+}
+
+#home-donate-bttn {
+	margin-left: 0;
+}
+
+// Submit Recording
+
+#submit-recording {
+	width: 40%;
 	height: 100%;
-	color: $white;
-	margin: 1rem;
+
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+
+	text-align: left;
+}
+
+#submit-recording-title {
+	font-size: 4rem;
+	margin-bottom: 1rem;
+}
+
+#submit-recording-info {
+	font-size: 2.5rem;
+	margin-bottom: 1rem;
+}
+
+#submit-recording-addrs {
+	font-size: 1.8rem;
+
+	&:hover {
+		cursor: pointer;
+	}
 }

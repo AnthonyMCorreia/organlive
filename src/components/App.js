@@ -43,7 +43,7 @@ function App() {
 		} else {
 			dispatch(toggleMobile(false))
 		}
-	}, [width, height, ref, dispatch])
+	}, [dispatch, width])
 
 	return (
 		<div className="App" ref={ref} onClick={clickHandler}>

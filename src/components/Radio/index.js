@@ -12,11 +12,7 @@ const Player = () => {
 			<audio id="stream" src="https://play.organlive.com:7010/320">
 				Your browser does not support this player.
 			</audio>
-			{radioOpen ? (
-				<RadioMain />
-			) : isMobile && dropdownMenu ? null : (
-				<RadioSmall />
-			)}
+			{radioOpen ? <RadioMain /> : isMobile ? null : <RadioSmall />}
 		</>
 	)
 }

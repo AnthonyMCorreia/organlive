@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 // Components
 import Dropdown from "./Dropdown"
+import RadioSmall from "../../Radio/RadioSmall"
 
 // State
 import { toggleMenu } from "../../../state/ui"
@@ -12,6 +13,7 @@ const PhoneMenu = () => {
 
 	return (
 		<>
+			<RadioSmall />
 			{!dropdownMenu ? (
 				<div
 					className="material-icons"

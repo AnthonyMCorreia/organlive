@@ -12,7 +12,7 @@
 	height: 10rem;
 	width: 100vw;
 
-	@media (max-width: $mobile-max-width-portrait) {
+	@media (max-height: $mobile-max) {
 		padding: 1rem;
 	}
 }

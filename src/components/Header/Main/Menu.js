@@ -14,24 +14,23 @@ const MainMenu = () => {
 	const dropdownMenu = useSelector((state) => state.ui.dropdownMenu)
 
 	return (
-		<div id="links">
-			<Link className="link link-animation" to="/">
-				Home
-			</Link>
-			<Link className="link link-animation" to="/library">
-				Library
-			</Link>
-			<Link className="link link-animation" to="/radio">
-				Listen Now
-			</Link>
-			<Link className="link link-animation" to="/contact">
-				Contact
-			</Link>
-			<div
-				onClick={() => dispatch(toggleMenu(!dropdownMenu))}
-				className="link link-animation"
-				id="more-button">
-				More
+		<div id="header-content">
+			<div id="links">
+				<Link className="link link-animation" to="/">
+					Home
+				</Link>
+				<Link className="link link-animation" to="/library">
+					Library
+				</Link>
+				<Link className="link link-animation" to="/contact">
+					Contact
+				</Link>
+				<button
+					onClick={() => dispatch(toggleMenu(!dropdownMenu))}
+					className="link link-animation"
+					id="more-button">
+					More
+				</button>
 			</div>
 			{dropdownMenu ? <MoreDropdown /> : null}
 		</div>
