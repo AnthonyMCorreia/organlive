@@ -2,9 +2,11 @@ import React from "react"
 import ReactDOM from "react-dom"
 import App from "./components/App"
 import reportWebVitals from "./reportWebVitals"
+import { BrowserRouter as Router } from "react-router-dom"
+
+// State
 import store from "./state"
 import { Provider } from "react-redux"
-import { BrowserRouter as Router } from "react-router-dom"
 
 // History
 import history from "./history"
