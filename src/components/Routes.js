@@ -25,7 +25,7 @@ const Routes = () => {
 		<Switch>
 			<Route exact path="/" component={Home} />
 			<Route exact path="/contact" component={Contact} />
-			<Route exact path="/library" component={Library} />
+			{/* <Route exact path="/library" component={Library} /> */}
 			{/* <Route exact path="/library/:type/:id" component={LibraryItem} /> */}
 			<Route exact path="/nowPlaying" />
 			<Route exact path="/schedule" component={Schedule} />
