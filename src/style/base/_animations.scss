@@ -4,13 +4,18 @@
 		transform: translateY(-3rem);
 	}
 
+	90% {
+		opacity: 0.9;
+		// transform: translateY(0.3rem);
+	}
+
 	100% {
 		opacity: 1;
 		transform: translateY(0);
 	}
 }
 
-@keyframes slideUP {
+@keyframes slideUp {
 	0% {
 		opacity: 1;
 		transform: translateY(0);

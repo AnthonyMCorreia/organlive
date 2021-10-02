@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 
 // Components
-import MoreDropdown from "./MoreDropdown"
+import MoreDropdown from "./Dropdown"
 
 // State
 import { toggleMenu } from "../../../state/ui"
@@ -32,7 +32,8 @@ const MainMenu = () => {
 					More
 				</button>
 			</div>
-			{dropdownMenu ? <MoreDropdown /> : null}
+			<MoreDropdown />
+			{/* {dropdownMenu ? <MoreDropdown /> : null} */}
 		</div>
 	)
 }

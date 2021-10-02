@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 
 import DropdownItem from "./DropdownItem"
 
-const Menu = ({ visible }) => {
+const Menu = () => {
 	useEffect(() => {
 		const origionalOverflow = document.body.style.overflow
 		const origionalHight = document.body.style.height
@@ -17,7 +17,6 @@ const Menu = ({ visible }) => {
 	return (
 		<div id="mobile-menu-list">
 			<DropdownItem link="/Library" innerHTML="Library" />
-			<DropdownItem link="/radio" innerHTML="Listen Now" />
 			<DropdownItem link="/contact" innerHTML="Contact" />
 			<DropdownItem link="/schedule" innerHTML="Schedule" />
 			<DropdownItem link="/submitrecording" innerHTML="Submit Recording" />
