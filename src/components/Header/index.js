@@ -17,7 +17,7 @@ const Header = () => {
 					<img src={OrganliveLogo} alt="Organlive" id="title-logo" />
 				</h1>
 			</Link>
-			<div id="header-content">{isMobile ? <PhoneMenu /> : <MainMenu />}</div>
+			{isMobile ? <PhoneMenu /> : <MainMenu />}
 		</header>
 	)
 }

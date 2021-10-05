@@ -1,0 +1,11 @@
+@mixin mainBackground {
+	position: relative;
+	width: 100vw;
+	min-height: $main-height;
+	background-color: $blueGray;
+}
+
+@mixin centerElm {
+	display: grid;
+	justify-items: center;
+}

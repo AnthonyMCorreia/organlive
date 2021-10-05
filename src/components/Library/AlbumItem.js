@@ -22,7 +22,7 @@ const AlbumItem = ({ val, index }) => {
 		elm.target.classList.add("error-pic")
 	}
 
-	const imageSrc = `https://pictures.organlive.com/${val.picture}`
+	const imageSrc = `http://pictures.organlive.com/${val.picture}`
 
 	return (
 		<Link

@@ -5,12 +5,6 @@ export const selectList = (list) => ({
 	list
 })
 
-export const getSelectList = (list) => {
-	return (dispatch) => {
-		dispatch(selectList(list))
-	}
-}
-
 const initialState = {
 	selectedList: "all"
 }

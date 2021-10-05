@@ -1,4 +1,15 @@
-.link-animation {
+#links {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.link {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: column;
+
 	font-size: 2.4rem;
 
 	&:after {
@@ -11,24 +22,24 @@
 		// transform-origin: bottom right;
 		// transition: transform 200ms ease-out;
 	}
+
 	&:hover:after {
 		cursor: pointer;
 		color: $gray;
 		// transform: scaleX(1);
 		// transform-origin: bottom left;
 	}
-}
 
-.link {
 	&:link,
 	&:visited {
 		text-decoration: none;
 		margin: 1rem;
 		padding: 0.8rem;
-		color: white;
+		color: $white;
 		position: relative;
 		transition: all 180ms;
 		margin: 0 0.8rem;
+
 		&:hover {
 			// cursor: pointer;
 			color: $gray;
@@ -42,4 +53,11 @@
 		// transform: scaleX(1);
 		// transform-origin: bottom left;
 	}
+}
+
+.dropdown-arrow {
+	outline: none;
+	border: none;
+	background: none;
+	color: $white;
 }

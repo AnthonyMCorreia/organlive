@@ -17,20 +17,21 @@
 }
 
 #home {
-	position: static;
-	width: 100vw;
-	min-height: $main-height;
+	@include mainBackground;
 
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	flex-direction: column;
 
-	background-image: linear-gradient(rgba($black, 0.5), rgba($black, 0.5)),
-		url(../../images/organHands.webp);
-	background-size: cover;
-	background-position: top;
+	// background: $playerBackground;
 
+	// background-image: linear-gradient(rgba($black, 0.5), rgba($black, 0.5)),
+	// 	url(../../images/organHands.webp);
+	// background-size: cover;
+	// background-position: top;
+
+	// background-color: $off-white;
 	@media (max-height: $mobile-max-height) and (orientation: portrait) {
 		width: 100vw;
 	}
@@ -63,7 +64,8 @@
 	margin: 4rem;
 
 	border-radius: 1.4rem;
-	box-shadow: 0 0 2rem $black;
+	// box-shadow: 0 0 2rem $black;
+	box-shadow: 0.3rem 0.3rem 0 #e63946;
 
 	@media (max-width: $tablet-max) {
 		width: 85vw;
@@ -373,4 +375,161 @@
 	&:hover {
 		cursor: pointer;
 	}
+}
+
+// Test Homepage
+
+#dummy-home {
+	@include mainBackground;
+
+	@include centerElm;
+
+	background-image: linear-gradient(rgba($black, 0.6), rgba($black, 0.6)),
+		url(../../images/organHands.webp);
+	background-size: cover;
+	background-position: top;
+
+	@media (max-width: $tablet-width) {
+		// align-items: flex-start;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: portrait) {
+		align-items: flex-start;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: portrait) {
+		align-items: flex-start;
+	}
+}
+
+#dummy-home-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+
+	width: 60%;
+
+	@media (max-width: $tablet-max) and (orientation: landscape) {
+		align-items: flex-start;
+		text-align: center;
+		padding-top: 4rem;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: portrait) {
+		width: 95%;
+	}
+}
+
+#dummy-home-content {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-evenly;
+	flex-direction: column;
+
+	@media (max-width: $tablet-width) {
+		align-items: center;
+		text-align: center;
+	}
+
+	@media (max-width: $tablet-width) and (orientation: landscape) {
+	}
+
+	@media (max-width: $mobile-max) and (orientation: portrait) {
+		align-items: center;
+		width: 95%;
+		padding: 1rem 0;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: landscape) {
+		align-items: center;
+		padding: 1rem 0 2rem 0;
+	}
+}
+
+#dummy-home-title {
+	font-size: 12rem;
+	color: $white;
+	margin-bottom: 5rem;
+
+	@media (max-width: $tablet-max) and (orientation: landscape) {
+		font-size: 4rem;
+		margin-bottom: 1rem;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: portrait) {
+		font-size: 4rem;
+		margin-bottom: 1rem;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: landscape) {
+		font-size: 4rem;
+		margin-bottom: 2rem;
+	}
+}
+
+#dummy-home-text {
+	width: 65%;
+	font-size: 2.7rem;
+	color: $white;
+	margin-bottom: 6rem;
+
+	@media (max-width: $tablet-width) and (orientation: landscape) {
+		width: 100%;
+		font-size: 2.5rem;
+	}
+
+	@media (max-height: $tablet-max) and (orientation: landscape) {
+		width: 100%;
+		font-size: 2.5rem;
+	}
+
+	@media (max-width: $mobile-max) and (orientation: portrait) {
+		font-size: 1.8rem;
+		text-align: center;
+		width: 100%;
+		margin-bottom: 3rem;
+	}
+
+	@media (max-height: $mobile-max) and (orientation: landscape) {
+		font-size: 1.8rem;
+		text-align: center;
+		width: 100%;
+		margin-bottom: 3rem;
+	}
+}
+
+#dummy-home-listen-now {
+	outline: none;
+	background: none;
+	border: none;
+
+	height: 7rem;
+	width: 18rem;
+	font-size: 2.4rem;
+	font-weight: 300;
+	border-radius: 0.5rem;
+
+	background-color: $darkBlue;
+	color: $white;
+	// border-radius: 1rem;
+
+	// transition: all 180ms;
+	@media (max-width: $mobile-max) and (orientation: portrait) {
+		margin-bottom: 1rem;
+	}
+	@media (max-width: $mobile-max) and (orientation: portrait) {
+		margin-bottom: 1rem;
+	}
+
+	&:hover,
+	&:active {
+		color: $darkGray;
+	}
+}
+
+#dummy-home-logo {
+	// image-rendering: smooth;
+	// background-color: $darkBlue;
+	max-height: 90rem;
+	max-width: 90rem;
 }

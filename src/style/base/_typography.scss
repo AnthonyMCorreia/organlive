@@ -5,4 +5,5 @@
 	flex-direction: column;
 
 	min-height: calc(100% + env(safe-area-inset-top));
+	// overflow-y: hidden;
 }

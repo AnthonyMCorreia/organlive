@@ -1,24 +1,17 @@
 import { useDispatch, useSelector } from "react-redux"
-import autoComplete from "autocompleter"
 
 // State
-import { getSelectList } from "../../state/search"
-import { setList } from "../../state/library"
+import { setList } from "../../../state/library"
 
 function Search() {
 	const dispatch = useDispatch()
-
-	const {
-		lists: { albums, organists, composers }
-	} = useSelector((state) => state.library)
-	const input = document.getElementById("search-input")
 
 	const { selectedList } = useSelector((state) => state.search)
 
 	const selectList = (evt) => {
 		const value = evt?.target?.innerHTML.toLowerCase()
+		console.log(value)
 
-		dispatch(getSelectList(value))
 		dispatch(setList(value))
 	}
 
@@ -40,7 +33,7 @@ function Search() {
 				<li
 					className="list-option"
 					name="albums"
-					onClick={(e) => selectList(e)}
+					onClick={selectList}
 					style={selectedList === "albums" ? undeline : null}>
 					Albums
 				</li>
