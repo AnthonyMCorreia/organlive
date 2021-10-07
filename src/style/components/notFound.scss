@@ -11,7 +11,7 @@
 	width: 100vw;
 	background-color: $black;
 
-	@media (max-height: $mobile-max) {
+	@media screen and (max-height: $mobile-max) {
 		position: static;
 		font-size: 1rem;
 		text-align: center;

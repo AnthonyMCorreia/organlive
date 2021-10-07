@@ -16,10 +16,6 @@ const PhoneMenu = () => {
 
 	const { dropdownMenu } = useSelector((state) => state.ui)
 
-	useEffect(() => {
-		console.log(nodeRef.current)
-	}, [])
-
 	return (
 		<div id="header-content-mobile">
 			<RadioSmall />
@@ -34,14 +30,12 @@ const PhoneMenu = () => {
 				</button>
 			) : null}
 			<CSSTransition
-				nodeRef={nodeRef}
 				in={dropdownMenu}
 				unmountOnExit
 				timeout={500}
+				nodeRef={nodeRef}
 				classNames="mobile-menu-animation">
-				<div id="mobile-menu">
-					<Dropdown ref={nodeRef} />
-				</div>
+				<Dropdown ref={nodeRef} />
 			</CSSTransition>
 		</div>
 	)

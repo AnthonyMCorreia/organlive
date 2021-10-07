@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { Route, Switch, useLocation } from "react-router-dom"
 
 // Components
-import Home from "./Homepage/"
+import Home from "./Home"
 import Library from "./Library/"
 import Radio from "./Radio"
 // import LibraryItem from "./Library/AlbumItem"

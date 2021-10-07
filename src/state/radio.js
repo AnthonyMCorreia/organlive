@@ -110,7 +110,6 @@ export const checkForRefresh = (currentSongId) => {
 }
 
 const initialState = {
-	expanded: true,
 	song: {},
 	currentPlayerInfo: {
 		isDone: false,

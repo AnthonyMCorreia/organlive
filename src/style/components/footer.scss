@@ -12,7 +12,7 @@
 	height: 10rem;
 	width: 100vw;
 
-	@media (max-height: $mobile-max) {
+	@media screen and (max-height: $mobile-max) {
 		padding: 1rem;
 	}
 }

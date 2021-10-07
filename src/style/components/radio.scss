@@ -150,7 +150,7 @@
 
 	cursor: pointer;
 
-	@media (max-height: $mobile-max) and (orientation: portrait) {
+	@media screen and (max-height: $mobile-max) and (orientation: portrait) {
 		bottom: 9rem;
 		right: 0.5rem;
 	}
@@ -167,7 +167,10 @@
 #radio-small-icon {
 	font-size: 4rem;
 
-	@media (max-width: $mobile-max) and (max-height: $mobile-max) {
+	cursor: pointer;
+	user-select: none;
+
+	@media screen and (max-width: $mobile-max) and (max-height: $mobile-max) {
 		font-size: 3.4rem;
 	}
 }

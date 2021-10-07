@@ -6,6 +6,7 @@ import DropdownItem from "./DropdownItem"
 import { toggleMenu } from "../../../state/ui"
 
 const Dropdown = forwardRef((props, ref) => {
+	console.log(ref)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -20,7 +21,7 @@ const Dropdown = forwardRef((props, ref) => {
 		}
 	}, [])
 	return (
-		<div ref={ref}>
+		<div id="mobile-menu" ref={ref}>
 			<div
 				className="material-icons x-icon"
 				id="x-toggle"

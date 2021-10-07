@@ -28,7 +28,7 @@ body {
 	background-color: $black;
 	color: white;
 
-	@media (max-height: $mobile-max) and (max-width: $mobile-max) {
+	@media screen and (max-height: $mobile-max) and (max-width: $mobile-max) {
 		padding: 0 4rem;
 	}
 }

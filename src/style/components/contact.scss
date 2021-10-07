@@ -3,7 +3,7 @@
 	width: 100vw;
 	min-height: $main-height;
 
-	@media (min-height: $tablet-max) {
+	@media screen and (min-height: $tablet-max) {
 		padding-top: 15rem;
 		padding-bottom: 3rem;
 	}
@@ -22,7 +22,7 @@
 }
 
 #contact-inner {
-	@media (min-width: $tablet-max) {
+	@media screen and (min-width: $tablet-max) {
 		width: 40%;
 	}
 
@@ -40,7 +40,7 @@
 // Contact Text
 
 #contact-text {
-	@media (min-width: $tablet-max) {
+	@media screen and (min-width: $tablet-max) {
 		text-align: justify;
 	}
 }
@@ -81,7 +81,7 @@
 
 	position: relative;
 
-	@media (min-width: $tablet-max) {
+	@media screen and (min-width: $tablet-max) {
 		width: 70%;
 		margin: 0.5rem;
 	}
@@ -168,7 +168,7 @@
 	margin: 9rem 0.5rem 0.5rem 0;
 	width: 100%;
 
-	@media (min-width: $tablet-max) {
+	@media screen and (min-width: $tablet-max) {
 		width: 70%;
 		margin: 9rem 0.5rem 0.5rem 0.5rem;
 	}
@@ -180,7 +180,7 @@
 	margin-top: 1rem;
 	padding: 1rem;
 
-	@media (min-width: $tablet-max) {
+	@media screen and (min-width: $tablet-max) {
 		width: 100%;
 	}
 
@@ -253,7 +253,7 @@
 
 	margin-top: 9rem;
 
-	@media (min-width: $tablet-max) {
+	@media screen and (min-width: $tablet-max) {
 		margin: 0.5rem;
 		margin-top: 5rem;
 		padding: 1rem;
@@ -275,7 +275,7 @@
 	align-items: center;
 	justify-content: space-between;
 
-	@media (max-width: $mobile-max) {
+	@media screen and (max-width: $mobile-max) {
 		width: 100%;
 	}
 }

@@ -4,60 +4,58 @@
 	width: 100vw;
 	height: $navbar-height;
 	margin: 0;
-	padding: 1rem 5rem;
+	padding: 0.5rem 5rem;
 
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: space-between;
 
 	background-color: $darkBlue;
 	color: whitesmoke;
 	z-index: 10;
 	border-bottom: solid 1px $white;
 
-	@media (min-width: $tablet-max) {
+	@media screen and (min-width: $tablet-max) {
 		justify-content: space-evenly;
 	}
 
-	@media (max-height: $mobile-max) and (orientation: portrait) {
+	@media screen and (max-height: $mobile-max) and (orientation: portrait) {
 		justify-content: space-between;
 		padding: 1rem 1rem;
 	}
 
-	// @media (max-height: $mobile-max) and (orientation: landscape) {
-	// 	justify-content: space-between;
-	// 	padding: 1rem 0;
+	// @media screen and (max-height: $mobile-max) and (orientation: landscape) {
+	// justify-content: space-between;
+	// padding: 1rem 0;
 	// }
 }
 
 #header-content {
+	position: relative;
+
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	// flex-direction: column;
-
-	position: relative;
 }
 
 #title-logo {
-	// align-self: center;
-	// margin-left: 2rem;
-	position: relative;
 	max-width: 9rem;
-	max-height: 6.5rem;
+	max-height: 100%;
 
-	@media (max-height: $mobile-max), (max-width: $mobile-max) {
+	user-select: none;
+
+	@media screen and (max-height: $mobile-max), (max-width: $mobile-max) {
 		max-height: 6.5rem;
 	}
 
-	@media (max-height: $mobile-max) and (orientation: portrait) {
+	@media screen and (max-height: $mobile-max) and (orientation: portrait) {
 		margin-top: 1rem;
 		max-width: 9rem;
 		max-height: 6rem;
 		margin: 0rem;
 	}
 
-	@media (max-width: $mobile-max) and (orientation: landscape) {
+	@media screen and (max-width: $mobile-max) and (orientation: landscape) {
 		max-width: 9rem;
 		max-height: 6rem;
 		margin: 0rem;
@@ -67,8 +65,13 @@
 #title-link {
 	margin: 0;
 	padding: 0;
+	height: 100%;
 	&:hover {
 		color: $darkGray;
+	}
+
+	h1 {
+		height: 100%;
 	}
 }
 
@@ -80,7 +83,7 @@
 
 #dropdown-container {
 	position: absolute;
-	top: 7rem;
+	top: 5.9em;
 	right: 0;
 	height: 20rem;
 	width: 28rem;
@@ -95,11 +98,10 @@
 	height: 17rem;
 	margin: 0;
 
-	top: 0;
+	top: 0.5rem;
 	right: 1.6rem;
 
 	border-radius: 0.5rem;
-
 }
 
 .dropdown-animation {
@@ -188,7 +190,7 @@
 }
 
 #mobile-content-item {
-	margin: 0 1.2rem;
+	// margin: 0 1.2rem;
 }
 
 #mobile-menu {
@@ -214,11 +216,13 @@
 
 .mobile-menu-animation {
 	&-enter {
+		opacity: 0;
 		transform: translateX(100vw);
 		transition: transform 0.5s ease;
 	}
 
 	&-enter-active {
+		opacity: 1;
 		transform: translateX(0);
 		transition: transform 0.5s ease;
 	}
@@ -251,13 +255,13 @@
 	align-items: flex-end;
 	text-align: right;
 
-	@media (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
+	@media screen and (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
 		padding-bottom: 1rem;
 		top: 0;
 		font-size: 3rem;
 	}
 
-	@media (max-height: $mobile-max) and (orientation: portrait) {
+	@media screen and (max-height: $mobile-max) and (orientation: portrait) {
 		top: 4rem;
 	}
 }
@@ -271,7 +275,7 @@
 	width: 80vw;
 	margin: 0.3rem;
 
-	@media (max-width: $mobile-max) and (orientation: landscape) {
+	@media screen and (max-width: $mobile-max) and (orientation: landscape) {
 		font-size: 3rem;
 	}
 }
@@ -283,11 +287,12 @@
 	font-size: 3.5rem;
 	color: white;
 
+	user-select: none;
+
 	margin: 0;
-	// margin-right: 1rem;
 	padding: 0;
 
-	@media (max-width: $tablet-max) and (min-width: $mobile-max-width-portrait) {
+	@media screen and (max-width: $tablet-max) and (min-width: $mobile-max-width-portrait) {
 		font-size: 4rem;
 	}
 }
@@ -302,27 +307,15 @@
 	transition: opacity 0.25s ease;
 	transform: translateY(0);
 
-	@media (max-width: $mobile-max) and (orientation: landscape) {
+	@media screen and (max-width: $mobile-max) and (orientation: landscape) {
 		font-size: 3rem;
 		top: 2rem;
 		margin-bottom: 0.8rem;
 	}
 
-	@media (max-width: $mobile-max) and (orientation: landscape) {
+	@media screen and (max-width: $mobile-max) and (orientation: landscape) {
 		position: relative;
 		font-size: 5rem;
 		transition: opacity 0.25s ease;
-	}
-}
-
-@media (max-width: $tablet-max) and (min-width: $mobile-max-width-portrait) {
-	#hamburger-icon {
-		font-size: 4rem;
-	}
-
-	#header-content {
-		position: absolute;
-		margin: 0;
-		margin-right: 1rem;
 	}
 }
