@@ -15,6 +15,8 @@
 	z-index: 10;
 	border-bottom: solid 1px $white;
 
+	@include iPhoneNotchFix;
+
 	@media screen and (min-width: $tablet-max) {
 		justify-content: space-evenly;
 	}
@@ -24,10 +26,9 @@
 		padding: 1rem 1rem;
 	}
 
-	// @media screen and (max-height: $mobile-max) and (orientation: landscape) {
-	// justify-content: space-between;
-	// padding: 1rem 0;
-	// }
+	@media screen and (max-height: $mobile-max) and (orientation: landscape) {
+		padding: 0.5rem 1 rem;
+	}
 }
 
 #header-content {
@@ -102,6 +103,7 @@
 	right: 1.6rem;
 
 	border-radius: 0.5rem;
+	box-shadow: 0 0 1rem $black;
 }
 
 .dropdown-animation {
@@ -204,6 +206,8 @@
 
 	margin: 0;
 
+	@include iPhoneNotchFix;
+
 	&::-webkit-scrollbar {
 		display: none;
 	}
@@ -212,6 +216,12 @@
 	justify-content: center;
 	align-items: flex-end;
 	flex-direction: column;
+
+	@media (orientation: landscape) {
+		justify-content: space-evenly;
+		overflow-y: auto;
+		@include iPhoneNotchFix;
+	}
 }
 
 .mobile-menu-animation {
@@ -239,15 +249,15 @@
 }
 
 #mobile-menu-list {
-	position: fixed;
+	position: relative;
 
 	width: 100vw;
-	height: 100vh;
+	height: 95vh;
 	padding-bottom: 20rem;
 	padding-right: 1rem;
 	top: 11rem;
 	right: 0;
-	margin-top: 1rem;
+	// margin-top: 1rem;
 
 	display: flex;
 	flex-direction: column;
@@ -256,13 +266,13 @@
 	text-align: right;
 
 	@media screen and (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
-		padding-bottom: 1rem;
-		top: 0;
+		padding-bottom: 5rem;
+		top: 0rem;
 		font-size: 3rem;
 	}
 
 	@media screen and (max-height: $mobile-max) and (orientation: portrait) {
-		top: 4rem;
+		top: 0rem;
 	}
 }
 
@@ -271,12 +281,10 @@
 	text-decoration: none;
 	color: white;
 	font-size: 4rem;
-	font-weight: 300;
-	width: 80vw;
-	margin: 0.3rem;
 
 	@media screen and (max-width: $mobile-max) and (orientation: landscape) {
-		font-size: 3rem;
+		// font-size: 3rem;
+		margin: 0;
 	}
 }
 
@@ -298,11 +306,11 @@
 }
 
 #x-toggle {
-	position: absolute;
+	position: relative;
 	font-size: 4.5rem;
-	top: 1rem;
-	right: 2rem;
-	margin-bottom: 1rem;
+	// top: 1rem;
+	// right: 2rem;
+	// margin-bottom: 1rem;
 
 	transition: opacity 0.25s ease;
 	transform: translateY(0);
@@ -310,12 +318,12 @@
 	@media screen and (max-width: $mobile-max) and (orientation: landscape) {
 		font-size: 3rem;
 		top: 2rem;
-		margin-bottom: 0.8rem;
+		// margin-bottom: 0.8rem;
 	}
 
 	@media screen and (max-width: $mobile-max) and (orientation: landscape) {
-		position: relative;
+		// position: relative;
 		font-size: 5rem;
-		transition: opacity 0.25s ease;
+		// transition: opacity 0.25s ease;
 	}
 }

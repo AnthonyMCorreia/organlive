@@ -2,8 +2,18 @@ import axios from "axios"
 
 const SET_LIBRARY = "SET_LIBRARY"
 const SET_LENGTH = "SET_LENGTH"
+const SET_ALBUM = "SET_ALBUM"
 const SET_LIST = "SET_LIST"
-const SET_ITEM = "SET_ITEM"
+
+export const setList = (list) => ({
+	type: SET_LIST,
+	list
+})
+
+export const setAlbum = (album) => ({
+	type: SET_ALBUM,
+	album
+})
 
 const setLibrary = (library) => ({
 	type: SET_LIBRARY,
@@ -13,16 +23,6 @@ const setLibrary = (library) => ({
 export const setListLength = (length) => ({
 	type: SET_LENGTH,
 	length
-})
-
-export const setList = (list) => ({
-	type: SET_LIST,
-	list
-})
-
-const setItem = (item) => ({
-	type: SET_ITEM,
-	item
 })
 
 export const getLibrary = () => {
@@ -53,14 +53,35 @@ export const getLibrary = () => {
 	}
 }
 
-export const getItem = (id) => {
-	return async (dispatch) => {}
+export const getAlbum = (albumId) => {
+	return async (dispatch) => {
+		try {
+			const { data } = await axios.get(
+				`https://api.organlive.com/library/album/${albumId}`
+			)
+
+			dispatch(setAlbum(data.album))
+		} catch (err) {
+			console.log(err)
+		}
+	}
 }
+
+// export const getList = (list) => {
+// 	return (dispatch) => {
+// 		try {
+// 			dispatch(setList(list))
+// 		} catch (err) {
+// 			console.log(err)
+// 		}
+// 	}
+// }
 
 const initialState = {
 	lists: {},
 	selectedList: [],
-	listLength: 100
+	listLength: 100,
+	selectedAlbum: {}
 }
 
 function reducer(state = initialState, action) {
@@ -89,7 +110,7 @@ function reducer(state = initialState, action) {
 			return {
 				...state,
 				lists: {
-					all: all,
+					all,
 					albums,
 					organists,
 					composers
@@ -101,6 +122,8 @@ function reducer(state = initialState, action) {
 				...state,
 				listLength: action.length
 			}
+		case SET_ALBUM:
+			return { ...state, selectedAlbum: action.album }
 		case SET_LIST:
 			return { ...state, selectedList: state.lists[action.list] }
 		default:

@@ -2,10 +2,27 @@
 	position: relative;
 	width: 100vw;
 	min-height: $main-height;
-	background-color: $blueGray;
+
+	background-image: linear-gradient(rgba($black, 0.6), rgba($black, 0.6)),
+		url(../../images/organHands.webp);
+	background-size: cover;
+	background-position: top;
+}
+
+@mixin mainGrayBackground {
+	position: relative;
+	width: 100vw;
+	min-height: $main-height;
+
+	background-color: $offBlack;
 }
 
 @mixin centerElm {
 	display: grid;
 	justify-items: center;
+}
+
+@mixin iPhoneNotchFix {
+	padding: env(safe-area-inset-top) env(safe-area-inset-right)
+		env(safe-area-inset-bottom) env(safe-area-inset-left);
 }

@@ -14,7 +14,6 @@ const MainMenu = () => {
 	const dispatch = useDispatch()
 	const nodeRef = useRef(null)
 
-	console.log(nodeRef)
 
 	const dropdownMenu = useSelector((state) => state.ui.dropdownMenu)
 

@@ -1,0 +1,103 @@
+#other-stations {
+	@include mainBackground;
+	@include centerElm;
+
+	padding: 1rem;
+}
+
+#other-stations-inner {
+	@include centerElm;
+
+	@media screen and (min-width: $tablet-max) {
+		background-color: $darkBlue;
+		border-radius: 1rem;
+
+		box-shadow: 0.3rem 0.3rem 0 $white;
+
+		width: 45%;
+		padding: 3rem;
+		margin: 3rem 0;
+	}
+}
+
+.other-station-section {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+	margin: 1rem 0;
+	padding: 2rem 1rem;
+
+	@media screen and (max-height: $mobile-max) and (orientation: portrait) {
+		background: none;
+		border-radius: 0;
+	}
+
+	@media screen and (max-width: $mobile-max) and (orientation: landscape) {
+		background: none;
+		border-radius: 0;
+	}
+
+	@media screen and (max-width: $tablet-max) and (orientation: landscape) {
+		margin: 1rem 0;
+	}
+}
+
+#other-stations-divider {
+	// width: 100%;
+	width: 50%;
+	height: 0.1rem;
+	background-color: $white;
+
+	@media (max-width: $tablet-max) {
+	}
+}
+
+.other-station-image {
+	max-height: 25rem;
+	max-width: 25rem;
+
+	cursor: pointer;
+
+	border-radius: 1rem;
+
+	margin-bottom: 1rem;
+
+	@media screen and (min-width: $tablet-max) {
+		max-height: 30rem;
+		max-width: 30rem;
+	}
+}
+
+.other-station-section-content {
+	text-align: left;
+	width: 70%;
+
+	@media screen and (orientation: portrait) {
+		width: 100%;
+	}
+
+	@media screen and (min-width: $tablet-max) {
+		width: 90%;
+	}
+}
+
+.other-station-title {
+	width: 100%;
+	font-size: 3rem;
+	margin-bottom: 0.3rem;
+
+	@media (min-width: $tablet-max) {
+	}
+}
+
+.other-station-text {
+	font-size: 2rem;
+
+	@media screen and (max-width: $mobile-max) and (orientation: landscape) {
+		width: 100%;
+	}
+
+	@media screen and (min-width: $tablet-max) {
+	}
+}

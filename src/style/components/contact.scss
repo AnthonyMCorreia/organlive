@@ -1,7 +1,5 @@
 #contact {
-	position: relative;
-	width: 100vw;
-	min-height: $main-height;
+	@include mainGrayBackground;
 
 	@media screen and (min-height: $tablet-max) {
 		padding-top: 15rem;
@@ -14,11 +12,6 @@
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
-
-	background-image: linear-gradient(rgba($black, 0.5), rgba($black, 0.5)),
-		url(../../images/organHands.webp);
-	background-size: cover;
-	background-position: top;
 }
 
 #contact-inner {
@@ -35,6 +28,7 @@
 
 	background-color: $darkBlue;
 	border-radius: 1rem;
+	box-shadow: 0.3rem 0.3rem $white;
 }
 
 // Contact Text

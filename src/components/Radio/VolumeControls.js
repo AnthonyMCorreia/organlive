@@ -4,12 +4,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { toggleMute, setVolume, setPreviousVolume } from "../../state/radio"
 
 const VolumeControls = () => {
-	const audio = document.getElementById("stream")
-	const volumeBar = document.getElementById("volumeBar")
-
 	const dispatch = useDispatch()
+	const audio = document.getElementById("stream")
 
-	const { isMuted, currentVolume, previousVolume } = useSelector(
+	const { isMuted, currentVolume } = useSelector(
 		(state) => state.radio.currentPlayerInfo.volume
 	)
 
@@ -29,17 +27,15 @@ const VolumeControls = () => {
 	const muteFunc = (e) => {
 		e.preventDefault()
 
-		if (isMuted && audio.muted) {
-			dispatch(toggleMute(false))
-
-			// volumeBar.value = previousVolume * 100
-		} else if (!audio.muted && !isMuted) {
-			dispatch(toggleMute(true))
-			dispatch(setPreviousVolume(currentVolume))
-
-			volumeBar.value = 0
+		if (audio) {
+			if (isMuted && audio.muted) {
+				dispatch(toggleMute(false))
+			} else if (!audio.muted && !isMuted) {
+				dispatch(toggleMute(true))
+				dispatch(setPreviousVolume(currentVolume))
+			}
+			audio.muted = !audio.muted
 		}
-		audio.muted = !audio.muted
 	}
 
 	return (

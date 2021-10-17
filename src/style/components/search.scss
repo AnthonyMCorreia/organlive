@@ -6,7 +6,7 @@
 	align-items: center;
 	justify-content: center;
 	// background-color: $off-white;
-	color: black;
+	color: $white;
 	width: 100vw;
 }
 
@@ -20,7 +20,7 @@
 .list-option {
 	margin: 0;
 	display: inline-block;
-	font-size: 1.8rem;
+	font-size: 2.2rem;
 	padding: 0.5rem;
 	height: 100%;
 
@@ -31,10 +31,25 @@
 	}
 }
 
-#search-input {
-	height: 2.2rem;
+.list-option-underlinded {
+	border-bottom: 0.1rem solid $white;
 }
 
+#search-input {
+	height: 2.2rem;
+	outline: none;
+	border: none;
+	background: none;
+	background-color: $white;
+	border-radius: 0.5rem;
+	height: 3.2rem;
+	width: 13rem;
+}
+
+#search-input-label {
+	display: flex;
+	flex-direction: column;
+	font-size: 1.8rem;
+}
 
 // Mobile
-

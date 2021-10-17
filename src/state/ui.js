@@ -1,6 +1,12 @@
 const TOGGLE_MENU = " TOGGLE_MENU"
 const TOGGLE_MOBILE = "TOGGLE_MOBILE"
 const TOGGLE_RADIO = "TOGGLE_RADIO"
+const SELECTED_LIST = "SELECTED_LIST"
+
+export const selectList = (list) => ({
+	type: SELECTED_LIST,
+	list
+})
 
 export const toggleRadio = (radioOpen) => ({
 	type: TOGGLE_RADIO,
@@ -20,7 +26,8 @@ export const toggleMenu = (dropdownMenu) => ({
 const initalState = {
 	radioOpen: false,
 	dropdownMenu: false,
-	isMobile: false
+	isMobile: false,
+	selectedList: "all"
 }
 
 function reducer(state = initalState, action) {
@@ -39,6 +46,11 @@ function reducer(state = initalState, action) {
 			return {
 				...state,
 				radioOpen: action.radioOpen
+			}
+		case SELECTED_LIST:
+			return {
+				...state,
+				selectedList: action.list
 			}
 		default:
 			return state

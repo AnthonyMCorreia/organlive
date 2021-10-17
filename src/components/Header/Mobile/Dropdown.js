@@ -6,7 +6,6 @@ import DropdownItem from "./DropdownItem"
 import { toggleMenu } from "../../../state/ui"
 
 const Dropdown = forwardRef((props, ref) => {
-	console.log(ref)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -31,12 +30,18 @@ const Dropdown = forwardRef((props, ref) => {
 				close
 			</div>
 			<div id="mobile-menu-list">
-				<DropdownItem link="/Library" innerHTML="Library" />
+				<DropdownItem link="/library" innerHTML="Library" />
 				<DropdownItem link="/contact" innerHTML="Contact" />
 				<DropdownItem link="/schedule" innerHTML="Schedule" />
 				<DropdownItem link="/submitrecording" innerHTML="Submit Recording" />
 				<DropdownItem link="/otherstations" innerHTML="Other Stations" />
-				<DropdownItem link="/donate" innerHTML="Donate" />
+				<a
+					rel="noreferrer"
+					href="http://organ.media/support"
+					target="_blank"
+					className="mobile-dropdown-item">
+					Donate
+				</a>
 			</div>
 		</div>
 	)

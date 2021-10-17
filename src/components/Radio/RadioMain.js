@@ -1,4 +1,5 @@
-import { useDispatch } from "react-redux"
+import { useRef } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 // Components
 import MusicInfo from "./MusicInfo"
@@ -10,6 +11,7 @@ import { toggleRadio } from "../../state/ui"
 
 const RadioMain = () => {
 	const dispatch = useDispatch()
+
 
 	return (
 		<div id="radio">

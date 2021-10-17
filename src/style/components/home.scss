@@ -3,11 +3,6 @@
 
 	@include centerElm;
 
-	background-image: linear-gradient(rgba($black, 0.6), rgba($black, 0.6)),
-		url(../../images/organHands.webp);
-	background-size: cover;
-	background-position: top;
-
 	@media screen and (max-width: $mobile-max) {
 		align-items: flex-start;
 	}

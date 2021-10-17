@@ -3,27 +3,24 @@ import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 
 //state
-import { getItem } from "../../state/library"
+import { getItem } from "../../../state/library"
 
-const OrganistItem = ({ val, index }) => {
+const ComposerItem = ({ val, index }) => {
 	const dispatch = useDispatch()
 
-	const imageString = val.artist
-		.toLowerCase()
-		.split("")
-		.filter((char) => {
-			return char.match(/[a-zA-Z]/) || char === " "
-		})
-		.join("")
-		.split(" ")
-		.join("_")
+	const imageString =
+		val.composer
+			.toLowerCase()
+			.split("")
+			.filter((char) => {
+				return char.match(/[a-zA-Z]/) || char === " "
+			})
+			.join("")
+			.split(" ")
+			.join("_") + ".jpg"
 
 	const clickHandler = () => {
-		dispatch(getItem(val.id))
-	}
-
-	const imageError = (elm) => {
-		elm.target.src = "../../images/not-found.png"
+		// dispatch(getItem(val.id))
 	}
 
 	return (
@@ -33,22 +30,21 @@ const OrganistItem = ({ val, index }) => {
 			onClick={clickHandler}>
 			<div className="list-container" key={index}>
 				<img
-					// onError={imageError}
 					className="pics"
 					src={
-						val?.picture?.trim()
+						val?.picture.trim()
 							? `https://pictures.organlive.com/${imageString}`
 							: "/not-found"
 					}
 					num={index}
-					alt={val.artist}
+					alt={val.composer}
 				/>
 				<p key={index} className="library-item">
-					{val.artist}
+					{val.composer}
 				</p>
 			</div>
 		</Link>
 	)
 }
 
-export default OrganistItem
+export default ComposerItem

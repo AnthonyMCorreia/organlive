@@ -16,7 +16,7 @@
 
 #radio * {
 	user-select: none;
-	color: $blueGray;
+	color: $white;
 }
 
 #stream {
@@ -41,7 +41,7 @@
 #playback-button {
 	background: none;
 	border: none;
-	color: $blueGray;
+	color: $white;
 	font-size: 4rem;
 }
 
@@ -85,14 +85,14 @@
 
 	width: 20rem;
 	height: 0.2rem;
-	background: $blueGray;
-	color: yellow;
+	background: $white;
+	color: white;
 
 	&::-webkit-slider-thumb {
 		appearance: none;
 		-webkit-appearance: none !important;
 		background: $playerBackground;
-		border: 0.1rem solid $blueGray;
+		border: 0.1rem solid $white;
 		width: 2rem;
 		height: 2rem;
 		border-radius: 50%;
@@ -159,8 +159,8 @@
 //Mobile Small Radio
 
 #radio-small-mobile {
-	width: 6;
-	height: 5;
+	max-width: 6;
+	max-height: 5;
 	margin: 0 1.2rem;
 }
 

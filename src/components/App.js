@@ -6,14 +6,13 @@ import Routes from "./Routes"
 
 import { useResizeDetector } from "react-resize-detector"
 
-import { toggleMobile } from "../state/ui"
-
 // Components
 import Radio from "./Radio"
 import Footer from "./Footer"
 
 // State
-import { toggleMenu } from "../state/ui"
+import { toggleMenu, toggleMobile } from "../state/ui"
+import { getLibrary } from "../state/library"
 
 function App() {
 	const dispatch = useDispatch()
@@ -37,6 +36,10 @@ function App() {
 		}
 	}
 
+	const scrollHandler = (evt) => {
+		console.log('kj')
+	}
+
 	useEffect(() => {
 		if (width <= 1000) {
 			dispatch(toggleMobile(true))
@@ -45,8 +48,16 @@ function App() {
 		}
 	}, [dispatch, width])
 
+	useEffect(() => {
+		dispatch(getLibrary())
+	}, [])
+
 	return (
-		<div className="App" ref={ref} onClick={clickHandler}>
+		<div
+			className="App"
+			ref={ref}
+			onClick={clickHandler}
+			onScroll={scrollHandler}>
 			<Header />
 			<Routes />
 			<Radio />

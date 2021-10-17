@@ -3,16 +3,16 @@ import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 
 //state
-import { getItem } from "../../state/library"
+import { getItem } from "../../../state/library"
 
 // Images
-import errorPic from "../../images/not-found.png"
+import errorPic from "../../../images/not-found.png"
 
 const AlbumItem = ({ val, index }) => {
 	const dispatch = useDispatch()
 
 	const clickHandler = () => {
-		dispatch(getItem(val.id))
+		// dispatch(getItem(val.id))
 	}
 
 	const imageError = (elm) => {

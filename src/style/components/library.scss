@@ -1,79 +1,82 @@
 #library {
-	// position: fixed;
-	// top: 7rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	width: 100vw;
-	background-color: rgb(87, 87, 87);
+	background-color: $offBlack;
 
-	// display: flex;
-	// align-items: center;
-	// justify-content: center;
-}
-
-#library-list-wrapper {
-	width: 100%;
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	overflow-x: hidden;
 }
 
 #library-list {
-	width: 80%;
+	max-width: 75%;
 	margin: 1rem;
 	position: relative;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
+	padding: 0 2rem;
+	padding-bottom: 3rem;
+
+	display: grid;
+	place-items: center;
+
+	grid-template-columns: repeat(auto-fill, minmax(31rem, 1fr));
+	grid-column-gap: 4rem;
+	grid-row-gap: 4rem;
+}
+
+.list-link {
+	text-decoration: none;
+
+	height: 17.5rem;
+	width: 32rem;
 }
 
 .list-container {
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: left;
-	margin: 3rem 1rem;
-	padding: 3em;
-	// width: 25rem;
-	// height: 20rem;
+	align-items: center;
+	justify-content: space-evenly;
+
+	padding: 0.5rem;
 	color: white;
-	height: 15rem;
-	background-color: $blueGray;
+	height: 100%;
+	width: 100%;
+	background-color: $darkGray;
 	border-radius: 1rem;
+
+	box-shadow: 0 0 0.7em $black;
 
 	&:hover {
 		transition: all 0.1s;
 	}
 }
 
-.list-link {
-	text-decoration: none;
-}
-
 .library-item {
 	display: inline-block;
-	max-width: 100%;
-	margin: 0.5rem;
+	max-width: 50%;
+	// margin: 0.5rem;
 	text-align: left;
 	color: $off-white;
 	font-weight: 500;
-	font-size: 1.2rem;
+	font-size: 1.6rem;
 }
 
 .pics {
 	display: inline-block;
-	max-width: 20rem;
-	max-height: 200rem;
+	width: 12rem;
+	height: 12rem;
 	// width: 15rem;
 	// height: 10rem;
 	border: 0.8px solid rgba(0, 0, 0, 0.74);
-	border-radius: 1rem;
+	border-radius: 0.5rem;
 	// object-fit: cover;
 }
 
 .error-pic {
+}
+
+// Album Item
+
+#DetailedAlbum {
+	@include mainGrayBackground;
+	@include centerElm;
 }

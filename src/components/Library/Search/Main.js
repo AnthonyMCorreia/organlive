@@ -1,54 +1,66 @@
 import { useDispatch, useSelector } from "react-redux"
 
 // State
+import { selectList } from "../../../state/ui"
 import { setList } from "../../../state/library"
 
 function Search() {
 	const dispatch = useDispatch()
 
-	const { selectedList } = useSelector((state) => state.search)
+	const selectedList = useSelector((state) => state.ui.selectedList)
 
-	const selectList = (evt) => {
-		const value = evt?.target?.innerHTML.toLowerCase()
-		console.log(value)
+	const setLibraryList = (evt) => {
+		const value = evt?.target?.textContent?.toLowerCase()
 
+		dispatch(selectList(value))
 		dispatch(setList(value))
-	}
-
-	const undeline = {
-		borderBottom: "1.5px solid white"
 	}
 
 	return (
 		<div id="search">
-			<input id="search-input" placeholder="Search our Library" />
+			<label htmlFor="search-input" id="search-input-label">
+				Search Library
+				<input id="search-input" />
+			</label>
 			<ul id="list-options-container">
 				<li
-					className="list-option"
-					name="all"
-					onClick={selectList}
-					style={selectedList === "all" ? undeline : null}>
+					className={
+						selectedList === "all"
+							? "list-option-underlinded list-option"
+							: "list-option"
+					}
+					value="all"
+					onClick={setLibraryList}>
 					All
 				</li>
 				<li
-					className="list-option"
-					name="albums"
-					onClick={selectList}
-					style={selectedList === "albums" ? undeline : null}>
+					className={
+						selectedList === "albums"
+							? "list-option-underlinded list-option"
+							: "list-option"
+					}
+					value="albums"
+					onClick={setLibraryList}>
 					Albums
 				</li>
 				<li
-					className="list-option"
-					name="organist"
-					onClick={selectList}
-					style={selectedList === "organist" ? undeline : null}>
+					className={
+						selectedList === "organists"
+							? "list-option-underlinded list-option"
+							: "list-option"
+					}
+					value="organist"
+					onClick={setLibraryList}>
 					Organists
 				</li>
 				<li
-					className="list-option"
-					name="composers"
-					onClick={selectList}
-					style={selectedList === "composer" ? undeline : null}>
+					className={
+						selectedList === "composers"
+							? "list-option-underlinded list-option"
+							: "list-option"
+					}
+					value="composers"
+					onClick={setLibraryList}>
 					Composers
 				</li>
 			</ul>
