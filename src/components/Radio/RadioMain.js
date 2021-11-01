@@ -1,5 +1,4 @@
-import { useRef } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 // Components
 import MusicInfo from "./MusicInfo"

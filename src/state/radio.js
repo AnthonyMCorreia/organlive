@@ -64,7 +64,6 @@ export const getSong = () => {
 				"https://api.organlive.com/playing"
 			)
 			const {
-				timetotal,
 				millisecondsremaining,
 				timeelapsed,
 				workid

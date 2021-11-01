@@ -14,7 +14,6 @@ const MainMenu = () => {
 	const dispatch = useDispatch()
 	const nodeRef = useRef(null)
 
-
 	const dropdownMenu = useSelector((state) => state.ui.dropdownMenu)
 
 	return (
@@ -42,16 +41,16 @@ const MainMenu = () => {
 						keyboard_arrow_up
 					</button>
 				)}
-				<div id="dropdown-container">
-					<CSSTransition
-						in={dropdownMenu}
-						unmountOnExit
-						timeout={800}
-						nodeRef={nodeRef}
-						classNames="dropdown-animation">
+				<CSSTransition
+					in={dropdownMenu}
+					unmountOnExit
+					timeout={800}
+					nodeRef={nodeRef}
+					classNames="dropdown-animation">
+					<div id="dropdown-container">
 						<Dropdown ref={nodeRef} />
-					</CSSTransition>
-				</div>
+					</div>
+				</CSSTransition>
 			</div>
 		</div>
 	)

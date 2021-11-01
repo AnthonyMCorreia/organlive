@@ -2,7 +2,7 @@ import axios from "axios"
 
 const SET_LIBRARY = "SET_LIBRARY"
 const SET_LENGTH = "SET_LENGTH"
-const SET_ALBUM = "SET_ALBUM"
+const SET_ITEM = "SET_ITEM"
 const SET_LIST = "SET_LIST"
 
 export const setList = (list) => ({
@@ -10,9 +10,9 @@ export const setList = (list) => ({
 	list
 })
 
-export const setAlbum = (album) => ({
-	type: SET_ALBUM,
-	album
+export const setItem = (list) => ({
+	type: SET_ITEM,
+	list
 })
 
 const setLibrary = (library) => ({
@@ -55,33 +55,32 @@ export const getLibrary = () => {
 
 export const getAlbum = (albumId) => {
 	return async (dispatch) => {
-		try {
-			const { data } = await axios.get(
-				`https://api.organlive.com/library/album/${albumId}`
-			)
+		await axios
+			.get(`https://api.organlive.com/library/album/${albumId}`)
+			.then(async (res) => {
+				const album = res.data.album
+				const organist = await axios.get(
+					`https://api.organlive.com/library/artist/${album.artistid}`
+				)
 
-			dispatch(setAlbum(data.album))
-		} catch (err) {
-			console.log(err)
-		}
+				const albumAndOrganist = {
+					...album,
+					organist: organist.data
+				}
+
+				console.log(albumAndOrganist)
+
+				dispatch(setItem(albumAndOrganist))
+			})
 	}
 }
-
-// export const getList = (list) => {
-// 	return (dispatch) => {
-// 		try {
-// 			dispatch(setList(list))
-// 		} catch (err) {
-// 			console.log(err)
-// 		}
-// 	}
-// }
 
 const initialState = {
 	lists: {},
 	selectedList: [],
 	listLength: 100,
-	selectedAlbum: {}
+	selectedItem: null,
+	dataFetched: false
 }
 
 function reducer(state = initialState, action) {
@@ -115,15 +114,16 @@ function reducer(state = initialState, action) {
 					organists,
 					composers
 				},
-				selectedList: all
+				selectedList: all,
+				dataFetched: true
 			}
 		case SET_LENGTH:
 			return {
 				...state,
 				listLength: action.length
 			}
-		case SET_ALBUM:
-			return { ...state, selectedAlbum: action.album }
+		case SET_ITEM:
+			return { ...state, selectedItem: action.item }
 		case SET_LIST:
 			return { ...state, selectedList: state.lists[action.list] }
 		default:

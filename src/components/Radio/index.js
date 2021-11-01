@@ -5,7 +5,7 @@ import RadioMain from "./RadioMain"
 import RadioSmall from "./RadioSmall"
 
 const Player = () => {
-	const { dropdownMenu, radioOpen, isMobile } = useSelector((state) => state.ui)
+	const { radioOpen, isMobile } = useSelector((state) => state.ui)
 
 	return (
 		<>

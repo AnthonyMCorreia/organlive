@@ -1,5 +1,12 @@
 import React, { useEffect } from "react"
-import { Route, Switch, useLocation } from "react-router-dom"
+import {
+	Route,
+	Switch,
+	useLocation,
+	useParams,
+	useRouteMatch
+} from "react-router-dom"
+import history from "../history"
 
 // Components
 import Home from "./Home"
@@ -12,32 +19,39 @@ import SubmitRecordings from "./SubmitRecordings"
 
 //Library Items
 import DetailedAlbum from "./Library/detailedItem/DetailedAlbum"
-import DetailedArtist from "./Library/detailedItem/DetailedArtist"
-import DetailedComposer from "./Library/detailedItem/DetailedComposer"
+// import DetailedOrganists from "./Library/detailedItem/DetailedOrganists"
+// import DetailedComposer from "./Library/detailedItem/DetailedComposer"
 
 const Routes = () => {
-	const routeChange = useLocation()
+	const location = useLocation()
+	const params = useParams()
 
-	const toTop = () => {
-		window.scrollTo(0, 0)
-	}
+	const albumRoute = useRouteMatch("/album/:id")
+	const organistRoute = useRouteMatch("/organist/:id")
+	const composerRoute = useRouteMatch("/composer/:id")
+
+	console.log(albumRoute)
 
 	useEffect(() => {
-		toTop()
-	}, [routeChange])
+		window.scrollTo(0, 0)
+	}, [location])
+
+	useEffect(() => {
+		console.log(params, "kdfj")
+	}, [params, location])
 
 	return (
 		<Switch>
 			<Route exact path="/" component={Home} />
 			<Route exact path="/contact" component={Contact} />
-			<Route exact path="/library" component={Library} />
 			<Route exact path="/library/:albums/:id" component={DetailedAlbum} />
-			{/* <Route exact path="/library/:artists/:id" component={DetailedArtist} />
+			{/* <Route exact path="/library/:artists/:id" component={DetailedOrganists} />
 			<Route
-				exact
-				path="/library/:composers/:id"
-				component={DetailedComposer}
-			/> */}
+			exact
+			path="/library/:composers/:id"
+			component={DetailedComposer}
+		/> */}
+			<Route exact path="/library" component={Library} />
 			<Route exact path="/nowplaying" />
 			<Route exact path="/otherstations" component={OtherStations} />
 			<Route exact path="/schedule" component={Schedule} />

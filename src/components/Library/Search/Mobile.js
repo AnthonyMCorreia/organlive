@@ -9,7 +9,6 @@ const MobileSearch = () => {
 	const selectChange = (elm) => {
 		elm.preventDefault()
 		const list = elm.target.value
-		console.log(list)
 
 		dispatch(setList(list))
 	}

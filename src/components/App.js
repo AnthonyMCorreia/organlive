@@ -1,7 +1,11 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useLocation, useParams } from "react-router-dom"
 
-import Header from "./Header/"
+// Document Head
+import Head from "./Head"
+
+import Header from "./Header"
 import Routes from "./Routes"
 
 import { useResizeDetector } from "react-resize-detector"
@@ -16,10 +20,16 @@ import { getLibrary } from "../state/library"
 
 function App() {
 	const dispatch = useDispatch()
+	const params = useParams()
+	const location = useLocation()
 
-	const { dropdownMenu, isMobile } = useSelector((state) => state.ui)
+	useEffect(() => {
+		// console.log("params app", params.id)
+	}, [params, location])
 
-	const { width, height, ref } = useResizeDetector()
+	const { dropdownMenu } = useSelector((state) => state.ui)
+
+	const { width, ref } = useResizeDetector()
 
 	// This is a click event on the entire app to see if the dropdowm menu should be closed if anything but the dropdown menu is clicked on
 	const clickHandler = (evt) => {
@@ -36,10 +46,6 @@ function App() {
 		}
 	}
 
-	const scrollHandler = (evt) => {
-		console.log('kj')
-	}
-
 	useEffect(() => {
 		if (width <= 1000) {
 			dispatch(toggleMobile(true))
@@ -53,11 +59,7 @@ function App() {
 	}, [])
 
 	return (
-		<div
-			className="App"
-			ref={ref}
-			onClick={clickHandler}
-			onScroll={scrollHandler}>
+		<div className="App" ref={ref} onClick={clickHandler}>
 			<Header />
 			<Routes />
 			<Radio />

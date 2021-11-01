@@ -5,6 +5,7 @@
 	flex-direction: column;
 
 	min-height: calc(100% + env(safe-area-inset-top));
+	min-width: 100vw;
 
-	@include iPhoneNotchFix;
+	overflow-x: hidden;
 }

@@ -28,11 +28,11 @@ const Contact = () => {
 			email &&
 			validEmail
 		) {
-			const formContent = {
-				name,
-				email,
-				message
-			}
+			// const formContent = {
+			// 	name,
+			// 	email,
+			// 	message
+			// }
 		}
 	}
 

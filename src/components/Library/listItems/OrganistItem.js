@@ -1,49 +1,26 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { useDispatch } from "react-redux"
 
-//state
-import { getItem } from "../../../state/library"
+import errorPic from "../../../images/not-found.png"
 
-const OrganistItem = ({ val, index }) => {
-	const dispatch = useDispatch()
-
-	const imageString = val.artist
-		.toLowerCase()
-		.split("")
-		.filter((char) => {
-			return char.match(/[a-zA-Z]/) || char === " "
-		})
-		.join("")
-		.split(" ")
-		.join("_")
-
-	const clickHandler = () => {
-		// dispatch(getItem(val.id))
-	}
-
+const OrganistItem = ({ val }) => {
 	const imageError = (elm) => {
-		elm.target.src = "../../images/not-found.png"
+		elm.target.onError = null
+		elm.target.src = errorPic
 	}
+
+	const imageSrc = `https://s3.amazonaws.com/pictures.organlive.com/organists/${val.photo}`
 
 	return (
-		<Link
-			to={`library/${val.type}/${val.id}`}
-			className="list-link"
-			onClick={clickHandler}>
-			<div className="list-container" key={index}>
+		<Link to={`library/${val.type}/${val.id}`} className="list-link">
+			<div className="list-container" key={val.id}>
 				<img
-					// onError={imageError}
+					onError={imageError}
 					className="pics"
-					src={
-						val?.picture?.trim()
-							? `https://pictures.organlive.com/${imageString}`
-							: "/not-found"
-					}
-					num={index}
+					src={imageSrc}
 					alt={val.artist}
 				/>
-				<p key={index} className="library-item">
+				<p key={val.id} className="library-organist-text">
 					{val.artist}
 				</p>
 			</div>

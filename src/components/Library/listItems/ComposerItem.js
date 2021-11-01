@@ -2,46 +2,21 @@ import React from "react"
 import { Link } from "react-router-dom"
 import { useDispatch } from "react-redux"
 
-//state
-import { getItem } from "../../../state/library"
+import errorPic from "../../../images/not-found.png"
 
-const ComposerItem = ({ val, index }) => {
-	const dispatch = useDispatch()
-
-	const imageString =
-		val.composer
-			.toLowerCase()
-			.split("")
-			.filter((char) => {
-				return char.match(/[a-zA-Z]/) || char === " "
-			})
-			.join("")
-			.split(" ")
-			.join("_") + ".jpg"
-
-	const clickHandler = () => {
-		// dispatch(getItem(val.id))
+const ComposerItem = ({ val }) => {
+	const imageError = (elm) => {
+		elm.target.onError = null
+		elm.target.src = errorPic
 	}
 
 	return (
 		<Link
 			to={`library/${val.type}/${val.id}`}
 			className="list-link"
-			onClick={clickHandler}>
-			<div className="list-container" key={index}>
-				<img
-					className="pics"
-					src={
-						val?.picture.trim()
-							? `https://pictures.organlive.com/${imageString}`
-							: "/not-found"
-					}
-					num={index}
-					alt={val.composer}
-				/>
-				<p key={index} className="library-item">
-					{val.composer}
-				</p>
+			key={val.id}>
+			<div className="list-container">
+				<p className="library-item no-pic-text">{val.composer}</p>
 			</div>
 		</Link>
 	)
