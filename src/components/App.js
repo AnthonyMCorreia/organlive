@@ -1,9 +1,5 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useLocation, useParams } from "react-router-dom"
-
-// Document Head
-import Head from "./Head"
 
 import Header from "./Header"
 import Routes from "./Routes"
@@ -20,12 +16,6 @@ import { getLibrary } from "../state/library"
 
 function App() {
 	const dispatch = useDispatch()
-	const params = useParams()
-	const location = useLocation()
-
-	useEffect(() => {
-		// console.log("params app", params.id)
-	}, [params, location])
 
 	const { dropdownMenu } = useSelector((state) => state.ui)
 

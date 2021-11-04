@@ -2,17 +2,29 @@ import axios from "axios"
 
 const SET_LIBRARY = "SET_LIBRARY"
 const SET_LENGTH = "SET_LENGTH"
-const SET_ITEM = "SET_ITEM"
 const SET_LIST = "SET_LIST"
+const SET_ALBUM = "SET_ALBUM"
+const SET_COMPOSER = "SET_COMPOSER"
+const SET_ORGANIST = "SET_ORGANIST"
+
+export const setComposer = (composer) => ({
+	type: SET_ORGANIST,
+	composer
+})
+
+export const setOrganist = (organist) => ({
+	type: SET_ORGANIST,
+	organist
+})
 
 export const setList = (list) => ({
 	type: SET_LIST,
 	list
 })
 
-export const setItem = (list) => ({
-	type: SET_ITEM,
-	list
+export const setAlbum = (album) => ({
+	type: SET_ALBUM,
+	album
 })
 
 const setLibrary = (library) => ({
@@ -59,19 +71,43 @@ export const getAlbum = (albumId) => {
 			.get(`https://api.organlive.com/library/album/${albumId}`)
 			.then(async (res) => {
 				const album = res.data.album
-				const organist = await axios.get(
-					`https://api.organlive.com/library/artist/${album.artistid}`
-				)
+				let organistInfo
+
+				if (Array.isArray(album.artistid)) {
+					const artistArr = await Promise.all(
+						album.artistid.map(async (id) => {
+							const { data: artist } = await axios.get(
+								`https://api.organlive.com/library/artist/${id}`
+							)
+
+							return artist
+						})
+					)
+					organistInfo = [...artistArr]
+				} else {
+					const { data } = await axios.get(
+						`https://api.organlive.com/library/artist/${album.artistid}`
+					)
+
+					organistInfo = data
+				}
 
 				const albumAndOrganist = {
 					...album,
-					organist: organist.data
+					organist: organistInfo
 				}
 
-				console.log(albumAndOrganist)
-
-				dispatch(setItem(albumAndOrganist))
+				dispatch(setAlbum(albumAndOrganist))
 			})
+	}
+}
+
+export const getOrganist = (id) => {
+	return (dispatch) => {
+		axios.get(`https://api.organlive.com/library/artist/${id}`).then((res) => {
+			const organist = res.data
+			dispatch(setOrganist(organist))
+		})
 	}
 }
 
@@ -79,8 +115,9 @@ const initialState = {
 	lists: {},
 	selectedList: [],
 	listLength: 100,
-	selectedItem: null,
-	dataFetched: false
+	selectedAlbum: null,
+	selectedOrganist: null,
+	selectedComposer: null
 }
 
 function reducer(state = initialState, action) {
@@ -122,8 +159,12 @@ function reducer(state = initialState, action) {
 				...state,
 				listLength: action.length
 			}
-		case SET_ITEM:
-			return { ...state, selectedItem: action.item }
+		case SET_ALBUM:
+			return { ...state, selectedAlbum: action.album }
+		case SET_ORGANIST:
+			return { ...state, selectedOrganist: action.organist }
+		case SET_COMPOSER:
+			return { ...state, selectedComposer: action.composer }
 		case SET_LIST:
 			return { ...state, selectedList: state.lists[action.list] }
 		default:

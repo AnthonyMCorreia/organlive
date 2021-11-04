@@ -1,12 +1,11 @@
 import React, { useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 
-import { getAlbum, setItem } from "../../../state/library"
+// State
+import { getAlbum, setAlbum } from "../../../state/library"
 
-import { Helmet } from "react-helmet"
-
-import Skeleton from "../listItems/Skeleton"
+import Skeleton from "./Skeleton"
 
 // Rating Stars
 import Stars from "react-rating-stars-component"
@@ -20,30 +19,88 @@ const DetailedAlbum = () => {
 	useEffect(() => {
 		dispatch(getAlbum(paramId))
 
-		return () => {}
-		dispatch(setItem(null))
+		return () => {
+			dispatch(setAlbum(null))
+		}
 	}, [paramId, dispatch])
 
+	if (album) {
+		console.log(album.rating)
+	}
+
 	return (
-		<div id="DetailedAlbum">
-			<Helmet>{/* <title>{album.title}</title> */}</Helmet>
+		<>
 			{album ? (
-				<div id="DetailedAlbumInner">
-					<div>
-						<Stars
-							size={20}
-							value={JSON.parse(album.rating)}
-							color="white"
-							activeColor="#41729f"
-							edit={false}
-							isHalf={true}
-						/>
+				<div id="detailedAlbum">
+					<div id="detailedAlbumInner">
+						<div id="detailedAlbumInfo">
+							<div id="detailedAlbumTitleRating">
+								<h2 id="detailedALbumTitle">
+									{album.album} ({album.albumyear})
+								</h2>
+							</div>
+							<p id="detailedAlbumOrganist">
+								By
+								{Array.isArray(album.organist) ? (
+									album.organist.map((organist, index) => {
+										return (
+											<div key={index}>
+												<Link
+													className="detailedAlbumOrganistLink"
+													to={`/library/organists/${organist.id}`}>
+													{organist.organist}
+												</Link>
+												{index !== album.organist.length - 1 ? ", " : null}
+												{index === album.organist.length - 2 ? " and " : null}
+											</div>
+										)
+									})
+								) : (
+									<Link
+										className="detailedAlbumOrganistLink"
+										to={`/library/organists/${album.organist.id}`}>
+										{album.organist.organist}
+									</Link>
+								)}
+							</p>
+							<Stars
+								size={15}
+								value={Number(album.rating)}
+								edit={false}
+								isHalf={true}
+							/>
+							<div id="detailedAlbumBuyingOptions">
+								{album.buycd !== "" ? (
+									<a
+										className="albumBuyingOptions"
+										target="_blank"
+										rel="noreferrer"
+										href={album.buycd}>
+										Buy CD
+									</a>
+								) : null}
+								{album.buymp3 !== "" ? (
+									<a
+										className="albumBuyingOptions"
+										target="_blank"
+										rel="noreferrer"
+										href={album.buymp3}>
+										Buy MP3
+									</a>
+								) : null}
+							</div>
+							<img
+								id="detailedAlbumImage"
+								src={`https://s3.amazonaws.com/pictures.organlive.com/large/${album.picture}`}
+								alt={album.album}
+							/>
+						</div>
 					</div>
 				</div>
 			) : (
 				<Skeleton />
 			)}
-		</div>
+		</>
 	)
 }
 

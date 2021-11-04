@@ -1,0 +1,46 @@
+#library-list {
+	max-width: 85%;
+	margin: 1rem;
+	position: relative;
+	padding: 0 2rem;
+	padding-bottom: 3rem;
+
+	display: grid;
+	place-items: center;
+
+	grid-template-columns: repeat(auto-fill, minmax(31rem, 1fr));
+	grid-column-gap: 4rem;
+	grid-row-gap: 4rem;
+
+	@media screen and (max-width: $tablet-max) {
+		max-width: 100%;
+	}
+}
+
+.list-link {
+	text-decoration: none;
+
+	height: 17.5rem;
+	width: 32rem;
+}
+
+// list item container
+
+.list-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+
+	padding: 0.5rem;
+	color: $white;
+	height: 100%;
+	width: 100%;
+	background-color: $darkGray;
+
+	box-shadow: -0.2rem 0 0 0 $white;
+	transition: all 0.1s;
+
+	&:hover {
+		opacity: 0.8;
+	}
+}

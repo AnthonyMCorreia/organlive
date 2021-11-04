@@ -1,9 +1,14 @@
 const Skeleton = () => {
-    <div className="detailed-skeleton">
-        <div className="detailed-skeleton-inner">
-            
-        </div>
-    </div>
+	return (
+		<div className="detailedAlbumSkeleton">
+			<div className="detailedAlbumInnerSkeleton">
+				<div className="detailedAlbumTitleSkeleton skeleton"></div>
+				<div className="detailedAlbumOrganistSkeleton skeleton"></div>
+				<div className="detailedAlbumOtherOptionsSkeleton skeleton"></div>
+				<div className="detailedAlbumImageSkeleton skeleton"></div>
+			</div>
+		</div>
+	)
 }
 
 export default Skeleton

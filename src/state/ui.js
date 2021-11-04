@@ -27,7 +27,8 @@ const initalState = {
 	radioOpen: false,
 	dropdownMenu: false,
 	isMobile: false,
-	selectedList: "all"
+	selectedList: "all",
+	documentTitle: "Organlive"
 }
 
 function reducer(state = initalState, action) {

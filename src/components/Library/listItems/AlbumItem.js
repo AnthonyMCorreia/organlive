@@ -9,17 +9,12 @@ const AlbumItem = ({ val }) => {
 		elm.target.src = errorPic
 	}
 
-	const imageSrc = `https://s3.amazonaws.com/pictures.organlive.com/${val.picture}`
-
 	return (
-		<Link
-			to={`library/${val.type}/${val.id}`}
-			className="list-link"
-			key={val.id}>
+		<Link to={`library/albums/${val.id}`} className="list-link" key={val.id}>
 			<div className="list-container">
 				<img
 					className="pics"
-					src={imageSrc}
+					src={`https://s3.amazonaws.com/pictures.organlive.com/${val.picture}`}
 					onError={imageError}
 					alt={val.album}
 				/>
