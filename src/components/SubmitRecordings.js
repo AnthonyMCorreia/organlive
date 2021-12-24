@@ -1,10 +1,15 @@
-// If you would like to have your recordings included in our broadcast, please send them to:
+import React, { useEffect } from "react"
+import { useDispatch } from "react-redux"
 
-// Organ Media Foundation
-// 6622 Michigan Avenue
-// St. Louis, MO 63111
+import { setDocumentTitle } from "../state/ui"
 
 const SubmitRecordings = () => {
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(setDocumentTitle("Organlive | Submit Recordings"))
+	}, [dispatch])
+
 	return (
 		<div id="submit-recordings">
 			<div id="submit-recordings-inner">

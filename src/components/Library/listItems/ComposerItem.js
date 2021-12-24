@@ -11,10 +11,7 @@ const ComposerItem = ({ val }) => {
 	}
 
 	return (
-		<Link
-			to={`library/${val.type}/${val.id}`}
-			className="list-link"
-			key={val.id}>
+		<Link to={`library/composers/${val.id}`} className="list-link" key={val.id}>
 			<div className="list-container">
 				<p className="library-item no-pic-text">{val.composer}</p>
 			</div>

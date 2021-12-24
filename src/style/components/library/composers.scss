@@ -1,0 +1,111 @@
+.detailedComposer {
+	@include mainGrayBackground;
+	padding: 2rem;
+
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.detailedComposerInner {
+	width: 30%;
+	padding: 3rem 2rem;
+
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+
+	background-color: $darkGray;
+	box-shadow: -0.2rem 0 0 0 $white;
+
+	& > * {
+		margin: 0.5rem 0;
+	}
+
+	@media screen and (max-width: $tablet-max) {
+		width: 60%;
+	}
+
+	@media screen and (max-width: $tablet-width) {
+		width: 90%;
+	}
+
+	@media screen and (max-width: $mobile-max) {
+		width: 98%;
+	}
+}
+
+.detailedComposerName {
+	font-size: 4rem;
+
+	@media screen and (max-width: $mobile-max) {
+		font-size: 3rem;
+	}
+}
+
+.detailedComposerMoreInfo {
+	color: $white;
+	font-size: 2.2rem;
+
+	@media screen and (max-width: $mobile-max) {
+		font-size: 1.8rem;
+	}
+}
+
+.detailedComposerAlbumIntro {
+	font-size: 2rem;
+
+	margin-top: 4rem;
+
+	@media screen and (max-width: $mobile-max) {
+		font-size: 1.6rem;
+		margin-top: 2rem;
+	}
+}
+
+.detailedComposerAlbumItem {
+	display: flex;
+	margin: 1rem 0;
+	padding: 1.2rem;
+	background-color: $offBlack;
+
+	@media screen and (max-width: $mobile-max) {
+		width: 98%;
+	}
+}
+
+.detailedComposerAlbumInfoContainer {
+	margin: 1rem;
+}
+
+.detailedComposerAlbumLink {
+	display: flex;
+	text-decoration: none;
+	color: $white;
+
+	transition: all 0.2s ease;
+
+	&:hover {
+		filter: brightness(0.8);
+	}
+}
+
+.detailedComposerAlbumImage {
+	max-height: 15rem;
+	max-width: 15rem;
+
+	transition: all 0.2s ease;
+
+	&:hover {
+		filter: brightness(0.8);
+	}
+}
+
+.detailedComposerAlbumItemTitle {
+	font-size: 2rem;
+
+	@media screen and (max-width: $mobile-max) {
+		font-size: 1.6rem;
+		margin-bottom: 0.3rem;
+	}
+}

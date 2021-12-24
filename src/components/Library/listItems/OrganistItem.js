@@ -20,7 +20,7 @@ const OrganistItem = ({ val }) => {
 					src={imageSrc}
 					alt={val.artist}
 				/>
-				<p key={val.id} className="library-organist-text">
+				<p key={val.id} className="organistListText">
 					{val.artist}
 				</p>
 			</div>

@@ -9,6 +9,7 @@ import { useResizeDetector } from "react-resize-detector"
 // Components
 import Radio from "./Radio"
 import Footer from "./Footer"
+import DocHead from "./DocHead"
 
 // State
 import { toggleMenu, toggleMobile } from "../state/ui"
@@ -30,7 +31,9 @@ function App() {
 			id !== "dropdown" &&
 			id !== "dropdown" &&
 			id !== "mobile-menu" &&
-			dropdownMenu
+			evt.target.classList.contains("dropdown-item") &
+				evt.target.classList.contains("dropdown-list") &
+				dropdownMenu
 		) {
 			dispatch(toggleMenu(false))
 		}
@@ -54,6 +57,7 @@ function App() {
 			<Routes />
 			<Radio />
 			<Footer />
+			<DocHead />
 		</div>
 	)
 }

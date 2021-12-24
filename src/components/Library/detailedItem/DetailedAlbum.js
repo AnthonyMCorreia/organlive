@@ -2,8 +2,11 @@ import React, { useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 
+import ErrorPic from "../../../images/not-found.png"
+
 // State
 import { getAlbum, setAlbum } from "../../../state/library"
+import { setDocumentTitle } from "../../../state/ui"
 
 import Skeleton from "./Skeleton"
 
@@ -16,6 +19,17 @@ const DetailedAlbum = () => {
 	const paramId = useParams().id
 	const album = useSelector((state) => state.library.selectedAlbum)
 
+	const imageError = (elm) => {
+		elm.target.onError = null
+		elm.target.src = ErrorPic
+	}
+
+	useEffect(() => {
+		if (album) {
+			dispatch(setDocumentTitle(`Organlive | ${album.album}`))
+		}
+	}, [dispatch, album])
+
 	useEffect(() => {
 		dispatch(getAlbum(paramId))
 
@@ -25,7 +39,7 @@ const DetailedAlbum = () => {
 	}, [paramId, dispatch])
 
 	if (album) {
-		console.log(album.rating)
+		console.log(album.albumyear)
 	}
 
 	return (
@@ -36,15 +50,25 @@ const DetailedAlbum = () => {
 						<div id="detailedAlbumInfo">
 							<div id="detailedAlbumTitleRating">
 								<h2 id="detailedALbumTitle">
-									{album.album} ({album.albumyear})
+									{album.album}
+									{album.albumyear ? ` (${album.albumyear})` : null}
 								</h2>
 							</div>
-							<p id="detailedAlbumOrganist">
-								By
+							<div id="detailedAlbumOrganist">
+								<p
+									className={
+										Array.isArray(album.organist)
+											? "detailedAlbumByArray"
+											: "detailedAlbumBy"
+									}>
+									By
+								</p>
 								{Array.isArray(album.organist) ? (
 									album.organist.map((organist, index) => {
 										return (
-											<div key={index}>
+											<div
+												key={index}
+												className="detailedAlbumOrganistLinkContainer">
 												<Link
 													className="detailedAlbumOrganistLink"
 													to={`/library/organists/${organist.id}`}>
@@ -62,7 +86,7 @@ const DetailedAlbum = () => {
 										{album.organist.organist}
 									</Link>
 								)}
-							</p>
+							</div>
 							<Stars
 								size={15}
 								value={Number(album.rating)}
@@ -89,11 +113,18 @@ const DetailedAlbum = () => {
 									</a>
 								) : null}
 							</div>
-							<img
-								id="detailedAlbumImage"
-								src={`https://s3.amazonaws.com/pictures.organlive.com/large/${album.picture}`}
-								alt={album.album}
-							/>
+							{album.picture !== "" && album.picture !== "na2.jpg" ? (
+								<img
+									className="detailedAlbumImage"
+									src={
+										album.picture === ""
+											? ErrorPic
+											: `https://s3.amazonaws.com/pictures.organlive.com/large/${album.picture}`
+									}
+									alt={album.album}
+									onError={imageError}
+								/>
+							) : null}
 						</div>
 					</div>
 				</div>

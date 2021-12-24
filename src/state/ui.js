@@ -1,12 +1,13 @@
 const TOGGLE_MENU = " TOGGLE_MENU"
 const TOGGLE_MOBILE = "TOGGLE_MOBILE"
 const TOGGLE_RADIO = "TOGGLE_RADIO"
-const SELECTED_LIST = "SELECTED_LIST"
+const SET_TITLE = "SET_TITLE"
 
-export const selectList = (list) => ({
-	type: SELECTED_LIST,
-	list
+export const setDocumentTitle = (title) => ({
+	type: SET_TITLE,
+	title
 })
+
 
 export const toggleRadio = (radioOpen) => ({
 	type: TOGGLE_RADIO,
@@ -27,7 +28,6 @@ const initalState = {
 	radioOpen: false,
 	dropdownMenu: false,
 	isMobile: false,
-	selectedList: "all",
 	documentTitle: "Organlive"
 }
 
@@ -48,10 +48,10 @@ function reducer(state = initalState, action) {
 				...state,
 				radioOpen: action.radioOpen
 			}
-		case SELECTED_LIST:
+		case SET_TITLE:
 			return {
 				...state,
-				selectedList: action.list
+				documentTitle: action.title
 			}
 		default:
 			return state

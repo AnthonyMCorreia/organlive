@@ -11,7 +11,7 @@
 }
 
 #list-options-container {
-	margin-left: 3rem;
+	margin: 0 4rem;
 	padding: 0.25rem;
 	display: flex;
 	flex-direction: row;
@@ -52,4 +52,31 @@
 	font-size: 1.8rem;
 }
 
-// Mobile
+// Sort
+
+.search-select-wrapper {
+	border: none;
+	outline: none;
+	background: transparent;
+	appearance: none;
+
+	font-size: 1.8rem;
+	color: $white;
+	height: 100%;
+
+	background-color: $darkGray;
+	border-radius: 1rem;
+	padding: 1rem;
+
+	display: flex;
+}
+
+.search-filter-select {
+	border: none;
+	outline: none;
+	background: transparent;
+
+	font-size: 1.8rem;
+	color: $white;
+	width: 18rem;
+}

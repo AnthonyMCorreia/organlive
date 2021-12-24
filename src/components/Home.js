@@ -1,5 +1,6 @@
+import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { toggleRadio } from "../state/ui"
+import { toggleRadio, setDocumentTitle } from "../state/ui"
 
 const text =
 	"Organlive is a listener-supported internet audio station with a focus on music of the classical organ. We maintain a growing library of music that currently contains over 21,000 tracks. Our library features classical organ music performed on pipe, electronic, and combination instruments recorded all over the world. Follow a link above or below to begin exploring Organlive."
@@ -10,6 +11,10 @@ const Home = () => {
 	const play = () => {
 		dispatch(toggleRadio(true))
 	}
+
+	useEffect(() => {
+		dispatch(setDocumentTitle("Organlive | Home"))
+	}, [dispatch])
 
 	return (
 		<div id="home">

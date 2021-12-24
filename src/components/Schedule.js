@@ -1,6 +1,15 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { useDispatch } from "react-redux"
+
+import { setDocumentTitle } from "../state/ui"
 
 const Schedule = () => {
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(setDocumentTitle("Organlive | Schedule"))
+	}, [dispatch])
+
 	return (
 		<div id="schedule">
 			<div id="schedule-inner">

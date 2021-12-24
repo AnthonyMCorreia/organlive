@@ -20,11 +20,10 @@ import SubmitRecordings from "./SubmitRecordings"
 //Library Items
 import DetailedAlbum from "./Library/detailedItem/DetailedAlbum"
 import DetailedOrganists from "./Library/detailedItem/DetailedOrganists"
-// import DetailedComposer from "./Library/detailedItem/DetailedComposer"
+import DetailedComposer from "./Library/detailedItem/DetailedComposer"
 
 const Routes = () => {
 	const location = useLocation()
-	const params = useParams()
 
 	useEffect(() => {
 		window.scrollTo(0, 0)
@@ -40,11 +39,11 @@ const Routes = () => {
 				path="/library/organists/:id"
 				component={DetailedOrganists}
 			/>
-			{/* <Route
-			exact
-			path="/library/:composers/:id"
-			component={DetailedComposer}
-		/>  */}
+			<Route
+				exact
+				path="/library/:composers/:id"
+				component={DetailedComposer}
+			/>
 			<Route exact path="/library" component={Library} />
 			<Route exact path="/nowplaying" />
 			<Route exact path="/otherstations" component={OtherStations} />

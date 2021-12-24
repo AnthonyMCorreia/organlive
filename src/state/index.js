@@ -6,19 +6,20 @@ import { composeWithDevTools } from "redux-devtools-extension"
 //reducers
 import radio from "./radio"
 import library from "./library"
-import search from "./search"
 import ui from "./ui"
 
 const reducer = combineReducers({
 	radio,
 	library,
-	search,
 	ui
 })
 
-const middleware = composeWithDevTools(
-	applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
-)
+const middleware =
+	process.env.NODE_ENV === "development"
+		? composeWithDevTools(
+				applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+		  )
+		: composeWithDevTools(applyMiddleware(thunkMiddleware))
 
 const store = createStore(reducer, middleware)
 

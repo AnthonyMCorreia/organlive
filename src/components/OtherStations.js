@@ -1,7 +1,18 @@
+import React, { useEffect } from "react"
+import { useDispatch } from "react-redux"
+
+import { setDocumentTitle } from "../state/ui"
+
 import organExperience from "../images/organ_experience.png"
 import positivelyBaroque from "../images/positively_baroque.jpg"
 
 const OtherStations = () => {
+	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(setDocumentTitle("Organlive | Other Stations"))
+	}, [dispatch])
+
 	return (
 		<div id="other-stations">
 			<div id="other-stations-inner">

@@ -43,9 +43,12 @@
 	justify-content: center;
 	flex-direction: column;
 
-	background-color: $darkBlue;
-	border-radius: 1rem;
-	box-shadow: 0.3rem 0.3rem $off-white;
+	background-color: $darkGray;
+	box-shadow: -0.2rem 0 0 0 $white;
+
+	& > * {
+		margin: 0.5rem 0;
+	}
 
 	@media screen and (max-width: $tablet-max) {
 		width: 60%;
@@ -78,17 +81,30 @@
 	margin-bottom: 0.3rem;
 
 	display: flex;
+	flex-wrap: wrap;
 
 	@media screen and (max-width: $mobile-max) {
 		flex-direction: column;
 	}
 }
 
+.detailedAlbumBy {
+	margin-right: 0.2rem;
+}
+
+.detailedAlbumByArray {
+	margin: 0.2rem 0.2rem;
+}
+
+.detailedAlbumOrganistLinkContainer {
+	margin: 0.2rem 0.2rem;
+}
+
 .detailedAlbumOrganistLink {
 	text-decoration: none;
+	max-height: 1.6rem;
 
 	color: $white;
-	margin-left: 0.4rem;
 
 	transition: all 0.2s ease;
 
@@ -104,18 +120,29 @@
 
 .albumBuyingOptions {
 	height: 100%;
-	color: $white;
-	text-decoration: none;
 	font-size: 1.6rem;
-	background-color: $darkGray;
-	border-radius: 0.1rem;
 	padding: 0.5rem;
 	margin: 0.5rem;
+	color: $white;
+
+	text-decoration: none;
+	border-radius: 0.1rem;
+	background-color: $black;
+	border-radius: 0.3rem;
+
+	transition: all 0.2s ease;
+
+	&:hover {
+		filter: brightness(0.75);
+	}
 }
 
-#detailedAlbumImage {
+.detailedAlbumImage {
 	border-radius: 1rem;
 	margin-top: 0.5rem;
+
+	max-width: 70%;
+	max-height: 70%;
 
 	@media (max-width: $mobile-max) {
 		width: 95%;

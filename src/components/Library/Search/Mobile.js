@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux"
 
-import { getSelectList } from "../../../state/search"
 import { setList } from "../../../state/library"
 
 const MobileSearch = () => {
@@ -26,7 +25,6 @@ const MobileSearch = () => {
 				/>
 			</div>
 			<select name="lists" id="mobile-search-select" onChange={selectChange}>
-				<option value="all">All</option>
 				<option value="albums">Albums</option>
 				<option value="organists">Organists</option>
 				<option value="composers">Composers</option>

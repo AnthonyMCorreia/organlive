@@ -2,6 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import App from "./components/App"
 import { BrowserRouter as Router } from "react-router-dom"
+import { HelmetProvider } from "react-helmet-async"
 // import reportWebVitals from "./reportWebVitals"
 
 // State
@@ -18,7 +19,9 @@ ReactDOM.render(
 	<React.StrictMode crossOrigin>
 		<Provider store={store}>
 			<Router history={history}>
-				<App />
+				<HelmetProvider>
+					<App />
+				</HelmetProvider>
 			</Router>
 		</Provider>
 	</React.StrictMode>,

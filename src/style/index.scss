@@ -16,7 +16,6 @@
 @import "components/links";
 @import "components/radio";
 @import "components/home";
-@import "components/search";
 @import "components/schedule";
 @import "components/button";
 @import "components/notFound";
@@ -27,6 +26,7 @@
 
 // Library
 @import "components/library/index";
+@import "components/library/search";
 @import "components/library/libraryList";
 @import "components/library/albums";
 @import "components/library/organists";

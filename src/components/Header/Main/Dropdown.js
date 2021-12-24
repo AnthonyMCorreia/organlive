@@ -17,7 +17,6 @@ const Dropdown = forwardRef((props, ref) => {
 						Donate
 					</a>
 				</div>
-				{/* <DropdownItem link="/donate" text="Donate" /> */}
 			</nav>
 		</div>
 	)
