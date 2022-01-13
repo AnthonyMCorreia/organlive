@@ -56,7 +56,7 @@ const DetailedComposer = () => {
 										key={album.albumid}>
 										<Link
 											className="detailedComposerAlbumLink"
-											to={`/library/album/${Number(album.albumid)}`}>
+											to={`/album/${Number(album.albumid)}`}>
 											<img
 												src={`http://pictures.organlive.com/large/${album.picture}`}
 												alt={album.title}

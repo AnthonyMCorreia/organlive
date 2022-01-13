@@ -67,7 +67,7 @@ const DetailedAlbum = () => {
 												className="detailedAlbumOrganistLinkContainer">
 												<Link
 													className="detailedAlbumOrganistLink"
-													to={`/library/organists/${organist.id}`}>
+													to={`/organists/${organist.id}`}>
 													{organist.organist}
 												</Link>
 												{index !== album.organist.length - 1 ? ", " : null}
@@ -78,7 +78,7 @@ const DetailedAlbum = () => {
 								) : (
 									<Link
 										className="detailedAlbumOrganistLink"
-										to={`/library/organists/${album.organist.id}`}>
+										to={`/organists/${album.organist.id}`}>
 										{album.organist.organist}
 									</Link>
 								)}
