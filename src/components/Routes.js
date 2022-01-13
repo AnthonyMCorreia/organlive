@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import {
 	Route,
-	Switch,
+	Routes,
 	useLocation,
 	useParams,
 	useRouteMatch
@@ -22,7 +22,7 @@ import DetailedAlbum from "./Library/detailedItem/DetailedAlbum"
 import DetailedOrganists from "./Library/detailedItem/DetailedOrganists"
 import DetailedComposer from "./Library/detailedItem/DetailedComposer"
 
-const Routes = () => {
+const AppRoutes = () => {
 	const location = useLocation()
 
 	useEffect(() => {
@@ -30,28 +30,28 @@ const Routes = () => {
 	}, [location])
 
 	return (
-		<Switch>
-			<Route exact path="/" component={Home} />
-			<Route exact path="/contact" component={Contact} />
-			<Route exact path="/library/albums/:id" component={DetailedAlbum} />
+		<Routes>
+			<Route exact path="" element={<Home />} />
+			<Route exact path="contact" element={<Contact />} />
+			<Route exact path="library/albums/:id" element={<DetailedAlbum />} />
 			<Route
 				exact
-				path="/library/organists/:id"
-				component={DetailedOrganists}
+				path="library/organists/:id"
+				element={<DetailedOrganists />}
 			/>
 			<Route
 				exact
 				path="/library/:composers/:id"
-				component={DetailedComposer}
+				element={<DetailedComposer />}
 			/>
-			<Route exact path="/library" component={Library} />
-			<Route exact path="/nowplaying" />
-			<Route exact path="/otherstations" component={OtherStations} />
-			<Route exact path="/schedule" component={Schedule} />
-			<Route exact path="/submitrecordings" component={SubmitRecordings} />
-			<Route component={NotFound} />
-		</Switch>
+			<Route exact path="library" element={<Library />} />
+			<Route exact path="nowplaying" />
+			<Route exact path="otherstations" element={<OtherStations />} />
+			<Route exact path="schedule" element={<Schedule />} />
+			<Route exact path="submitrecordings" element={<SubmitRecordings />} />
+			<Route element={<NotFound />} />
+		</Routes>
 	)
 }
 
-export default Routes
+export default AppRoutes

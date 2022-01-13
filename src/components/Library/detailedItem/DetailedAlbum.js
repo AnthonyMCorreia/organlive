@@ -38,10 +38,6 @@ const DetailedAlbum = () => {
 		}
 	}, [paramId, dispatch])
 
-	if (album) {
-		console.log(album.albumyear)
-	}
-
 	return (
 		<>
 			{album ? (
@@ -125,6 +121,13 @@ const DetailedAlbum = () => {
 									onError={imageError}
 								/>
 							) : null}
+							<div id="detailedALbumSongList">
+								<div className="albumSongListKey">
+									<p className="albumSongListKey">#</p>
+									<p className="albumSongListTitle">Title</p>
+									<p className="albumSongList"></p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

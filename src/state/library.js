@@ -137,14 +137,14 @@ export const getAlbum = (albumId) => {
 					organistInfo = data
 				}
 
-				const albumTracks = await axios.get(
-					`api.organlive.com/tracks&album=${albumId}`
+				const { data: albumTracks } = await axios.get(
+					`https://api.organlive.com/tracks/${albumId}`
 				)
-				console.log("tracks", albumTracks)
 
 				const albumAndOrganist = {
 					...album,
-					organist: organistInfo
+					organist: organistInfo,
+					albumTracks
 				}
 
 				dispatch(setAlbum(albumAndOrganist))
@@ -351,7 +351,9 @@ function reducer(state = initialState, action) {
 			return {
 				...state,
 				sort: action.sort,
-				selectedList: state.lists[state.selectedType].sort((a, b) => {
+				selectedList: state.selectedListsCache[state.selectedType][
+					state.sort
+				].sort((a, b) => {
 					const sort = action.sort
 					console.log(sort)
 					const arrType = state.selectedType
@@ -377,7 +379,6 @@ function reducer(state = initialState, action) {
 							}
 						} else if (sort === "rating") {
 							if (a.rating && b.rating) {
-								console.log(a.rating, b.rating)
 								return a.rating > b.rating ? 1 : -1
 							}
 						}

@@ -9,7 +9,6 @@ import {
 	setFilteredArray,
 	setListLength,
 	setSort,
-	getList
 } from "../../../state/library"
 
 function Search() {
