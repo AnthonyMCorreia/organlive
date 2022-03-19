@@ -72,15 +72,15 @@ export const getLibrary = () => {
 	return async (dispatch) => {
 		try {
 			const { data: organists } = await axios.get(
-				"https://api.organlive.com/library/artist?sort=a-z"
+				"https://api.organlive.com/list/artist"
 			)
 
 			const { data: composers } = await axios.get(
-				"https://api.organlive.com/library/composer?sort=a-z"
+				"https://api.organlive.com/list/composer"
 			)
 
 			const { data: albums } = await axios.get(
-				"https://api.organlive.com/library/album?sort=a-z"
+				"https://api.organlive.com/list/album"
 			)
 
 			const library = {
@@ -97,9 +97,15 @@ export const getLibrary = () => {
 }
 
 export const getList = (type, sortParam) => {
+	// gets ride of the s at the end of the list type - albums > album
+	const paramTypeString =
+		type === "organists" ? "artist" : type.slice(0, type.length - 1)
+	console.log(type, paramTypeString, "-0dfdlfkdjf")
 	return (dispatch) => {
 		axios
-			.get(`https://api.organlive.com/library/${type}?sort=${sortParam}`)
+			.get(
+				`https://api.organlive.com/library/${paramTypeString}?sort=${sortParam}`
+			)
 			.then((res) => {
 				dispatch(setList(res.data))
 				dispatch(cacheList(type, sortParam, res.data))
@@ -110,20 +116,30 @@ export const getList = (type, sortParam) => {
 	}
 }
 
+/*
+https://api.organlive.com/library/album/{albumId}
+https://api.organlive.com/library/artist/{id}
+https://api.organlive.com/tracks/{albumId}
+https://api.organlive.com/library/composer/{id}
+*/
+
 export const getAlbum = (albumId) => {
+	console.log(albumId)
 	return async (dispatch) => {
 		await axios
 			.get(`https://api.organlive.com/library/album/${albumId}`)
 			.then(async (res) => {
-				const album = res.data.album
+				const album = res.data
 				let organistInfo
 
-				if (Array.isArray(album.artistid)) {
+				console.log(album)
+				if (Array.isArray(album.id)) {
 					const artistArr = await Promise.all(
 						album.artistid.map(async (id) => {
 							const { data: artist } = await axios.get(
-								`https://api.organlive.com/library/artist/${id}`
+								`https://api.organlive.com/library/artist/${album.artistID}`
 							)
+							console.log(artist)
 
 							return artist
 						})
@@ -131,20 +147,26 @@ export const getAlbum = (albumId) => {
 					organistInfo = [...artistArr]
 				} else {
 					const { data } = await axios.get(
-						`https://api.organlive.com/library/artist/${album.artistid}`
+						`https://api.organlive.com/library/artist/${album.artistID}`
 					)
+					console.log("data", data)
 
 					organistInfo = data
+
+					if (data.length === 1) {
+						organistInfo = data[0]
+						console.log("data", organistInfo)
+					}
 				}
 
-				const { data: albumTracks } = await axios.get(
-					`https://api.organlive.com/tracks/${albumId}`
-				)
+				// const { data: albumTracks } = await axios.get(
+				// 	`https://api.organlive.com/tracks/${albumId}`
+				// )
 
 				const albumAndOrganist = {
 					...album,
-					organist: organistInfo,
-					albumTracks
+					organist: organistInfo
+					// albumTracks
 				}
 
 				dispatch(setAlbum(albumAndOrganist))
@@ -159,6 +181,8 @@ export const getOrganist = (id) => {
 			.then(async (res) => {
 				const organist = res.data
 
+				console.log("after", organist)
+
 				const albumList = await Promise.all(
 					Object.entries(organist)
 						.filter(([key, value]) => {
@@ -168,17 +192,24 @@ export const getOrganist = (id) => {
 						})
 						.map(async ([key, value]) => {
 							const id = value.albumid
-							const { data: album } = await axios.get(
-								`https://api.organlive.com/library/album/${id}`
-							)
 
-							return album.album
+							if (id) {
+								const { data: album } = await axios.get(
+									`https://api.organlive.com/library/album/${id}`
+								)
+
+								if (album) {
+									console.log("album hing", album)
+									return album.album
+								}
+							}
 						})
 				)
 
-				organist.albumList = albumList
+				// organist.albumList = albumLists
+				console.log("organist state", organist[0])
 
-				dispatch(setOrganist(organist))
+				dispatch(setOrganist(organist[0]))
 			})
 			.catch((err) => {
 				console.log(err)
@@ -193,23 +224,23 @@ export const getComposer = (id) => {
 			.then(async (res) => {
 				let composer = res.data
 
-				const albumList = await Promise.all(
-					Object.entries(composer)
-						.filter(([key, value]) => {
-							const reg = /^\d+$/
-							const keyTest = reg.test(key)
-							return keyTest && value !== null
-						})
-						.map(async ([key, value]) => {
-							const id = value.albumid
-							const { data: album } = await axios.get(
-								`https://api.organlive.com/library/album/${id}`
-							)
+				// const albumList = await Promise.all(
+				// 	Object.entries(composer)
+				// 		.filter(([key, value]) => {
+				// 			const reg = /^\d+$/
+				// 			const keyTest = reg.test(key)
+				// 			return keyTest && value !== null
+				// 		})
+				// 		.map(async ([key, value]) => {
+				// 			const id = value.albumid
+				// 			const { data: album } = await axios.get(
+				// 				`https://api.organlive.com/library/album/${id}`
+				// 			)
 
-							return album.album
-						})
-				)
-				composer.albumList = albumList
+				// 			return album.album
+				// 		})
+				// )
+				// composer.albumList = albumList
 
 				dispatch(setComposer(composer))
 			})
@@ -350,50 +381,7 @@ function reducer(state = initialState, action) {
 		case SET_SORT:
 			return {
 				...state,
-				sort: action.sort,
-				selectedList: state.selectedListsCache[state.selectedType][
-					state.sort
-				].sort((a, b) => {
-					const sort = action.sort
-					console.log(sort)
-					const arrType = state.selectedType
-
-					if (arrType === "artists") {
-						if (sort === "a-z") {
-							return a.artist.toLowerCase() > b.artist.toLowerCase() ? 1 : -1
-						} else if (sort === "z-a") {
-							return a.artist.toLowerCase() < b.artist.toLowerCase() ? 1 : -1
-						}
-					} else if (arrType === "albums") {
-						if (sort === "a-z") {
-							return a.album.toLowerCase() > b.album.toLowerCase() ? 1 : -1
-						} else if (sort === "z-a") {
-							return a.album.toLowerCase() < b.album.toLowerCase() ? 1 : -1
-						} else if (sort === "date-new") {
-							if (a.albumyear !== "" && b.albumyear !== "") {
-								return a.albumyear < b.albumyear ? 1 : -1
-							}
-						} else if (sort === "date-old") {
-							if (a.albumyear !== "" && b.albumyear !== "") {
-								return a.albumyear > b.albumyear ? 1 : -1
-							}
-						} else if (sort === "rating") {
-							if (a.rating && b.rating) {
-								return a.rating > b.rating ? 1 : -1
-							}
-						}
-					} else if (arrType === "composers") {
-						if (sort === "a-z") {
-							return a.composer.toLowerCase() > b.composer.toLowerCase()
-								? 1
-								: -1
-						} else if (sort === "z-a") {
-							return a.composer.toLowerCase() < b.composer.toLowerCase()
-								? 1
-								: -1
-						}
-					}
-				})
+				sort: action.sort
 			}
 		case CACHE_LIST:
 			return {

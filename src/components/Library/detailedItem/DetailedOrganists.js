@@ -15,6 +15,8 @@ const DetailedOrganist = () => {
 	const { id } = useParams()
 	const organist = useSelector((state) => state.library.selectedOrganist)
 
+	console.log("organist comp", organist)
+
 	const imageError = (elm) => {
 		elm.target.onError = null
 		elm.target.src = ErrorPic
@@ -22,7 +24,7 @@ const DetailedOrganist = () => {
 
 	useEffect(() => {
 		if (organist) {
-			dispatch(setDocumentTitle(`Organlive | ${organist.organist}`))
+			dispatch(setDocumentTitle(`Organlive | ${organist.name}`))
 		}
 	}, [dispatch, organist])
 
@@ -39,11 +41,11 @@ const DetailedOrganist = () => {
 			{organist ? (
 				<div className="detailedOrganist">
 					<div className="detailedOrganistInner">
-						<h2 className="detailedOrganistName">{organist.organist}</h2>
+						<h2 className="detailedOrganistName">{organist.name}</h2>
 						{organist.link === "" ? null : (
 							<a
 								className="detailedOrganistLink"
-								href={organist.link}
+								href={organist.bio}
 								rel="noreferrer"
 								target="_blank">
 								Learn More About {organist.organist}
@@ -60,12 +62,12 @@ const DetailedOrganist = () => {
 							/>
 						) : null}
 
-						{organist.albumList.length !== 0 ? (
+						{/* {organist.albumList.length !== 0 ? (
 							<p className="detailedOrganistAlbumListDescription">
 								Here is some of the work that features {organist.organist}
 							</p>
-						) : null}
-						<div className="detailedOrgnistAlbumList">
+						) : null} */}
+						{/* <div className="detailedOrgnistAlbumList">
 							{organist.albumList.map((value) => {
 								return (
 									<div
@@ -94,7 +96,7 @@ const DetailedOrganist = () => {
 									</div>
 								)
 							})}
-						</div>
+						</div> */}
 					</div>
 				</div>
 			) : (

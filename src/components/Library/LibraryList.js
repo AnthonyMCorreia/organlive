@@ -14,9 +14,7 @@ const LibraryList = () => {
 	const dispatch = useDispatch()
 	const [lastLengthChange, setChange] = useState(Date.now())
 
-	const { selectedList, listLength } = useSelector(
-		(state) => state.library
-	)
+	const { selectedList, listLength } = useSelector((state) => state.library)
 	const dataFetched = useSelector((state) => state.library.dataFetched)
 
 	const arr = new Array(100).fill(null)

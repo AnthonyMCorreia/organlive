@@ -9,7 +9,9 @@ const OrganistItem = ({ val }) => {
 		elm.target.src = errorPic
 	}
 
-	const imageSrc = `https://s3.amazonaws.com/pictures.organlive.com/organists/${val.photo}`
+	console.log("organis ite", val)
+
+	const imageSrc = `https://s3.amazonaws.com/pictures.organlive.com/organists/${val.picture}`
 
 	return (
 		<Link to={`/organists/${val.id}`} className="list-link">
@@ -21,7 +23,7 @@ const OrganistItem = ({ val }) => {
 					alt={val.artist}
 				/>
 				<p key={val.id} className="organistListText">
-					{val.artist}
+					{val.name}
 				</p>
 			</div>
 		</Link>

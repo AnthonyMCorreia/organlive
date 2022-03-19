@@ -37,6 +37,7 @@ const DetailedAlbum = () => {
 			dispatch(setAlbum(null))
 		}
 	}, [paramId, dispatch])
+	console.log(album)
 
 	return (
 		<>
@@ -46,7 +47,7 @@ const DetailedAlbum = () => {
 						<div id="detailedAlbumInfo">
 							<div id="detailedAlbumTitleRating">
 								<h2 id="detailedALbumTitle">
-									{album.album}
+									{album.title}
 									{album.albumyear ? ` (${album.albumyear})` : null}
 								</h2>
 							</div>
@@ -79,7 +80,7 @@ const DetailedAlbum = () => {
 									<Link
 										className="detailedAlbumOrganistLink"
 										to={`/organists/${album.organist.id}`}>
-										{album.organist.organist}
+										{album.organist.name}
 									</Link>
 								)}
 							</div>
@@ -90,7 +91,7 @@ const DetailedAlbum = () => {
 								isHalf={true}
 							/>
 							<div id="detailedAlbumBuyingOptions">
-								{album.buycd !== "" ? (
+								{album.buycd !== "" && album.buymp3 ? (
 									<a
 										className="albumBuyingOptions"
 										target="_blank"
@@ -99,7 +100,7 @@ const DetailedAlbum = () => {
 										Buy CD
 									</a>
 								) : null}
-								{album.buymp3 !== "" ? (
+								{album.buymp3 !== "" && album.buymp3 ? (
 									<a
 										className="albumBuyingOptions"
 										target="_blank"
@@ -115,9 +116,9 @@ const DetailedAlbum = () => {
 									src={
 										album.picture === ""
 											? ErrorPic
-											: `https://s3.amazonaws.com/pictures.organlive.com/large/${album.picture}`
+											: `http://pictures.organlive.com/large/${album.picture}`
 									}
-									alt={album.album}
+									alt={album.title}
 									onError={imageError}
 								/>
 							) : null}

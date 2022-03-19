@@ -9,6 +9,7 @@ import {
 	setFilteredArray,
 	setListLength,
 	setSort,
+	getList
 } from "../../../state/library"
 
 function Search() {
@@ -22,7 +23,7 @@ function Search() {
 		const value = evt?.target?.textContent?.toLowerCase()
 
 		dispatch(selectList(value))
-		dispatch(setList(value))
+		dispatch(setList(lists[value]["a-z"]))
 		dispatch(setListLength(100))
 		dispatch(setSort("a-z"))
 	}
@@ -46,10 +47,11 @@ function Search() {
 		if (value !== sort) {
 			dispatch(setSort(value))
 		}
+		console.log(lists[selectedList][value])
 
-		if (lists[selectedList][value].length > 0) {
-			dispatch(setSort(value))
-			
+		if (lists[selectedList][value].length <= 0) {
+			console.log("the one", selectedList, value)
+			dispatch(getList(selectedList, value))
 		}
 	}
 

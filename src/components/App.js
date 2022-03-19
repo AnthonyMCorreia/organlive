@@ -31,8 +31,8 @@ function App() {
 			id !== "dropdown" &&
 			id !== "dropdown" &&
 			id !== "mobile-menu" &&
-			evt.target.classList.contains("dropdown-item") &
-				evt.target.classList.contains("dropdown-list") &
+			!evt.target.classList.contains("dropdown-item") &
+				!evt.target.classList.contains("dropdown-list") &
 				dropdownMenu
 		) {
 			dispatch(toggleMenu(false))

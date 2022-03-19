@@ -49,7 +49,7 @@ const DetailedComposer = () => {
 							</p>
 						) : null}
 						<div className="detailedComposerAlbumList">
-							{composer.albumList.map((album) => {
+							{/* {composer.albumList.map((album) => {
 								return (
 									<div
 										className="detailedComposerAlbumItem"
@@ -76,7 +76,7 @@ const DetailedComposer = () => {
 										</Link>
 									</div>
 								)
-							})}
+							})} */}
 						</div>
 					</div>
 				</div>
