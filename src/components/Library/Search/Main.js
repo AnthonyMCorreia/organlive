@@ -47,10 +47,9 @@ function Search() {
 		if (value !== sort) {
 			dispatch(setSort(value))
 		}
-		console.log(lists[selectedList][value])
+
 
 		if (lists[selectedList][value].length <= 0) {
-			console.log("the one", selectedList, value)
 			dispatch(getList(selectedList, value))
 		}
 	}
@@ -116,12 +115,12 @@ function Search() {
 							<option value="rating" className="sort-options">
 								Rating
 							</option>
-							<option value="date-new" className="sort-options">
+							{/* <option value="date-new" className="sort-options">
 								Date: New To Old
 							</option>
 							<option value="date-old" className="sort-options">
 								Date: Old To New
-							</option>
+							</option> */}
 						</>
 					) : null}
 				</select>

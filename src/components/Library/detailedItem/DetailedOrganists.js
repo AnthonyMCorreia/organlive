@@ -15,8 +15,6 @@ const DetailedOrganist = () => {
 	const { id } = useParams()
 	const organist = useSelector((state) => state.library.selectedOrganist)
 
-	console.log("organist comp", organist)
-
 	const imageError = (elm) => {
 		elm.target.onError = null
 		elm.target.src = ErrorPic
@@ -35,6 +33,7 @@ const DetailedOrganist = () => {
 			dispatch(setOrganist(null))
 		}
 	}, [dispatch, id])
+
 
 	return (
 		<>
@@ -61,33 +60,32 @@ const DetailedOrganist = () => {
 								alt={organist.organist}
 							/>
 						) : null}
-
-						{/* {organist.albumList.length !== 0 ? (
+						{organist.albums.length !== 0 ? (
 							<p className="detailedOrganistAlbumListDescription">
-								Here is some of the work that features {organist.organist}
+								Here is some of the work that features {organist.name}
 							</p>
-						) : null} */}
-						{/* <div className="detailedOrgnistAlbumList">
-							{organist.albumList.map((value) => {
+						) : null}
+						<div className="detailedOrgnistAlbumList">
+							{organist.albums.map((value) => {
 								return (
 									<div
 										className="detailedOrganistAlbumContainer"
-										key={value.albumid}>
+										key={value.id}>
 										<Link
-											to={`/albums/${value.albumid}`}
+											to={`/albums/${value.id}`}
 											className="detailedOrganistAlbumLink">
 											<img
 												className="detailedOrganistAlbumImage"
-												src={`https://s3.amazonaws.com/pictures.organlive.com/large/${value.picture}`}
+												src={`https://s3.amazonaws.com/pictures.organlive.com/${value.picture}`}
 												alt={value.album}
 											/>
 											<div className="detailedOrganistAlbumInfo">
 												<p className="detaiedOrganistAlbumName">
-													{value.album} ({value.albumyear})
+													{value.title} ({value.albumyear})
 												</p>
 												<Stars
 													size={15}
-													value={Number(value.rating)}
+													value={Number(value.albumrating)}
 													edit={false}
 													isHalf={true}
 												/>
@@ -96,7 +94,7 @@ const DetailedOrganist = () => {
 									</div>
 								)
 							})}
-						</div> */}
+						</div>
 					</div>
 				</div>
 			) : (

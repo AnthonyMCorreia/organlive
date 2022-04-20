@@ -9,8 +9,6 @@ const OrganistItem = ({ val }) => {
 		elm.target.src = errorPic
 	}
 
-	console.log("organis ite", val)
-
 	const imageSrc = `https://s3.amazonaws.com/pictures.organlive.com/organists/${val.picture}`
 
 	return (

@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 // Components
 import MusicInfo from "./MusicInfo"
@@ -11,12 +11,15 @@ import { toggleRadio } from "../../state/ui"
 const RadioMain = () => {
 	const dispatch = useDispatch()
 
+	const radioInfo = useSelector((state) => state.radio.song.artist)
 
 	return (
 		<div id="radio">
-			<MusicInfo />
+			{radioInfo ? <MusicInfo /> : null}
+			{/* <div className="PlayVolume"> */}
 			<PlayProgress />
 			<VolumeControls />
+			{/* </div> */}
 			<span
 				id="radio-x"
 				className="material-icons"

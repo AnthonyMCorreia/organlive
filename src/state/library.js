@@ -97,18 +97,19 @@ export const getLibrary = () => {
 }
 
 export const getList = (type, sortParam) => {
-	// gets ride of the s at the end of the list type - albums > album
+	// gets ride of the s at the end of the list type - albums -> album
 	const paramTypeString =
 		type === "organists" ? "artist" : type.slice(0, type.length - 1)
-	console.log(type, paramTypeString, "-0dfdlfkdjf")
+
 	return (dispatch) => {
 		axios
-			.get(
-				`https://api.organlive.com/library/${paramTypeString}?sort=${sortParam}`
-			)
+			.get(`https://api.organlive.com/list/${paramTypeString}/${sortParam}`)
 			.then((res) => {
-				dispatch(setList(res.data))
-				dispatch(cacheList(type, sortParam, res.data))
+				const list = res.data.map((item) => {
+					return { ...item, type }
+				})
+				dispatch(setList(list))
+				dispatch(cacheList(type, sortParam, list))
 			})
 			.catch((err) => {
 				console.log(err)
@@ -116,15 +117,7 @@ export const getList = (type, sortParam) => {
 	}
 }
 
-/*
-https://api.organlive.com/library/album/{albumId}
-https://api.organlive.com/library/artist/{id}
-https://api.organlive.com/tracks/{albumId}
-https://api.organlive.com/library/composer/{id}
-*/
-
 export const getAlbum = (albumId) => {
-	console.log(albumId)
 	return async (dispatch) => {
 		await axios
 			.get(`https://api.organlive.com/library/album/${albumId}`)
@@ -132,14 +125,12 @@ export const getAlbum = (albumId) => {
 				const album = res.data
 				let organistInfo
 
-				console.log(album)
 				if (Array.isArray(album.id)) {
 					const artistArr = await Promise.all(
 						album.artistid.map(async (id) => {
 							const { data: artist } = await axios.get(
 								`https://api.organlive.com/library/artist/${album.artistID}`
 							)
-							console.log(artist)
 
 							return artist
 						})
@@ -149,13 +140,11 @@ export const getAlbum = (albumId) => {
 					const { data } = await axios.get(
 						`https://api.organlive.com/library/artist/${album.artistID}`
 					)
-					console.log("data", data)
 
 					organistInfo = data
 
 					if (data.length === 1) {
 						organistInfo = data[0]
-						console.log("data", organistInfo)
 					}
 				}
 
@@ -179,37 +168,28 @@ export const getOrganist = (id) => {
 		axios
 			.get(`https://api.organlive.com/library/artist/${id}`)
 			.then(async (res) => {
-				const organist = res.data
-
-				console.log("after", organist)
+				const organist = res.data[id]
+				organist.id = id
 
 				const albumList = await Promise.all(
-					Object.entries(organist)
-						.filter(([key, value]) => {
-							const reg = /^\d+$/
-							const keyTest = reg.test(key)
-							return keyTest
-						})
-						.map(async ([key, value]) => {
-							const id = value.albumid
+					Object.entries(organist.albums).map(async ([key, value]) => {
+						const id = +key
 
-							if (id) {
-								const { data: album } = await axios.get(
-									`https://api.organlive.com/library/album/${id}`
-								)
+						if (id) {
+							const { data: album } = await axios.get(
+								`https://api.organlive.com/library/album/${id}`
+							)
 
-								if (album) {
-									console.log("album hing", album)
-									return album.album
-								}
-							}
-						})
+							album.id = id
+
+							return album
+						}
+					})
 				)
 
-				// organist.albumList = albumLists
-				console.log("organist state", organist[0])
+				organist.albums = albumList
 
-				dispatch(setOrganist(organist[0]))
+				dispatch(setOrganist(organist))
 			})
 			.catch((err) => {
 				console.log(err)
@@ -242,7 +222,7 @@ export const getComposer = (id) => {
 				// )
 				// composer.albumList = albumList
 
-				dispatch(setComposer(composer))
+				dispatch(setComposer(composer[id]))
 			})
 	}
 }
@@ -384,13 +364,20 @@ function reducer(state = initialState, action) {
 				sort: action.sort
 			}
 		case CACHE_LIST:
+			const listTypeMinusS = state.selectedType.slice(0, -1)
+
+			const list = action.value.map((value) => {
+				return { ...value, type: listTypeMinusS }
+			})
+
+
 			return {
 				...state,
 				selectedListsCache: {
 					...state.selectedListsCache,
 					[action.listType]: {
-						...state.lists[action.listType],
-						[action.key]: action.value
+						...state.selectedListsCache[action.listType],
+						[action.key]: list
 					}
 				}
 			}

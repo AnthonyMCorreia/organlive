@@ -61,11 +61,11 @@ const LibraryList = () => {
 				: selectedList.slice(0, listLength).map((val) => {
 						const type = val.type
 
-						if (type === "album") {
+						if (type === "album" || type === "albums") {
 							return <AlbumItem val={val} key={val.id} />
-						} else if (type === "organist") {
+						} else if (type === "organist" || type === "organists") {
 							return <OrganistItem val={val} key={val.id} />
-						} else {
+						} else if (type === "composer" || type === "composers") {
 							return <ComposerItem val={val} key={val.id} />
 						}
 				  })}

@@ -1,7 +1,7 @@
 #radio {
 	position: fixed;
-	height: 10rem;
-	width: 100rem;
+	height: 11rem;
+	width: 90rem;
 	bottom: 5rem;
 
 	z-index: 1;
@@ -12,11 +12,12 @@
 
 	display: flex;
 	align-items: center;
-}
+	justify-content: space-between;
 
-#radio * {
-	user-select: none;
-	color: $white;
+	& * {
+		user-select: none;
+		color: $white;
+	}
 }
 
 #stream {
@@ -34,7 +35,7 @@
 	justify-content: center;
 	flex-direction: column;
 
-	width: 33%;
+	width: 40rem;
 	height: 70%;
 }
 
@@ -49,6 +50,15 @@
 	display: flex;
 
 	width: 85%;
+}
+
+.PlayVolume {
+	position: absolute;
+	bottom: 0.7rem;
+}
+
+.playButton {
+	width: 5rem;
 }
 
 #progress-background {
@@ -67,7 +77,9 @@
 #volume-controls {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-end;
+
+	padding-right: 1rem;
 
 	width: 33%;
 
@@ -83,7 +95,7 @@
 	-webkit-appearance: none !important;
 	cursor: pointer;
 
-	width: 20rem;
+	width: 15rem;
 	height: 0.2rem;
 	background: $white;
 	color: white;
@@ -113,21 +125,41 @@
 #music-info {
 	width: 33%;
 	height: 100%;
+	padding-left: 1rem;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: space-between;
 }
-.album {
-	// max-width: 10rem;
-	// border: 0.1rem solid white;
+
+#music-info-title {
+	font-size: 1.7rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+}
+
+#music-info-artist {
+	font-size: 1.7rem;
+}
+
+#musicInfoArtistLink {
+	text-decoration: none;
+
+	&:hover {
+		color: $blueGray;
+	}
 }
 
 #radio-x {
-	position: relative;
-	top: -3.3rem;
-	right: 0.5rem;
+	position: absolute;
+	top: 0.2rem;
+	right: 0.4rem;
+
+	font-size: 2rem;
 
 	cursor: pointer;
 }
-
-// Small Radio Button
 
 // Styles for large devices
 

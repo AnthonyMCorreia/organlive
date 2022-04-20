@@ -8,7 +8,6 @@ const AlbumItem = ({ val }) => {
 		elm.target.onError = null
 		elm.target.src = errorPic
 	}
-	console.log(val)
 
 	return (
 		<Link to={`/albums/${val.id}`} className="list-link" key={val.id}>

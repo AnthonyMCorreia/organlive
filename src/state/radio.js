@@ -59,25 +59,15 @@ export const changePlaying = (isPlaying) => ({
 export const getSong = () => {
 	return async (dispatch) => {
 		try {
-			console.log("get song func")
 			const { data: song } = await axios.get(
-				"https://api.organlive.com/playing"
+				"https://api.organlive.com/1/playing"
 			)
-			const {
-				millisecondsremaining,
-				timeelapsed,
-				workid
-			} = song.housekeeping
-
-			console.log(song.housekeeping.workid)
+			const { timeleft, hid } = song.housekeeping
 
 			dispatch(setSong(song))
-			dispatch(changeCurrentTime(timeelapsed))
 			setTimeout(() => {
-				console.log("get song timeout")
-				dispatch(checkForRefresh(workid))
-				console.log(millisecondsremaining)
-			}, millisecondsremaining)
+				dispatch(checkForRefresh(hid))
+			}, timeleft)
 		} catch (err) {
 			console.log(err)
 		}
@@ -86,19 +76,15 @@ export const getSong = () => {
 
 export const checkForRefresh = (currentSongId) => {
 	return async (dispatch) => {
-		console.log("check for refresh func")
 		try {
 			const { data: response } = await axios.get(
-				`https://api.organlive.com/playing/${currentSongId}`
+				`https://api.organlive.com/1/playing/${currentSongId}`
 			)
 
 			if (response.housekeeping.refresh === "yes") {
-				console.log("refresh yes")
 				dispatch(setSong(response))
 			} else if (response.housekeeping.refresh === "no") {
-				console.log("refresh no")
 				setTimeout(() => {
-					console.log("timeout", response.housekeeping.secondsRemaining)
 					dispatch(checkForRefresh(currentSongId))
 				}, response.housekeeping.secondsRemaining)
 			}

@@ -36,13 +36,13 @@ const PlayProgress = () => {
 	return (
 		<div id="play-progress-container">
 			<button
-				className="material-icons"
+				className="material-icons playButton"
 				id="playback-button"
 				onClick={playPause}>
 				{isPlaying ? "pause" : "play_arrow"}
 			</button>
 			{song.housekeeping ? <Progress /> : null}
-		</div>
+		 </div>
 	)
 }
 

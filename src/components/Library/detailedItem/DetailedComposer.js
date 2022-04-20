@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams, Link } from "react-router-dom"
 import Stars from "react-rating-stars-component"
@@ -14,11 +14,22 @@ const DetailedComposer = () => {
 
 	const paramId = useParams().id
 	const composer = useSelector((state) => state.library.selectedComposer)
+	const [moreInfoName, setmoreInfoName] = useState("bl")
 
 	useEffect(() => {
 		if (composer) {
-			console.log("composer in")
-			dispatch(setDocumentTitle(`Organlive | ${composer.composer}`))
+			dispatch(setDocumentTitle(`Organlive | ${composer.name}`))
+
+			const splitName = composer.name.split(" ")
+
+			splitName.forEach((val, i) => {
+				const minusOne = splitName[i - 1]
+				const minusOneLastChar = minusOne ? minusOne.slice(-1) : ""
+
+				if (minusOneLastChar === ",") {
+					setmoreInfoName(val)
+				}
+			})
 		}
 	}, [dispatch, composer])
 
@@ -35,19 +46,20 @@ const DetailedComposer = () => {
 			{composer ? (
 				<div className="detailedComposer">
 					<div className="detailedComposerInner">
-						<h2 className="detailedComposerName">{composer.composer}</h2>
+						<h2 className="detailedComposerName">{composer.name}</h2>
+						<p className="detailedComposerDates">{composer.dates}</p>
 						<a
 							className="detailedComposerMoreInfo"
-							href={composer.link}
+							href={composer.bio}
 							target="_blank"
 							rel="noreferrer">
-							More Info About {composer.composer}
+							More Info About {moreInfoName}
 						</a>
-						{composer.albumList.length !== 0 ? (
+						{/* {composer.albumList.length !== 0 ? (
 							<p className="detailedComposerAlbumIntro">
 								Here is some of the work that features {composer.composer}
 							</p>
-						) : null}
+						) : null} */}
 						<div className="detailedComposerAlbumList">
 							{/* {composer.albumList.map((album) => {
 								return (

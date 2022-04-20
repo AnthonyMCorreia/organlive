@@ -26,7 +26,11 @@ const DetailedAlbum = () => {
 
 	useEffect(() => {
 		if (album) {
-			dispatch(setDocumentTitle(`Organlive | ${album.album}`))
+			if (album.title) {
+				dispatch(setDocumentTitle(`Organlive | ${album.title}`))
+			} else if (!album.title) {
+				dispatch(setDocumentTitle(`Organlive | Album`))
+			}
 		}
 	}, [dispatch, album])
 
@@ -37,7 +41,11 @@ const DetailedAlbum = () => {
 			dispatch(setAlbum(null))
 		}
 	}, [paramId, dispatch])
-	console.log(album)
+
+	const imageLoaded = (elm) => {
+		elm.target.classList.remove("albumImageNotLoaded")
+	}
+
 
 	return (
 		<>
@@ -52,14 +60,16 @@ const DetailedAlbum = () => {
 								</h2>
 							</div>
 							<div id="detailedAlbumOrganist">
-								<p
-									className={
-										Array.isArray(album.organist)
-											? "detailedAlbumByArray"
-											: "detailedAlbumBy"
-									}>
-									By
-								</p>
+								{!album.organist.name && (
+									<p
+										className={
+											Array.isArray(album.organist)
+												? "detailedAlbumByArray"
+												: "detailedAlbumBy"
+										}>
+										By
+									</p>
+								)}
 								{Array.isArray(album.organist) ? (
 									album.organist.map((organist, index) => {
 										return (
@@ -69,7 +79,7 @@ const DetailedAlbum = () => {
 												<Link
 													className="detailedAlbumOrganistLink"
 													to={`/organists/${organist.id}`}>
-													{organist.organist}
+													{organist.organist[organist.artistID].name}
 												</Link>
 												{index !== album.organist.length - 1 ? ", " : null}
 												{index === album.organist.length - 2 ? " and " : null}
@@ -79,40 +89,40 @@ const DetailedAlbum = () => {
 								) : (
 									<Link
 										className="detailedAlbumOrganistLink"
-										to={`/organists/${album.organist.id}`}>
-										{album.organist.name}
+										to={`/organists/${album.artistID}`}>
+										{album.organist[album.artistID].name}
 									</Link>
 								)}
 							</div>
 							<Stars
 								size={15}
-								value={Number(album.rating)}
+								value={Number(album.albumrating)}
 								edit={false}
 								isHalf={true}
 							/>
 							<div id="detailedAlbumBuyingOptions">
-								{album.buycd !== "" && album.buymp3 ? (
+								{album.buyCD !== "" && album.buyCD ? (
 									<a
 										className="albumBuyingOptions"
 										target="_blank"
 										rel="noreferrer"
-										href={album.buycd}>
+										href={album.buyCD}>
 										Buy CD
 									</a>
 								) : null}
-								{album.buymp3 !== "" && album.buymp3 ? (
+								{album.buyMP3 !== "" && album.buyMP3 ? (
 									<a
 										className="albumBuyingOptions"
 										target="_blank"
 										rel="noreferrer"
-										href={album.buymp3}>
+										href={album.buyMP3}>
 										Buy MP3
 									</a>
 								) : null}
 							</div>
 							{album.picture !== "" && album.picture !== "na2.jpg" ? (
 								<img
-									className="detailedAlbumImage"
+									className="detailedAlbumImage albumImageNotLoaded"
 									src={
 										album.picture === ""
 											? ErrorPic
@@ -120,15 +130,16 @@ const DetailedAlbum = () => {
 									}
 									alt={album.title}
 									onError={imageError}
+									onLoad={imageLoaded}
 								/>
 							) : null}
-							<div id="detailedALbumSongList">
+							{/* <div id="detailedALbumSongList">
 								<div className="albumSongListKey">
 									<p className="albumSongListKey">#</p>
 									<p className="albumSongListTitle">Title</p>
 									<p className="albumSongList"></p>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					</div>
 				</div>
