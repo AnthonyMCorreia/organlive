@@ -31,10 +31,14 @@
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
+
+	@media screen and (max-width: $mobile-max) {
+		padding: 1rem;
+	}
 }
 
 #detailedAlbumInner {
-	width: 30%;
+	width: 97%;
 	max-height: 95%;
 	padding: 3rem 2rem;
 
@@ -50,8 +54,12 @@
 		margin: 0.5rem 0;
 	}
 
+	@media screen and (min-width: $tablet-max) {
+		width: 55%;
+	}
+
 	@media screen and (max-width: $tablet-max) {
-		width: 60%;
+		width: 75%;
 	}
 
 	@media screen and (max-width: $tablet-width) {
@@ -59,7 +67,7 @@
 	}
 
 	@media screen and (max-width: $mobile-max) {
-		width: 98%;
+		width: 97%;
 	}
 }
 
@@ -152,3 +160,186 @@
 .albumImageNotLoaded {
 	opacity: 0;
 }
+
+.detailedALbumSongList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+
+	width: 100%;
+}
+
+.detailedAlbumSongListTitleContainer {
+	width: 100%;
+	margin: 1rem 0 0 1rem;
+
+	text-decoration: underline;
+}
+
+.detailedAlbumSongListItem {
+	width: 40rem;
+	height: 20rem;
+	margin: 1rem;
+	padding: 1rem;
+
+	background-color: $offBlack;
+
+	position: relative;
+
+	@media screen and (max-height: $mobile-max) {
+		min-height: 20rem;
+		margin: 1rem 0.5rem;
+
+		width: 38rem;
+	}
+
+	@media screen and (max-height: $tablet-max) {
+		min-height: 20rem;
+		margin: 1rem 0.5rem;
+
+		width: 36rem;
+	}
+}
+
+.detailedAlbumSongListTitle {
+	font-size: 2.2rem;
+	margin-bottom: 0.4rem;
+
+	@media screen and (max-height: $mobile-max) {
+		font-size: 2rem;
+	}
+
+	@media screen and (max-width: 28rem) {
+		font-size: 1.8rem;
+	}
+}
+
+.detailedAlbumSongListComposer {
+	font-size: 2.1rem;
+
+	@media screen and (max-height: $mobile-max) {
+		font-size: 1.75rem;
+	}
+
+	@media screen and (max-width: 28rem) {
+		font-size: 1.5rem;
+	}
+
+}
+
+.detailedALbumSongListDuration {
+	font-size: 2rem;
+
+	@media screen and (max-height: $mobile-max) {
+		font-size: 1.5rem;
+	}
+}
+
+.detailedAlbumSongListBuyingOptions {
+	display: flex;
+	flex-wrap: wrap;
+
+	position: absolute;
+	bottom: 1.75rem;
+	left: 0.25rem;
+}
+
+.detailedAlbumSongListContainer {
+	margin: 0 0.5rem;
+
+	@media screen and (max-width: 28rem) {
+		margin-top: 1.5rem;
+		&:nth-child(2) {
+		}
+	}
+}
+
+.detailedAlbumSongListSheetMusicBttn {
+	background: none;
+	border: none;
+	outline: none;
+	text-decoration: none;
+
+	background-color: #222222;
+	color: $white;
+	font-size: 1.5rem;
+
+	padding: 1rem;
+	border-radius: 0.2rem;
+
+	@media screen and (max-width: $mobile-max-width-portrait) {
+		font-size: 1.25rem;
+	}
+
+	@media screen and (max-width: 28rem) {
+		padding: 0.5rem;
+	}
+}
+
+// Album list for detailed composers and organists pages
+
+.detailedAlbumList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: flex-start;
+
+	width: 100%;
+}
+
+.detailedAlbumListContainer {
+	background-color: $offBlack;
+	display: flex;
+
+	width: 36rem;
+	max-width: 97%;
+
+	margin: 1rem;
+	padding: 1.2rem;
+}
+
+.detailedAlbumListLink {
+	display: flex;
+	text-decoration: none;
+	color: $white;
+
+	transition: all 0.3s ease;
+
+	&:hover {
+		filter: brightness(0.75);
+	}
+}
+
+.detailedAlbumListImage {
+	height: 15rem;
+	width: 15rem;
+
+	@media screen and (max-width: 364px) {
+		max-width: 50%;
+	}
+
+
+	transition: all 0.2s ease;
+
+	&:hover {
+		filter: brightness(0.8);
+	}
+}
+
+.detailedAlbumListInfo {
+	margin: 0 1rem;
+	padding: 0 0.2rem;
+
+	height: 100%;
+	max-width: 50%;
+}
+
+.detailedAlbumListName {
+	font-size: 1.8rem;
+
+	@media screen and (max-width: 330px) {
+		font-size: 1.5rem;
+	}
+}
+

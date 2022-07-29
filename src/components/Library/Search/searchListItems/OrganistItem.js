@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-import errorPic from "../../../images/not-found.png"
+import errorPic from "../../../../images/not-found.png"
 
 const OrganistItem = ({ val }) => {
 	const imageError = (elm) => {

@@ -7,11 +7,13 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import radio from "./radio"
 import library from "./library"
 import ui from "./ui"
+import search from "./search"
 
 const reducer = combineReducers({
 	radio,
 	library,
-	ui
+	ui,
+	search
 })
 
 const middleware =

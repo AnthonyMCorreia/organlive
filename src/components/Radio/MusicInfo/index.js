@@ -12,7 +12,7 @@ const MusicInfo = () => {
 			<div id="music-info-artist">
 				<Link
 					id="musicInfoArtistLink"
-					to={`/artists/${artist.artist_id}`}>
+					to={`/organists/${artist.artist_id}`}>
 					{artist.name}
 				</Link>
 			</div>

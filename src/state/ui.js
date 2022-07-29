@@ -1,13 +1,18 @@
-const TOGGLE_MENU = " TOGGLE_MENU"
+const TOGGLE_MENU = "TOGGLE_MENU"
 const TOGGLE_MOBILE = "TOGGLE_MOBILE"
 const TOGGLE_RADIO = "TOGGLE_RADIO"
 const SET_TITLE = "SET_TITLE"
+const TOGGLE_SEARCH_FORM = "TOGGLE_SEARCH_FORM"
+
+export const toggleSearch = (value) => ({
+	type: TOGGLE_SEARCH_FORM,
+	value
+})
 
 export const setDocumentTitle = (title) => ({
 	type: SET_TITLE,
 	title
 })
-
 
 export const toggleRadio = (radioOpen) => ({
 	type: TOGGLE_RADIO,
@@ -28,7 +33,8 @@ const initalState = {
 	radioOpen: false,
 	dropdownMenu: false,
 	isMobile: false,
-	documentTitle: "Organlive"
+	documentTitle: "Organlive",
+	searchForm: false
 }
 
 function reducer(state = initalState, action) {
@@ -52,6 +58,11 @@ function reducer(state = initalState, action) {
 			return {
 				...state,
 				documentTitle: action.title
+			}
+		case TOGGLE_SEARCH_FORM:
+			return {
+				...state,
+				searchForm: action.value
 			}
 		default:
 			return state

@@ -1,12 +1,5 @@
 import React, { useEffect } from "react"
-import {
-	Route,
-	Routes,
-	useLocation,
-	useParams,
-	useRouteMatch
-} from "react-router-dom"
-import history from "../history"
+import { Route, Routes, useLocation } from "react-router-dom"
 
 // Components
 import Home from "./Home"
@@ -16,6 +9,7 @@ import NotFound from "./NotFound"
 import Contact from "./Contact"
 import OtherStations from "./OtherStations"
 import SubmitRecordings from "./SubmitRecordings"
+import SearchResultsList from "./Library/Search/SearchResultsList"
 
 //Library Items
 import DetailedAlbum from "./Library/detailedItem/DetailedAlbum"
@@ -35,13 +29,14 @@ const AppRoutes = () => {
 			<Route exact path="contact" element={<Contact />} />
 			<Route exact path="albums/:id" element={<DetailedAlbum />} />
 			<Route exact path="organists/:id" element={<DetailedOrganists />} />
-			<Route exact path=":composers/:id" element={<DetailedComposer />} />
+			<Route exact path="composers/:id" element={<DetailedComposer />} />
 			<Route exact path="library" element={<Library />} />
 			<Route exact path="nowplaying" />
 			<Route exact path="otherstations" element={<OtherStations />} />
 			<Route exact path="schedule" element={<Schedule />} />
 			<Route exact path="submitrecordings" element={<SubmitRecordings />} />
-			<Route element={<NotFound />} />
+			<Route path="library/search" element={<SearchResultsList />} />
+			<Route path="*" element={<NotFound />} />
 		</Routes>
 	)
 }

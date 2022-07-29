@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { useLocation } from "react-router-dom"
 
 // State
-import { setListLength } from "../../state/library"
+import { setListLength, setList } from "../../state/library"
 
 // Components
 import AlbumItem from "./listItems/AlbumItem"
@@ -12,12 +13,20 @@ import Skeleton from "./listItems/Skeleton"
 
 const LibraryList = () => {
 	const dispatch = useDispatch()
+
+	const { pathname } = useLocation()
+
 	const [lastLengthChange, setChange] = useState(Date.now())
 
-	const { selectedList, listLength } = useSelector((state) => state.library)
+	const { selectedList, listLength, selectedListsCache, selectedType, sort } =
+		useSelector((state) => state.library)
 	const dataFetched = useSelector((state) => state.library.dataFetched)
 
 	const arr = new Array(100).fill(null)
+
+	useEffect(() => {
+		dispatch(setList(selectedListsCache[selectedType][sort]))
+	}, [])
 
 	useEffect(() => {
 		window.scrollTo(0, 0)
@@ -56,7 +65,7 @@ const LibraryList = () => {
 
 	return (
 		<div id="library-list">
-			{!dataFetched
+			{!selectedList.length > 0
 				? arr.map((item, id) => <Skeleton key={id} />)
 				: selectedList.slice(0, listLength).map((val) => {
 						const type = val.type

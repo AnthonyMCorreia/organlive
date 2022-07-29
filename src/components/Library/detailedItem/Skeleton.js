@@ -1,11 +1,11 @@
 const Skeleton = () => {
 	return (
-		<div className="detailedAlbumSkeleton">
-			<div className="detailedAlbumInnerSkeleton">
-				<div className="detailedAlbumTitleSkeleton skeleton"></div>
-				<div className="detailedAlbumOrganistSkeleton skeleton"></div>
-				<div className="detailedAlbumOtherOptionsSkeleton skeleton"></div>
-				<div className="detailedAlbumImageSkeleton skeleton"></div>
+		<div className="detailedSkeleton">
+			<div className="detailedInnerSkeleton">
+				<div className="detailedTitleSkeleton skeleton"></div>
+				<div className="detailedInfoSkeleton skeleton"></div>
+				<div className="detailedOtherOptionsSkeleton skeleton"></div>
+				<div className="detailedImageSkeleton skeleton"></div>
 			</div>
 		</div>
 	)

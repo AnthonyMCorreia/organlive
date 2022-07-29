@@ -15,17 +15,19 @@ const RadioMain = () => {
 
 	return (
 		<div id="radio">
-			{radioInfo ? <MusicInfo /> : null}
-			{/* <div className="PlayVolume"> */}
-			<PlayProgress />
-			<VolumeControls />
-			{/* </div> */}
-			<span
-				id="radio-x"
-				className="material-icons"
-				onClick={() => dispatch(toggleRadio(false))}>
-				close
-			</span>
+			<div id="radioInner">
+				{radioInfo ? <MusicInfo /> : null}
+				{/* <div className="PlayVolume"> */}
+				<PlayProgress />
+				<VolumeControls />
+				{/* </div> */}
+				<span
+					id="radio-x"
+					className="material-icons"
+					onClick={() => dispatch(toggleRadio(false))}>
+					close
+				</span>
+			</div>
 		</div>
 	)
 }

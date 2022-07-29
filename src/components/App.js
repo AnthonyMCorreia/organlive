@@ -18,7 +18,10 @@ import { getLibrary } from "../state/library"
 function App() {
 	const dispatch = useDispatch()
 
-	const { dropdownMenu } = useSelector((state) => state.ui)
+	const { dropdownMenu, isMobile, searchForm } = useSelector(
+		(state) => state.ui
+	)
+	const dataFetched = useSelector((state) => state.library.dataFetched)
 
 	const { width, ref } = useResizeDetector()
 
@@ -27,6 +30,7 @@ function App() {
 		const id = evt.target.id
 
 		if (
+			!isMobile &&
 			id !== "more-button" &&
 			id !== "dropdown" &&
 			id !== "dropdown" &&
@@ -48,11 +52,17 @@ function App() {
 	}, [dispatch, width])
 
 	useEffect(() => {
-		dispatch(getLibrary())
+		if (!dataFetched) {
+			dispatch(getLibrary())
+		}
 	}, [])
 
 	return (
-		<div className="App" ref={ref} onClick={clickHandler}>
+		<div
+			className="App"
+			style={{ overflow: searchForm ? "hidden" : "visible" }}
+			ref={ref}
+			onClick={clickHandler}>
 			<Header />
 			<Routes />
 			<Radio />

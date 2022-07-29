@@ -1,6 +1,7 @@
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 
+// State
 import { setDocumentTitle } from "../../state/ui"
 
 // Components

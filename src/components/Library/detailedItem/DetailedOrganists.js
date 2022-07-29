@@ -7,6 +7,8 @@ import { getOrganist, setOrganist } from "../../../state/library"
 import { setDocumentTitle } from "../../../state/ui"
 
 import Skeleton from "./Skeleton"
+import NotFound from "../../NotFound"
+
 import ErrorPic from "../../../images/not-found.png"
 
 const DetailedOrganist = () => {
@@ -14,6 +16,7 @@ const DetailedOrganist = () => {
 
 	const { id } = useParams()
 	const organist = useSelector((state) => state.library.selectedOrganist)
+	const notFound = useSelector((state) => state.library.notFound)
 
 	const imageError = (elm) => {
 		elm.target.onError = null
@@ -34,71 +37,77 @@ const DetailedOrganist = () => {
 		}
 	}, [dispatch, id])
 
-
 	return (
 		<>
-			{organist ? (
-				<div className="detailedOrganist">
-					<div className="detailedOrganistInner">
-						<h2 className="detailedOrganistName">{organist.name}</h2>
-						{organist.link === "" ? null : (
-							<a
-								className="detailedOrganistLink"
-								href={organist.bio}
-								rel="noreferrer"
-								target="_blank">
-								Learn More About {organist.organist}
-							</a>
-						)}
-						{organist.photo !== "" &&
-						organist.photo !== "na2.jpg" &&
-						organist.photo !== null ? (
-							<img
-								className="detailedOrganistImage"
-								src={`https://s3.amazonaws.com/pictures.organlive.com/organists/${organist.photo}`}
-								onError={imageError}
-								alt={organist.organist}
-							/>
-						) : null}
-						{organist.albums.length !== 0 ? (
-							<p className="detailedOrganistAlbumListDescription">
-								Here is some of the work that features {organist.name}
-							</p>
-						) : null}
-						<div className="detailedOrgnistAlbumList">
-							{organist.albums.map((value) => {
-								return (
-									<div
-										className="detailedOrganistAlbumContainer"
-										key={value.id}>
-										<Link
-											to={`/albums/${value.id}`}
-											className="detailedOrganistAlbumLink">
-											<img
-												className="detailedOrganistAlbumImage"
-												src={`https://s3.amazonaws.com/pictures.organlive.com/${value.picture}`}
-												alt={value.album}
-											/>
-											<div className="detailedOrganistAlbumInfo">
-												<p className="detaiedOrganistAlbumName">
-													{value.title} ({value.albumyear})
-												</p>
-												<Stars
-													size={15}
-													value={Number(value.albumrating)}
-													edit={false}
-													isHalf={true}
-												/>
-											</div>
-										</Link>
-									</div>
-								)
-							})}
-						</div>
-					</div>
-				</div>
+			{notFound ? (
+				<NotFound />
 			) : (
-				<Skeleton />
+				<>
+					{organist ? (
+						<div className="detailedOrganist">
+							<div className="detailedOrganistInner">
+								<h2 className="detailedOrganistName">{organist.name}</h2>
+								{organist.link === "" ? null : (
+									<a
+										className="detailedOrganistLink"
+										href={organist.bio}
+										rel="noreferrer"
+										target="_blank">
+										Learn More About {organist.organist}
+									</a>
+								)}
+								{organist.photo !== "" &&
+								organist.photo !== "na2.jpg" &&
+								organist.photo !== null ? (
+									<img
+										className="detailedOrganistImage"
+										src={`https://s3.amazonaws.com/pictures.organlive.com/organists/${organist.photo}`}
+										onError={imageError}
+										alt={organist.organist}
+									/>
+								) : null}
+								{organist.albums.length !== 0 ? (
+									<p className="detailedOrganistAlbumListDescription">
+										Albums featuring {organist.name}
+									</p>
+								) : null}
+								<div className="detailedOrgnistAlbumList">
+									{organist.albums.map((value) => {
+										return (
+											<div
+												className="detailedOrganistAlbumContainer"
+												key={value.id}>
+												<Link
+													to={`/albums/${value.id}`}
+													className="detailedOrganistAlbumLink">
+													<img
+														className="detailedOrganistAlbumImage"
+														src={`https://s3.amazonaws.com/pictures.organlive.com/${value.picture}`}
+														alt={value.album}
+													/>
+													<div className="detailedOrganistAlbumInfo">
+														<p className="detaiedOrganistAlbumName">
+															{value.album}{" "}
+															{value.albumyear && `(${value.albumyear})`}
+														</p>
+														<Stars
+															size={15}
+															value={Number(value.rating)}
+															edit={false}
+															isHalf={true}
+														/>
+													</div>
+												</Link>
+											</div>
+										)
+									})}
+								</div>
+							</div>
+						</div>
+					) : (
+						<Skeleton />
+					)}
+				</>
 			)}
 		</>
 	)

@@ -41,8 +41,8 @@ const PlayProgress = () => {
 				onClick={playPause}>
 				{isPlaying ? "pause" : "play_arrow"}
 			</button>
-			{song.housekeeping ? <Progress /> : null}
-		 </div>
+			{song.housekeeping && <Progress />}
+		</div>
 	)
 }
 

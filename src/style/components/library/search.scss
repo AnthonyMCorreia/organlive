@@ -1,13 +1,12 @@
 #search {
-	// position: relative;
-	top: 15rem;
 	margin: 2rem;
+	width: 100vw;
+	color: $white;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	// background-color: $off-white;
-	color: $white;
-	width: 100vw;
+	flex-wrap: wrap;
 }
 
 #list-options-container {
@@ -35,48 +34,253 @@
 	border-bottom: 0.1rem solid $white;
 }
 
-#search-input {
-	height: 2.2rem;
+// Sort Options
+
+.searchBttn {
+	cursor: pointer;
+	font-size: 3.5rem;
+}
+
+.selectArrowCont {
+	display: flex;
+}
+
+.searchSelect {
+	position: relative;
+
+	border: none;
+	outline: none;
+	background: transparent;
+	background-color: $darkGray;
+
+	-webkit-appearance: none;
+	box-shadow: none;
+
+	border-radius: 1rem;
+	padding: 1rem;
+	width: 18rem;
+
+	font-size: 1.8rem;
+	color: $white;
+
+	& + .selectArrowDown {
+		transform: translateX(-100%) translateY(0.5rem);
+	}
+}
+
+.selectArrowDown {
+	// position: absolute;
+	padding: none;
+	margin: none;
+	pointer-events: none;
+}
+
+// Mobile --------------------------
+
+#mobile-search {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	// flex-direction: column;
+
+	width: 100%;
+	padding-top: 1rem;
+
+	& > * {
+		margin: 0.5rem;
+	}
+}
+
+// Search Form --------------------------------
+
+.search-form-cont {
+	display: grid;
+	place-items: center;
+
+	overflow: auto;
+
+	position: fixed;
+	height: 100%;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	padding: 1rem;
+
+	background-color: rgba(0, 0, 0, 0.7);
+
+	z-index: 11;
+}
+
+.search-form-inner {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	position: relative;
+
+	// width: 95vw;
+
+	background-color: $offBlack;
+	box-shadow: -0.2rem 0 0 0 #fff;
+	border-radius: 0.45rem;
+
+	padding: 6rem 3rem;
+
+	& > * {
+		margin: 2rem 0;
+	}
+
+	@media screen and (max-width: $mobile-max) {
+		max-width: 95vw;
+	}
+
+	@media screen and (min-width: $tablet-max) {
+		width: 40rem;
+		height: 45rem;
+	}
+}
+
+// Search form
+
+.search-form {
+	display: flex;
+	flex-direction: column;
+
+	width: 80%;
+
+	& > * {
+		margin: 1rem 0;
+	}
+}
+
+.searchBttnMessage {
+	display: flex;
+	align-items: center;
+}
+
+.searchError {
+	font-size: 1.75rem;
+	margin-left: 1rem;
+	color: rgb(255, 34, 34);
+}
+
+.search-x {
+	font-size: 2.5rem;
+	cursor: pointer;
+
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	margin: 0;
+	padding: 0;
+}
+
+// Title
+
+.searchFormTitle {
+	font-size: 2.5rem;
+	margin: 0;
+}
+
+// Select Options
+
+.selectSearchLabel {
+	position: relative;
+
+	font-size: 2rem;
+	padding-left: 0.75rem;
+	bottom: 0.5rem;
+}
+
+.selectArrowContWidth {
+	width: 20rem;
+}
+
+.searchSelectWidth {
+	width: 100%;
+}
+
+.searchSelectArrowCont {
+	// width: 30rem;
+}
+
+// Text Input
+
+.searchInputLabelContainer {
+	overflow: visible;
+
+	position: relative;
+
+	width: 25rem;
+
+	@media screen and (max-width: 29rem) {
+		max-width: 100%;
+	}
+}
+
+#searchInput {
 	outline: none;
 	border: none;
 	background: none;
-	background-color: $white;
-	border-radius: 0.5rem;
-	height: 3.2rem;
-	width: 13rem;
+
+	position: relative;
+
+	font-family: "Quicksand", sans-serif;
+	font-size: 1.85rem;
+	font-weight: 300;
+	color: $white;
+
+	background-color: #2a2a2a;
+	border-radius: 0.25rem;
+
+	height: 3.5rem;
+	width: 100%;
+	padding: 0 0.5rem;
+
+	&:focus + #searchInputLabel {
+		opacity: 0;
+	}
 }
 
-#search-input-label {
-	display: flex;
-	flex-direction: column;
-	font-size: 1.8rem;
+#searchInputLabel {
+	font-size: 1.85rem;
+	pointer-events: none;
+	// opacity: 80%;
+
+	position: absolute;
+	top: 13%;
+	left: 0.5rem;
 }
 
-// Sort
-
-.search-select-wrapper {
+.searchButton {
+	background: none;
 	border: none;
 	outline: none;
-	background: transparent;
-	appearance: none;
 
-	font-size: 1.8rem;
+	border-radius: 0.5rem;
+	padding: 0.55rem 1.5rem;
+	cursor: pointer;
+
+	font-family: "Quicksand", sans-serif;
+	font-size: 1.75rem;
 	color: $white;
-	height: 100%;
+	font-weight: 300;
 
 	background-color: $darkGray;
-	border-radius: 1rem;
-	padding: 1rem;
-
-	display: flex;
 }
 
-.search-filter-select {
-	border: none;
-	outline: none;
-	background: transparent;
+// No results component
 
-	font-size: 1.8rem;
-	color: $white;
-	width: 18rem;
+// Container
+.no-results {
+	@include mainGrayBackground;
+
+	display: grid;
+	place-items: center;
+}
+
+.noResultsText {
+	font-size: 3.5rem;
 }

@@ -1,10 +1,13 @@
 #header {
 	position: sticky;
 	top: 0;
+
 	width: 100%;
 	height: $navbar-height;
+
 	margin: 0;
 	padding: 0.5rem 5rem;
+	z-index: 10;
 
 	display: flex;
 	align-items: center;
@@ -12,7 +15,6 @@
 
 	background-color: $darkBlue;
 	color: $white;
-	z-index: 10;
 	border-bottom: solid 1px $white;
 
 	@media screen and (min-width: $tablet-max) {
@@ -185,12 +187,11 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	height: 100vh;
+	height: 100%;
 	width: 100vw;
-	margin: 0;
 	background-color: $black;
 
-	margin: 0;
+	overflow: auto;
 
 	@include iPhoneNotchFix;
 
@@ -199,14 +200,12 @@
 	}
 
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: flex-end;
 	flex-direction: column;
 
 	@media (orientation: landscape) {
-		justify-content: space-evenly;
 		overflow-y: auto;
-		@include iPhoneNotchFix;
 	}
 }
 
@@ -235,14 +234,8 @@
 }
 
 #mobile-menu-list {
-	position: relative;
-
 	width: 100vw;
-	height: 95vh;
-	padding-bottom: 20rem;
 	padding-right: 1rem;
-	top: 11rem;
-	right: 0;
 
 	display: flex;
 	flex-direction: column;
@@ -250,14 +243,10 @@
 	align-items: flex-end;
 	text-align: right;
 
-	@media screen and (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
-		padding-bottom: 5rem;
-		top: 0rem;
-		font-size: 3rem;
-	}
+	// @include iPhoneNotchFix;
 
-	@media screen and (max-height: $mobile-max) and (orientation: portrait) {
-		top: 0rem;
+	@media screen and (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
+		font-size: 3rem;
 	}
 }
 
@@ -267,15 +256,14 @@
 	color: white;
 	font-size: 4rem;
 
-	@media screen and (max-width: $mobile-max) and (orientation: landscape) {
-		margin: 0;
-	}
+	margin: 0.5rem 0;
 }
 
 #hamburger-icon {
 	outline: none;
 	border: none;
 	background: none;
+
 	font-size: 3.5rem;
 	color: white;
 
@@ -290,24 +278,7 @@
 }
 
 #x-toggle {
-	position: relative;
 	font-size: 4.5rem;
-	// top: 1rem;
-	// right: 2rem;
-	// margin-bottom: 1rem;
 
-	transition: opacity 0.25s ease;
-	transform: translateY(0);
-
-	@media screen and (max-width: $mobile-max) and (orientation: landscape) {
-		font-size: 3rem;
-		top: 2rem;
-		// margin-bottom: 0.8rem;
-	}
-
-	@media screen and (max-width: $mobile-max) and (orientation: landscape) {
-		// position: relative;
-		font-size: 5rem;
-		// transition: opacity 0.25s ease;
-	}
+	// @include iPhoneNotchFix;
 }

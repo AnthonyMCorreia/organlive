@@ -11,6 +11,12 @@ const SET_FILTERED_ARRAY = "SET_FILTERED_ARRAY"
 const SET_SORT = "SET_SORT"
 const SELECTED_LIST = "SELECTED_LIST"
 const CACHE_LIST = "CACHE_LIST"
+const NOT_FOUND = "NOT_FOUND"
+
+export const notFound = (notFound) => ({
+	type: NOT_FOUND,
+	notFound
+})
 
 export const cacheList = (listType, key, value) => ({
 	type: CACHE_LIST,
@@ -119,111 +125,125 @@ export const getList = (type, sortParam) => {
 
 export const getAlbum = (albumId) => {
 	return async (dispatch) => {
-		await axios
-			.get(`https://api.organlive.com/library/album/${albumId}`)
-			.then(async (res) => {
-				const album = res.data
-				let organistInfo
+		if (isNaN(+albumId)) {
+			dispatch(notFound(true))
+			return
+		}
 
-				if (Array.isArray(album.id)) {
-					const artistArr = await Promise.all(
-						album.artistid.map(async (id) => {
-							const { data: artist } = await axios.get(
-								`https://api.organlive.com/library/artist/${album.artistID}`
-							)
+		try {
+			const {
+				data: { album }
+			} = await axios.get(`https://api.organlive.com/library/album/${albumId}`)
+			let organistInfo
 
-							return artist
-						})
-					)
-					organistInfo = [...artistArr]
-				} else {
-					const { data } = await axios.get(
-						`https://api.organlive.com/library/artist/${album.artistID}`
-					)
+			if (!album.title) {
+				dispatch(notFound(true))
+				return
+			}
 
-					organistInfo = data
+			if (Array.isArray(album.id)) {
+				const artistArr = await Promise.all(
+					album.artistid.map(async (id) => {
+						const { data: artist } = await axios.get(
+							`https://api.organlive.com/library/artist/${album.artistID}`
+						)
 
-					if (data.length === 1) {
-						organistInfo = data[0]
-					}
+						return artist
+					})
+				)
+				organistInfo = [...artistArr]
+			} else {
+				const { data } = await axios.get(
+					`https://api.organlive.com/library/artist/${album.artistID}`
+				)
+
+				organistInfo = data
+
+				if (data.length === 1) {
+					organistInfo = data[0]
 				}
+			}
 
-				// const { data: albumTracks } = await axios.get(
-				// 	`https://api.organlive.com/tracks/${albumId}`
-				// )
+			const { data } = await axios.get(
+				`https://api.organlive.com/library/tracks/${albumId}`
+			)
 
-				const albumAndOrganist = {
-					...album,
-					organist: organistInfo
-					// albumTracks
-				}
-
-				dispatch(setAlbum(albumAndOrganist))
+			const albumTracks = Object.entries(data).map(([key, value]) => {
+				return { ...value, key: +key }
 			})
+
+			const albumAndOrganist = {
+				...album,
+				organist: organistInfo,
+				albumTracks
+			}
+
+			dispatch(setAlbum(albumAndOrganist))
+		} catch (error) {
+			if (error.response.status === 404) {
+				dispatch(notFound(true))
+			}
+		}
 	}
 }
 
 export const getOrganist = (id) => {
-	return (dispatch) => {
-		axios
-			.get(`https://api.organlive.com/library/artist/${id}`)
-			.then(async (res) => {
-				const organist = res.data[id]
-				organist.id = id
+	return async (dispatch) => {
+		if (isNaN(+id)) {
+			dispatch(notFound(true))
+			return
+		}
 
-				const albumList = await Promise.all(
-					Object.entries(organist.albums).map(async ([key, value]) => {
-						const id = +key
+		try {
+			const { data: organist } = await axios.get(
+				`https://api.organlive.com/library/artist/${id}`
+			)
 
-						if (id) {
-							const { data: album } = await axios.get(
-								`https://api.organlive.com/library/album/${id}`
-							)
+			if (!organist.name) {
+				dispatch(notFound(true))
+				return
+			}
 
-							album.id = id
+			organist.id = id
 
-							return album
-						}
-					})
-				)
+			const albumList = Object.values(organist.albums)
+			organist.albums = albumList
 
-				organist.albums = albumList
-
-				dispatch(setOrganist(organist))
-			})
-			.catch((err) => {
-				console.log(err)
-			})
+			dispatch(setOrganist(organist))
+		} catch (error) {
+			if (error.response.status === 404) {
+				dispatch(notFound(true))
+			}
+		}
 	}
 }
 
 export const getComposer = (id) => {
 	return async (dispatch) => {
-		axios
-			.get(`https://api.organlive.com/library/composer/${id}`)
-			.then(async (res) => {
-				let composer = res.data
+		if (isNaN(+id)) {
+			dispatch(notFound(true))
+			return
+		}
 
-				// const albumList = await Promise.all(
-				// 	Object.entries(composer)
-				// 		.filter(([key, value]) => {
-				// 			const reg = /^\d+$/
-				// 			const keyTest = reg.test(key)
-				// 			return keyTest && value !== null
-				// 		})
-				// 		.map(async ([key, value]) => {
-				// 			const id = value.albumid
-				// 			const { data: album } = await axios.get(
-				// 				`https://api.organlive.com/library/album/${id}`
-				// 			)
+		try {
+			const { data: composer } = await axios.get(
+				`https://api.organlive.com/library/composer/${id}`
+			)
 
-				// 			return album.album
-				// 		})
-				// )
-				// composer.albumList = albumList
+			if (!composer.name) {
+				dispatch(notFound(true))
+				return
+			}
 
-				dispatch(setComposer(composer[id]))
-			})
+			const albums = Object.values(composer.albums)
+			composer.albums = albums
+
+			dispatch(setComposer(composer))
+		} catch (error) {
+			if (error.response.status === 404) {
+				dispatch(notFound(true))
+			}
+		}
 	}
 }
 
@@ -251,7 +271,9 @@ const initialState = {
 	selectedOrganist: null,
 	selectedComposer: null,
 	filter: "",
-	sort: "a-z"
+	sort: "a-z",
+	notFound: false,
+	dataFetched: false
 }
 
 function reducer(state = initialState, action) {
@@ -370,7 +392,6 @@ function reducer(state = initialState, action) {
 				return { ...value, type: listTypeMinusS }
 			})
 
-
 			return {
 				...state,
 				selectedListsCache: {
@@ -380,6 +401,11 @@ function reducer(state = initialState, action) {
 						[action.key]: list
 					}
 				}
+			}
+		case NOT_FOUND:
+			return {
+				...state,
+				notFound: action.notFound
 			}
 		default:
 			return state

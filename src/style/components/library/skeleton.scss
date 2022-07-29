@@ -29,7 +29,7 @@
 
 // Detailed Library Item
 
-.detailedAlbumSkeleton {
+.detailedSkeleton {
 	@include mainGrayBackground;
 	padding: 2rem;
 
@@ -38,44 +38,57 @@
 	justify-content: center;
 }
 
-.detailedAlbumInnerSkeleton {
-	width: 30%;
+.detailedInnerSkeleton {
+	width: 97%;
 	max-height: 95%;
 	padding: 3rem 2rem;
 
-	display: flex;
-	flex-direction: column;
-
-	background-color: $darkBlue;
-	border-radius: 1rem;
-	box-shadow: 0.3rem 0.3rem $off-white;
+	background-color: $darkGray;
+	box-shadow: -0.2rem 0 0 0 $white;
 
 	& > * {
 		margin: 0.5rem 0;
 	}
+
+	@media screen and (min-width: $tablet-max) {
+		width: 55%;
+	}
+
+	@media screen and (max-width: $tablet-max) {
+		width: 75%;
+	}
+
+	@media screen and (max-width: $tablet-width) {
+		width: 90%;
+	}
+
+	@media screen and (max-width: $mobile-max) {
+		width: 97%;
+	}
 }
 
-.detailedAlbumTitleSkeleton {
+.detailedTitleSkeleton {
 	height: 2rem;
 	width: 40%;
 	margin-bottom: 0.2rem;
 }
 
-.detailedAlbumOrganistSkeleton {
+.detailedInfoSkeleton {
 	height: 1.5rem;
 	width: 30%;
 	margin-bottom: 0.3rem;
 }
 
-.detailedAlbumOtherOptionsSkeleton {
+.detailedOtherOptionsSkeleton {
 	width: 15%;
 	height: 2rem;
 }
 
-.detailedAlbumImageSkeleton {
-	height: 50rem;
-	width: 50rem;
+.detailedImageSkeleton {
+	height: 60rem;
 	border-radius: 1rem;
+
+	max-width: 98%;
 }
 
 @keyframes skeleton-loading {

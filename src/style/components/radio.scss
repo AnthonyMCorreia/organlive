@@ -9,14 +9,22 @@
 	background-color: $darkGray;
 	border-radius: 2rem;
 	box-shadow: 0 0.2rem 2.5rem $transparent-playerBackground;
+}
 
+#radioInner {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	// justify-content: space-between;
+
+	height: 100%;
+	width: 100%;
+
+	position: relative;
 
 	& * {
 		user-select: none;
 		color: $white;
+		// cursor: pointer;
 	}
 }
 
@@ -37,6 +45,10 @@
 
 	width: 40rem;
 	height: 70%;
+
+	position: absolute;
+	right: calc(50% - 20rem);
+	// top: 50%;
 }
 
 #playback-button {
@@ -44,6 +56,10 @@
 	border: none;
 	color: $white;
 	font-size: 4rem;
+
+	&:hover {
+		cursor: pointer;
+	}
 }
 
 #progress-container {
@@ -80,6 +96,9 @@
 	justify-content: flex-end;
 
 	padding-right: 1rem;
+
+	position: absolute;
+	right: 1rem;
 
 	width: 33%;
 
