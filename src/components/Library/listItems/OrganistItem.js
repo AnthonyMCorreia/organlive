@@ -12,7 +12,7 @@ const OrganistItem = ({ val }) => {
 	const imageSrc = `https://s3.amazonaws.com/pictures.organlive.com/organists/${val.picture ? val.picture : errorPic}`
 
 	return (
-		<Link to={`/organists/${val.id}`} className="list-link">
+		<Link to={`/library/organists/${val.id}`} className="list-link">
 			<div className="list-container" key={val.id}>
 				<img
 					onError={imageError}

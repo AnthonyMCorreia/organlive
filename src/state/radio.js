@@ -9,6 +9,11 @@ const CHANGE_CURRENT_TIME = "CHANGE_CURRENT_TIME"
 const SET_SECONDS_ARRAY = "SET_SECONDS_ARRAY"
 const SET_CURRENT_DATE = "SET_CURRENT_DATE"
 const SONG_DONE = "SONG_DONE"
+const PLAY_BTTN_PRESSED = "PLAY_BTTN_PRESSED"
+
+export const playBttnPressed = () => ({
+	type: PLAY_BTTN_PRESSED
+})
 
 export const setSongDone = (isDone) => ({
 	type: SONG_DONE,
@@ -57,17 +62,22 @@ export const changePlaying = (isPlaying) => ({
 
 // Thunks
 export const getSong = () => {
+	console.log("getSong()")
+
 	return async (dispatch) => {
 		try {
 			const { data: song } = await axios.get(
 				"https://api.organlive.com/1/playing"
 			)
-			const { timeleft, hid } = song.housekeeping
+			const { timeout, hid } = song.housekeeping
 
 			dispatch(setSong(song))
+
 			setTimeout(() => {
+				console.log("setSong, timeout complete")
+
 				dispatch(checkForRefresh(hid))
-			}, timeleft)
+			}, timeout)
 		} catch (err) {
 			console.log(err)
 		}
@@ -75,6 +85,7 @@ export const getSong = () => {
 }
 
 export const checkForRefresh = (currentSongId) => {
+	console.log("checkForRefresh() called")
 	return async (dispatch) => {
 		try {
 			const { data: response } = await axios.get(
@@ -82,11 +93,17 @@ export const checkForRefresh = (currentSongId) => {
 			)
 
 			if (response.housekeeping.refresh === "yes") {
-				dispatch(setSong(response))
+				console.log("checkForRefresh() houskeeping === yes")
+				dispatch(getSong())
 			} else if (response.housekeeping.refresh === "no") {
+				console.log(
+					"checkForRefresh() houskeeping === no",
+					response.housekeeping.timeout
+				)
 				setTimeout(() => {
+					console.log("setTimeout called")
 					dispatch(checkForRefresh(currentSongId))
-				}, response.housekeeping.secondsRemaining)
+				}, response.housekeeping.timeout * 1000)
 			}
 		} catch (err) {
 			console.log(err)
@@ -106,7 +123,8 @@ const initialState = {
 		time: {
 			isPlaying: false,
 			currentTime: null,
-			currentDate: null
+			currentDate: null,
+			playButtonPressed: false
 		},
 		songListCache: [],
 		lastSongUpdateRequest: null
@@ -116,6 +134,9 @@ const initialState = {
 export default function Player(state = initialState, action) {
 	switch (action.type) {
 		case GET_SONG_INFO:
+			const currentTime =
+				+action.song.housekeeping.song_duration -
+				+action.song.housekeeping.timeout
 			return {
 				...state,
 				song: action.song,
@@ -123,7 +144,7 @@ export default function Player(state = initialState, action) {
 					...state.currentPlayerInfo,
 					time: {
 						...state.currentPlayerInfo.time,
-						currentTime: action.song.housekeeping.timeelapsed,
+						currentTime: currentTime,
 						currentDate: Date.now()
 					}
 				}
@@ -201,6 +222,17 @@ export default function Player(state = initialState, action) {
 				currentPlayerInfo: {
 					...state.currentPlayerInfo,
 					isDone: action.isDone
+				}
+			}
+		case PLAY_BTTN_PRESSED:
+			return {
+				...state,
+				currentPlayerInfo: {
+					...state.currentPlayerInfo,
+					time: {
+						...state.currentPlayerInfo.time,
+						playButtonPressed: action.playButtonPressed
+					}
 				}
 			}
 		default:

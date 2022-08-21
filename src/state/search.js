@@ -6,6 +6,29 @@ const SET_ERROR = "SET_ERROR"
 const NO_RESULTS = "NO_RESULTS"
 const SUCCESS = "SUCCESS"
 const LIST_LENGTH = "LIST_LENGTH"
+const SET_SORT = "SET_SORT"
+const SET_TYPE = "SET_TYPE"
+const SET_TEXT = "SET_TEXT"
+const RESET_SEARCH = "RESET_SEARCH"
+
+export const resetSearch = () => ({
+	type: RESET_SEARCH
+})
+
+export const setSort = (sort) => ({
+	type: SET_SORT,
+	sort
+})
+
+export const setType = (searchType) => ({
+	type: SET_TYPE,
+	searchType
+})
+
+export const setText = (text) => ({
+	type: SET_TEXT,
+	text
+})
 
 export const setListLength = (listLength) => ({
 	type: LIST_LENGTH,
@@ -47,48 +70,22 @@ export const getSearch = (type, text, order) => {
 
 		try {
 			const { data } = await axios.get(searchString)
+			let list = Object.values(data)
 
-			if (Object.values(data).length === 0) {
+			if (list.length === 0) {
 				dispatch(noResults(true))
+				dispatch(setList(list))
 				dispatch(setError("No results found"))
 				return
 			}
 
-			let list
 
-			if (type === "album") {
-				list = Object.values(data).map((value) => {
-					return {
-						...value,
-						name: value.album,
-						type
-						// id: value.albumid
-					}
-				})
-			} else if (type === "artist") {
-				list = Object.values(data).map((value) => {
-					return {
-						...value,
-						name: value.artist,
-						type,
-						id: value.artistID
-					}
-				})
-			} else if (type === "composer") {
-				list = Object.values(data).map((value) => {
-					return {
-						...value,
-						name: value.composer,
-						type,
-						id: value.composerID
-					}
-				})
-			}
 
 			dispatch(succesfulSearch(true))
-			dispatch(setList(list))
+			dispatch(noResults(false))
 			dispatch(setError(""))
 			dispatch(toggleSearch(false))
+			dispatch(setList(list))
 		} catch (error) {
 			dispatch(setError("Something went wrong, please try again."))
 			dispatch(succesfulSearch(false))
@@ -98,11 +95,15 @@ export const getSearch = (type, text, order) => {
 }
 
 const initialState = {
-	text: "",
+	params: {
+		text: "",
+		sort: "a-z",
+		type: "album"
+	},
 	list: [],
 	error: "",
-	results: true,
-	success: false,
+	noResults: true,
+	success: true,
 	listLength: 50
 }
 
@@ -121,7 +122,7 @@ export default function reducer(state = initialState, action) {
 		case NO_RESULTS:
 			return {
 				...state,
-				results: action.results
+				noResults: action.results
 			}
 		case SUCCESS:
 			return {
@@ -132,6 +133,44 @@ export default function reducer(state = initialState, action) {
 			return {
 				...state,
 				listLength: action.listLength
+			}
+		case SET_SORT:
+			return {
+				...state,
+				params: {
+					...state.params,
+					sort: action.sort
+				}
+			}
+		case SET_TYPE:
+			return {
+				...state,
+				params: {
+					...state.params,
+					type: action.searchType
+				}
+			}
+		case SET_TEXT:
+			return {
+				...state,
+				params: {
+					...state.params,
+					text: action.text
+				}
+			}
+		case RESET_SEARCH:
+			return {
+				...state,
+				params: {
+					text: "",
+					sort: "a-z",
+					type: "album"
+				},
+				list: [],
+				error: "",
+				noResults: true,
+				success: true,
+				listLength: 50
 			}
 		default:
 			return state

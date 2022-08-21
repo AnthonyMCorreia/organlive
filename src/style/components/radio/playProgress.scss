@@ -1,0 +1,61 @@
+#play-progress-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	width: 40rem;
+	height: 70%;
+
+	position: absolute;
+	right: calc(50% - 20rem);
+
+	@media screen and (max-width: 100rem) {
+		position: absolute;
+		bottom: -3rem;
+	}
+}
+
+#playback-button {
+	background: none;
+	border: none;
+	color: $white;
+	font-size: 4rem;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+#progress-container {
+	display: flex;
+	align-items: center;
+
+	width: 85%;
+}
+
+.playButton {
+	width: 5rem;
+
+	outline: none;
+	border: none;
+}
+
+#progress-background {
+	background-color: $transparent-gray;
+	width: 100%;
+	height: 0.55rem;
+	border-radius: 2rem;
+
+	margin: 0 0.35rem;
+}
+
+#progress {
+	height: 100%;
+	background: $white;
+	border-radius: 2rem;
+}
+
+.song-nums {
+	font-size: 1.45rem;
+}

@@ -1,3 +1,13 @@
 .overflowR {
-    overflow: hidden;
+	overflow: hidden;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.hoverOpacity {
+	&:hover {
+		opacity: 80%;
+	}
 }

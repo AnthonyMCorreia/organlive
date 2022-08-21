@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from "react"
+import { useRef, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import { setError, getSearch } from "../../../state/search"
+import { setError, setSort, setType, setText } from "../../../state/search"
 import { toggleSearch } from "../../../state/ui"
 
 export default function SearchForm() {
@@ -13,10 +13,7 @@ export default function SearchForm() {
 	const inputLabelRef = useRef(null)
 
 	const { error, results } = useSelector((state) => state.search)
-
-	const [text, setText] = useState("")
-	const [sort, setSort] = useState("a-z")
-	const [type, setType] = useState("album")
+	const { text, sort, type } = useSelector((state) => state.search.params)
 
 	const submitHandler = (e) => {
 		e.preventDefault()
@@ -27,7 +24,6 @@ export default function SearchForm() {
 			dispatch(setError(""))
 		}
 
-		dispatch(getSearch(type, text, sort))
 		navigate(`/library/search?text=${text}&sort=${sort}&type=${type}`)
 	}
 
@@ -43,7 +39,7 @@ export default function SearchForm() {
 			label.style.opacity = "0"
 		}
 
-		setText(elm.target.value)
+		dispatch(setText(elm.target.value))
 	}
 
 	useEffect(() => {
@@ -53,6 +49,11 @@ export default function SearchForm() {
 
 		return () => {
 			document.getElementsByTagName("html")[0].style.overflow = "auto"
+
+			// Reset search params
+			dispatch(setText(""))
+			dispatch(setSort("a-z"))
+			dispatch(setType("album"))
 		}
 	}, [])
 
@@ -74,6 +75,7 @@ export default function SearchForm() {
 				<form onSubmit={submitHandler} className="search-form">
 					<div className="searchInputLabelContainer">
 						<input
+							autoFocus
 							type="text"
 							id="searchInput"
 							className="searchInputWidth"
@@ -96,7 +98,7 @@ export default function SearchForm() {
 							<select
 								name="lists"
 								className="searchSelect searchSelectWidth"
-								onChange={(e) => setType(e.target.value)}>
+								onChange={(e) => dispatch(setType(e.target.value))}>
 								<option value="albums">Albums</option>
 								<option value="organists">Organists</option>
 								<option value="composers">Composers</option>
@@ -113,7 +115,7 @@ export default function SearchForm() {
 						<div className="selectArrowCont selectArrowContWidth">
 							<select
 								className="searchSelect searchSelectWidth"
-								onChange={(e) => setSort(e.target.value)}>
+								onChange={(e) => dispatch(setSort(e.target.value))}>
 								<option value="a-z" className="sort-options">
 									Name: A-Z
 								</option>

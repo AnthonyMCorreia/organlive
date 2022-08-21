@@ -41,11 +41,11 @@ const VolumeControls = () => {
 	return (
 		<div id="volume-controls">
 			{isMuted || currentVolume === 0 ? (
-				<span className="material-icons" onClick={muteFunc}>
+				<span className="material-icons pointer" onClick={muteFunc}>
 					volume_off
 				</span>
 			) : (
-				<span className="material-icons" onClick={muteFunc}>
+				<span className="material-icons pointer" onClick={muteFunc}>
 					volume_up
 				</span>
 			)}

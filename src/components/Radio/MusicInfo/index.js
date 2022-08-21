@@ -1,21 +1,30 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import { useState } from "react"
 import { useSelector } from "react-redux"
 
+// Components
+import Album from "./items/Album"
+import Artist from "./items/Artist"
+import Organ from "./items/Organ"
+import Work from "./items/Work"
+import Menu from "./Menu"
+
 const MusicInfo = () => {
-	const artist = useSelector((state) => state.radio.song.artist)
-	const song = useSelector((state) => state.radio.song.work)
+	const [menuOpen, setMenuOpen] = useState(false)
+
+	const infoSelected = useSelector((state) => state.ui.radioSongDisplayedInfo)
 
 	return (
-		<div id="music-info">
-			<div id="music-info-title">{song.title}</div>
-			<div id="music-info-artist">
-				<Link
-					id="musicInfoArtistLink"
-					to={`/organists/${artist.artist_id}`}>
-					{artist.name}
-				</Link>
-			</div>
+		<div className="radioInfo">
+			<span
+				className="material-icons expandMore"
+				onClick={() => setMenuOpen(!menuOpen)}>
+				{menuOpen ? "expand_less" : "expand_more"}
+			</span>
+			{menuOpen && <Menu setMenuOpen={setMenuOpen} />}
+			{infoSelected === "work" && <Work />}
+			{infoSelected === "album" && <Album />}
+			{infoSelected === "artist" && <Artist />}
+			{infoSelected === "organ" && <Organ />}
 		</div>
 	)
 }

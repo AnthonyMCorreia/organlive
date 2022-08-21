@@ -1,0 +1,34 @@
+.radioInfoArtist {
+	display: flex;
+}
+
+.radioInfoArtistPic {
+	max-width: 9rem;
+	max-height: 9rem;
+	margin-right: 0.5rem;
+	border-radius: 0.25rem;
+}
+
+.radioInfoArtistLink {
+    text-decoration: none;
+}
+
+.radioInfoArtistName {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.radioInfoArtistInfo {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.radioInfoAritstBioBttn {
+	font-size: 1.5rem;
+	background-color: $darkBlue;
+	text-decoration: none;
+	border-radius: 0.25rem;
+	padding: 0.45rem;
+	display: inline-block;
+}

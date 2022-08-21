@@ -10,7 +10,7 @@ const AlbumItem = ({ val }) => {
 	}
 
 	return (
-		<Link to={`/albums/${val.id}`} className="list-link" key={val.id}>
+		<Link to={`/library/albums/${val.id}`} className="list-link" key={val.id}>
 			<div className="list-container">
 				<img
 					className="pics"

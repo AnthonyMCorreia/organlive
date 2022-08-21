@@ -1,0 +1,50 @@
+#volume-controls {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+
+	padding-right: 1rem;
+
+	position: absolute;
+	right: 1rem;
+
+	width: 33%;
+
+	& > * {
+		margin: 0.2em;
+	}
+}
+
+#volumeBar {
+	border: none;
+	outline: none;
+	appearance: black;
+	-webkit-appearance: none !important;
+	cursor: pointer;
+
+	width: 15rem;
+	height: 0.2rem;
+	background: $white;
+	color: white;
+
+	&::-webkit-slider-thumb {
+		appearance: none;
+		-webkit-appearance: none !important;
+		background: $playerBackground;
+		border: 0.1rem solid $white;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 50%;
+	}
+}
+
+#mute {
+	height: 3rem;
+	width: 6rem;
+	background-color: $playerBackground;
+	outline: none;
+	border: none;
+	border-radius: 50rem;
+	margin: 2rem;
+	color: $white;
+}

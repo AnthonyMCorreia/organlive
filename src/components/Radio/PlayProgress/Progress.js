@@ -22,16 +22,17 @@ const millisecondsToMinutesAndSeconds = (milliseconds) => {
 }
 
 const Progress = () => {
-	const { currentTime, isPlaying } = useSelector(
+	const { currentTime, isPlaying, playButtonPressed } = useSelector(
 		(state) => state.radio.currentPlayerInfo.time
 	)
 	const songTotal = useSelector(
-		(state) => state.radio.song.housekeeping.timetotal
+		(state) => state.radio.song.housekeeping.song_duration
 	)
 
 	return (
 		<div id="progress-container">
-			{isPlaying ? <Timer /> : null}
+			{isPlaying && <Timer />}
+			{/* {playButtonPressed ? <ContinuousTimer /> : null} */}
 			{currentTime ? (
 				<small className="song-nums">
 					{millisecondsToMinutesAndSeconds(currentTime)}

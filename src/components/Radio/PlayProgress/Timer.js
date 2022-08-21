@@ -16,7 +16,7 @@ const Timer = () => {
 		(state) => state.radio.currentPlayerInfo.time
 	)
 
-	const { timetotal, hid } = useSelector(
+	const { song_duration, hid } = useSelector(
 		(state) => state.radio.song.housekeeping
 	)
 
@@ -24,19 +24,24 @@ const Timer = () => {
 		const newCurrentDate = new Date().getTime()
 
 		const addedTime = newCurrentDate - currentDate
+		const newCurrentTime = currentTime + addedTime
 
-		if (currentTime < timetotal) {
+		if (newCurrentTime < song_duration) {
 			dispatch(setDate(new Date().getTime()))
 			dispatch(changeCurrentTime(currentTime + addedTime))
-		} else if (currentTime >= timetotal) {
+		} 
+		
+		if (currentTime >= song_duration) {
+			console.log("update() calling stop()")
 			stop()
-			dispatch(checkForRefresh(hid))
+			// dispatch(checkForRefresh(hid))
 		}
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentTime])
 
 	const start = useCallback(() => {
-		interval.current = setInterval(update, 20)
+		interval.current = setInterval(update, 1000)
 	}, [update])
 
 	const stop = useCallback(() => {

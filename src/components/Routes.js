@@ -27,9 +27,9 @@ const AppRoutes = () => {
 		<Routes>
 			<Route exact path="" element={<Home />} />
 			<Route exact path="contact" element={<Contact />} />
-			<Route exact path="albums/:id" element={<DetailedAlbum />} />
-			<Route exact path="organists/:id" element={<DetailedOrganists />} />
-			<Route exact path="composers/:id" element={<DetailedComposer />} />
+			<Route exact path="library/albums/:id" element={<DetailedAlbum />} />
+			<Route exact path="library/organists/:id" element={<DetailedOrganists />} />
+			<Route exact path="library/composers/:id" element={<DetailedComposer />} />
 			<Route exact path="library" element={<Library />} />
 			<Route exact path="nowplaying" />
 			<Route exact path="otherstations" element={<OtherStations />} />

@@ -1,0 +1,24 @@
+.radioInfo {
+	width: 30%;
+	height: 100%;
+	padding-left: 1rem;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	@media screen and (max-width:150rem) {
+		position: absolute;
+		top: -5rem;
+	}
+}
+
+.expandMore {
+	position: absolute;
+	top: -0.5rem;
+	left: 0.5rem;
+
+	font-size: 2.75rem;
+
+	cursor: pointer;
+}

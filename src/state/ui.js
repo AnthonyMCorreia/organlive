@@ -3,6 +3,18 @@ const TOGGLE_MOBILE = "TOGGLE_MOBILE"
 const TOGGLE_RADIO = "TOGGLE_RADIO"
 const SET_TITLE = "SET_TITLE"
 const TOGGLE_SEARCH_FORM = "TOGGLE_SEARCH_FORM"
+const RADIO_SONG_DISPLAYED_INFO = "RADIO_SONG_DISPLAYED_INFO"
+const RADIO_INFO_MENU_TOGGLE = "RADIO_INFO_MENU_TOGGLE"
+
+export const toggleRadioInfoMenu = (isOpen) => ({
+	type: RADIO_INFO_MENU_TOGGLE,
+	isOpen
+})
+
+export const setRadioSongInfoSelection = (selction) => ({
+	type: RADIO_SONG_DISPLAYED_INFO,
+	selction
+})
 
 export const toggleSearch = (value) => ({
 	type: TOGGLE_SEARCH_FORM,
@@ -34,7 +46,9 @@ const initalState = {
 	dropdownMenu: false,
 	isMobile: false,
 	documentTitle: "Organlive",
-	searchForm: false
+	searchForm: false,
+	radioInfoMenu: false,
+	radioSongDisplayedInfo: "work"
 }
 
 function reducer(state = initalState, action) {
@@ -64,6 +78,10 @@ function reducer(state = initalState, action) {
 				...state,
 				searchForm: action.value
 			}
+		case RADIO_SONG_DISPLAYED_INFO:
+			return { ...state, radioSongDisplayedInfo: action.selction }
+		case RADIO_INFO_MENU_TOGGLE:
+			return { ...state, radioInfoMenu: action.isOpen }
 		default:
 			return state
 	}

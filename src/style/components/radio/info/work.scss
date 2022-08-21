@@ -1,0 +1,48 @@
+.music-info {
+	display: flex;
+	flex-direction: column;
+}
+
+.music-info-title {
+	margin-bottom: 0.5rem;
+}
+
+.music-info-title-p {
+	font-size: 1.65rem;
+	display: inline-block;
+}
+
+.musicInfoArtistLink {
+	font-size: 1.6rem;
+	text-decoration: none;
+	display: inline-block;
+
+	&:hover {
+		opacity: 80%;
+	}
+}
+
+.radioInfoWorkBuyingOptions {
+	width: 75%;
+	display: flex;
+	margin-top: 0.5rem;
+}
+
+.radioInfoWorkBuyingOptionsItemLink {
+	font-size: 1.35rem;
+	background-color: $darkBlue;
+
+	text-decoration: none;
+
+	border-radius: 0.5rem;
+
+	padding: 0.45rem;
+
+	&:not(:first-child) {
+		margin-left: 0.5rem;
+	}
+
+	&:hover {
+		opacity: 80%;
+	}
+}
