@@ -10,6 +10,8 @@
 	position: absolute;
 	top: 2.2rem;
 	left: 1rem;
+
+	z-index: 5;
 }
 
 .radioInfoMenuItem {
@@ -21,7 +23,7 @@
 	font-family: "Quicksand", sans-serif;
 	font-weight: 300;
 
-    margin: .25rem;
+	margin: 0.25rem;
 
 	cursor: pointer;
 

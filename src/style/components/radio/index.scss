@@ -1,8 +1,12 @@
 #radio {
 	position: fixed;
-	height: 13rem;
-	width: 140rem;
-	bottom: 5rem;
+	// height: 13rem;
+	// width: 140rem;
+	// bottom: 5rem;
+
+	height: 40rem;
+	width: 95vw;
+	bottom: 1rem;
 
 	z-index: 1;
 
@@ -10,11 +14,8 @@
 	border-radius: 2rem;
 	box-shadow: 0 0.2rem 2.5rem $transparent-playerBackground;
 
-	@media screen and (max-width: $mobile-max) {
-		width: 90%;
-		height: 40rem;
-
-		bottom: 1rem;
+	@media screen and (min-width: $mobile-max) {
+		width: 40rem;
 	}
 
 	// @media screen and (max-height: 50rem) {
@@ -32,11 +33,6 @@
 
 	position: relative;
 
-	& * {
-		user-select: none;
-		color: $white;
-	}
-
 	@media screen and (max-width: 150rem) {
 		// flex-direction: column;
 		// align-items: space-evenly;
@@ -52,6 +48,7 @@
 	font-size: 2.35rem;
 
 	cursor: pointer;
+	user-select: none;
 }
 
 // Condensed Radio Open Button

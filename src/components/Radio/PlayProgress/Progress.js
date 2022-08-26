@@ -1,7 +1,8 @@
-import React from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 
+// Timers
 import Timer from "./Timer"
+import ContinuousTimer from "../ContinuousTimer"
 
 function songPercentage(current, total) {
 	return (current / total) * 100
@@ -22,7 +23,9 @@ const millisecondsToMinutesAndSeconds = (milliseconds) => {
 }
 
 const Progress = () => {
-	const { currentTime, isPlaying, playButtonPressed } = useSelector(
+	const dispatch = useDispatch()
+
+	const { currentTime, isPlaying } = useSelector(
 		(state) => state.radio.currentPlayerInfo.time
 	)
 	const songTotal = useSelector(
@@ -32,7 +35,7 @@ const Progress = () => {
 	return (
 		<div id="progress-container">
 			{isPlaying && <Timer />}
-			{/* {playButtonPressed ? <ContinuousTimer /> : null} */}
+			{/* {playButtonPressed && <ContinuousTimer />} */}
 			{currentTime ? (
 				<small className="song-nums">
 					{millisecondsToMinutesAndSeconds(currentTime)}

@@ -1,5 +1,7 @@
 import axios from "axios"
 
+import { setRadioSongInfoSelection } from "./ui"
+
 const GET_SONG_INFO = "GET_SONG_INFO"
 const SET_VOLUME = "SET_VOLUME"
 const TOGGLE_MUTE = "TOGGLE_MUTE"
@@ -9,10 +11,29 @@ const CHANGE_CURRENT_TIME = "CHANGE_CURRENT_TIME"
 const SET_SECONDS_ARRAY = "SET_SECONDS_ARRAY"
 const SET_CURRENT_DATE = "SET_CURRENT_DATE"
 const SONG_DONE = "SONG_DONE"
-const PLAY_BTTN_PRESSED = "PLAY_BTTN_PRESSED"
+const JUMP_FORWARD = "JUMP_FORWARD"
+const JUMP_BACK = "JUMP_BACK"
+const UNPAUSE = "UNPAUSE"
+const PAUSE = "PAUSE"
 
-export const playBttnPressed = () => ({
-	type: PLAY_BTTN_PRESSED
+export const unPause = (date) => ({
+	type: UNPAUSE,
+	date
+})
+
+export const pause = (date) => ({
+	type: PAUSE,
+	date
+})
+
+export const jumpBack = (time) => ({
+	type: JUMP_BACK,
+	time
+})
+
+export const jumpForward = (time) => ({
+	type: JUMP_FORWARD,
+	time
 })
 
 export const setSongDone = (isDone) => ({
@@ -61,55 +82,45 @@ export const changePlaying = (isPlaying) => ({
 })
 
 // Thunks
-export const getSong = () => {
-	console.log("getSong()")
+// export const getSong = () => {
+// 	return async (dispatch) => {
+// 		try {
+// 			const { data: song } = await axios.get(
+// 				"https://api.organlive.com/1/playing"
+// 			)
+// 			const { timeout, hid } = song.housekeeping
 
-	return async (dispatch) => {
-		try {
-			const { data: song } = await axios.get(
-				"https://api.organlive.com/1/playing"
-			)
-			const { timeout, hid } = song.housekeeping
+// 			dispatch(setRadioSongInfoSelection("work"))
+// 			dispatch(setSong(song))
 
-			dispatch(setSong(song))
+// 			setTimeout(() => {
+// 				dispatch(checkForRefresh(hid))
+// 			}, timeout)
+// 		} catch (err) {
+// 			console.log(err)
+// 		}
+// 	}
+// }
 
-			setTimeout(() => {
-				console.log("setSong, timeout complete")
+// export const checkForRefresh = (currentSongId) => {
+// 	return async (dispatch) => {
+// 		try {
+// 			const { data: response } = await axios.get(
+// 				`https://api.organlive.com/1/playing/${currentSongId}`
+// 			)
 
-				dispatch(checkForRefresh(hid))
-			}, timeout)
-		} catch (err) {
-			console.log(err)
-		}
-	}
-}
-
-export const checkForRefresh = (currentSongId) => {
-	console.log("checkForRefresh() called")
-	return async (dispatch) => {
-		try {
-			const { data: response } = await axios.get(
-				`https://api.organlive.com/1/playing/${currentSongId}`
-			)
-
-			if (response.housekeeping.refresh === "yes") {
-				console.log("checkForRefresh() houskeeping === yes")
-				dispatch(getSong())
-			} else if (response.housekeeping.refresh === "no") {
-				console.log(
-					"checkForRefresh() houskeeping === no",
-					response.housekeeping.timeout
-				)
-				setTimeout(() => {
-					console.log("setTimeout called")
-					dispatch(checkForRefresh(currentSongId))
-				}, response.housekeeping.timeout * 1000)
-			}
-		} catch (err) {
-			console.log(err)
-		}
-	}
-}
+// 			if (response.housekeeping.refresh === "yes") {
+// 				dispatch(getSong())
+// 			} else if (response.housekeeping.refresh === "no") {
+// 				setTimeout(() => {
+// 					dispatch(checkForRefresh(currentSongId))
+// 				}, response.housekeeping.timeout)
+// 			}
+// 		} catch (err) {
+// 			console.log(err)
+// 		}
+// 	}
+// }
 
 const initialState = {
 	song: {},
@@ -124,10 +135,11 @@ const initialState = {
 			isPlaying: false,
 			currentTime: null,
 			currentDate: null,
-			playButtonPressed: false
-		},
-		songListCache: [],
-		lastSongUpdateRequest: null
+			pauseInfo: {
+				howLongBehind: 0,
+				pauseDate: null
+			}
+		}
 	}
 }
 
@@ -224,14 +236,75 @@ export default function Player(state = initialState, action) {
 					isDone: action.isDone
 				}
 			}
-		case PLAY_BTTN_PRESSED:
+		case JUMP_FORWARD:
+			console.log("REDUCER action.time", action.time)
+			console.log(
+				"this should be true",
+				Math.abs(state.currentPlayerInfo.time.pauseInfo.howLongBehind) >=
+					action.time
+			)
 			return {
 				...state,
 				currentPlayerInfo: {
 					...state.currentPlayerInfo,
 					time: {
 						...state.currentPlayerInfo.time,
-						playButtonPressed: action.playButtonPressed
+						currentTime: state.currentPlayerInfo.time.currentTime + action.time,
+						pauseInfo: {
+							...state.currentPlayerInfo.time.pauseInfo,
+							howLongBehind:
+								state.currentPlayerInfo.time.pauseInfo.howLongBehind +
+								action.time
+						}
+					}
+				}
+			}
+		case JUMP_BACK:
+			return {
+				...state,
+				currentPlayerInfo: {
+					...state.currentPlayerInfo,
+					time: {
+						...state.currentPlayerInfo.time,
+						currentTime: state.currentPlayerInfo.time.currentTime - action.time,
+						pauseInfo: {
+							...state.currentPlayerInfo.time.pauseInfo,
+							howLongBehind:
+								state.currentPlayerInfo.time.pauseInfo.howLongBehind -
+								action.time
+						}
+					}
+				}
+			}
+		case PAUSE:
+			return {
+				...state,
+				currentPlayerInfo: {
+					...state.currentPlayerInfo,
+					time: {
+						...state.currentPlayerInfo.time,
+						pauseInfo: {
+							...state.currentPlayerInfo.time.pauseInfo,
+							pauseDate: action.date
+						}
+					}
+				}
+			}
+		case UNPAUSE:
+			const lastPaused = state.currentPlayerInfo.time.pauseInfo.pauseDate
+			const addedPausedTime = Math.abs(action.date - lastPaused) * -1
+			const newTotalPausedTime = lastPaused + addedPausedTime
+			return {
+				...state,
+				currentPlayerInfo: {
+					...state.currentPlayerInfo,
+					time: {
+						...state.currentPlayerInfo.time,
+						pauseInfo: {
+							...state.currentPlayerInfo.time.pauseInfo,
+							howLongBehind: newTotalPausedTime,
+							pauseDate: null
+						}
 					}
 				}
 			}

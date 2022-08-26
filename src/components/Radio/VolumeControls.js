@@ -5,11 +5,12 @@ import { toggleMute, setVolume, setPreviousVolume } from "../../state/radio"
 
 const VolumeControls = () => {
 	const dispatch = useDispatch()
-	const audio = document.getElementById("stream")
 
 	const { isMuted, currentVolume } = useSelector(
 		(state) => state.radio.currentPlayerInfo.volume
 	)
+
+	const audio = document.getElementById("stream")
 
 	const volumeHandler = (e) => {
 		e.preventDefault()

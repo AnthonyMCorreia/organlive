@@ -38,6 +38,8 @@
 
 	padding: 0.45rem;
 
+	user-select: none;
+
 	&:not(:first-child) {
 		margin-left: 0.5rem;
 	}

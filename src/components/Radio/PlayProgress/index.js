@@ -3,16 +3,22 @@ import { useDispatch, useSelector } from "react-redux"
 
 // Components
 import Progress from "./Progress"
+import BackButton from "./BackButton"
+import ForwardButton from "./ForwardButton"
 
 // State
-import { getSong, changePlaying } from "../../../state/radio"
+import { changePlaying, pause, unPause } from "../../../state/radio"
+import { getSong } from "../../../state/radioContinuousTimer"
 
 const PlayProgress = () => {
 	const dispatch = useDispatch()
 
-	const song = useSelector((state) => state.radio.song)
-	const isPlaying = useSelector(
-		(state) => state.radio.currentPlayerInfo.time.isPlaying
+	const { song } = useSelector((state) => state.radio)
+	const { isPlaying } = useSelector(
+		(state) => state.radio.currentPlayerInfo.time
+	)
+	const playButtonPressed = useSelector(
+		(state) => state.radio.currentPlayerInfo.time.playButtonPressed
 	)
 
 	const audio = document.getElementById("stream")
@@ -23,26 +29,35 @@ const PlayProgress = () => {
 		if (audio) {
 			if (audio.paused) {
 				if (!song.housekeeping) {
-					dispatch(getSong())
+					if (!playButtonPressed) {
+						dispatch(getSong(true))
+					}
+				} else if (song.housekeeping) {
+					dispatch(unPause(new Date().getTime()))
 				}
-				dispatch(changePlaying(true))
 				audio.play()
 			} else {
-				dispatch(changePlaying(false))
+				dispatch(pause(new Date().getTime()))
 				audio.pause()
 			}
+			dispatch(changePlaying(!isPlaying))
 		}
 	}
+
 	return (
-		<div id="play-progress-container">
-			<button
-				className="material-icons playButton"
-				id="playback-button"
-				onClick={playPause}>
-				{isPlaying ? "pause" : "play_arrow"}
-			</button>
+		<>
+			<div className="play-progress-buttons-cont">
+				{song.housekeeping && <BackButton />}
+				<button
+					className="material-icons playButton"
+					id="playback-button"
+					onClick={playPause}>
+					{isPlaying ? "pause" : "play_arrow"}
+				</button>
+				{song.housekeeping && <ForwardButton />}
+			</div>
 			{song.housekeeping && <Progress />}
-		</div>
+		</>
 	)
 }
 
