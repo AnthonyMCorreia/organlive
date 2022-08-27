@@ -1,7 +1,3 @@
-import axios from "axios"
-
-import { setRadioSongInfoSelection } from "./ui"
-
 const GET_SONG_INFO = "GET_SONG_INFO"
 const SET_VOLUME = "SET_VOLUME"
 const TOGGLE_MUTE = "TOGGLE_MUTE"
@@ -80,47 +76,6 @@ export const changePlaying = (isPlaying) => ({
 	type: PLAYING_STATE,
 	isPlaying
 })
-
-// Thunks
-// export const getSong = () => {
-// 	return async (dispatch) => {
-// 		try {
-// 			const { data: song } = await axios.get(
-// 				"https://api.organlive.com/1/playing"
-// 			)
-// 			const { timeout, hid } = song.housekeeping
-
-// 			dispatch(setRadioSongInfoSelection("work"))
-// 			dispatch(setSong(song))
-
-// 			setTimeout(() => {
-// 				dispatch(checkForRefresh(hid))
-// 			}, timeout)
-// 		} catch (err) {
-// 			console.log(err)
-// 		}
-// 	}
-// }
-
-// export const checkForRefresh = (currentSongId) => {
-// 	return async (dispatch) => {
-// 		try {
-// 			const { data: response } = await axios.get(
-// 				`https://api.organlive.com/1/playing/${currentSongId}`
-// 			)
-
-// 			if (response.housekeeping.refresh === "yes") {
-// 				dispatch(getSong())
-// 			} else if (response.housekeeping.refresh === "no") {
-// 				setTimeout(() => {
-// 					dispatch(checkForRefresh(currentSongId))
-// 				}, response.housekeeping.timeout)
-// 			}
-// 		} catch (err) {
-// 			console.log(err)
-// 		}
-// 	}
-// }
 
 const initialState = {
 	song: {},
@@ -237,12 +192,6 @@ export default function Player(state = initialState, action) {
 				}
 			}
 		case JUMP_FORWARD:
-			console.log("REDUCER action.time", action.time)
-			console.log(
-				"this should be true",
-				Math.abs(state.currentPlayerInfo.time.pauseInfo.howLongBehind) >=
-					action.time
-			)
 			return {
 				...state,
 				currentPlayerInfo: {

@@ -6,15 +6,17 @@ export default function Artist() {
 	return (
 		<div className="radioInfoArtist">
 			{artist.photo && (
-				<Link
-					to={`/library/organists/${artist.artist_id}`}
-					className="radioInfoArtistLink">
-					<img
-						className="radioInfoArtistPic hoverOpacity"
-						src={`https://s3.amazonaws.com/pictures.organlive.com/organists/${artist.photo}`}
-						alt={artist.artist}
-					/>
-				</Link>
+				// <div className="radioInfoArtistLinkCont">
+					<Link
+						to={`/library/organists/${artist.artist_id}`}
+						className="radioInfoArtistLink">
+						<img
+							className="radioInfoArtistPic hoverOpacity"
+							src={`https://s3.amazonaws.com/pictures.organlive.com/organists/${artist.photo}`}
+							alt={artist.artist}
+						/>
+					</Link>
+				// </div>
 			)}
 			<div className="radioInfoArtistInfo">
 				<Link

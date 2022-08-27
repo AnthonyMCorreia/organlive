@@ -1,6 +1,11 @@
 .music-info {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+
+	* {
+		text-align: center;
+	}
 }
 
 .music-info-title {
@@ -8,12 +13,13 @@
 }
 
 .music-info-title-p {
-	font-size: 1.65rem;
+	font-size: 2.5rem;
 	display: inline-block;
+	font-weight: 300;
 }
 
 .musicInfoArtistLink {
-	font-size: 1.6rem;
+	font-size: 2rem;
 	text-decoration: none;
 	display: inline-block;
 
@@ -23,8 +29,9 @@
 }
 
 .radioInfoWorkBuyingOptions {
-	width: 75%;
+	width: 100%;
 	display: flex;
+	justify-content: center;
 	margin-top: 0.5rem;
 }
 

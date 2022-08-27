@@ -288,6 +288,8 @@
 	height: 17.5rem;
 	width: 32rem;
 
+	position: relative;
+
 	box-shadow: -0.2rem 0 0 0 $white;
 	background-color: $darkGray;
 	
@@ -317,7 +319,7 @@
 }
 
 .searchItemTitle {
-	font-size: 2rem;
+	font-size: 1.85rem;
 	margin-bottom: 0.5rem;
 }
 
@@ -326,6 +328,10 @@
 	border: none;
 	outline: none;
 	cursor: pointer;
+
+	position: absolute;
+	bottom: .5rem;
+	right: .5rem;
 
 	font-size: 1.5rem;
 	color: $white;

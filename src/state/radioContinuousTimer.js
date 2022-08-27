@@ -51,12 +51,15 @@ export const checkForRefresh = (currentSongId) => {
 				`https://api.organlive.com/1/playing/${currentSongId}`
 			)
 
+			if (!response.housekeeping.timeout) {
+				checkForRefresh(currentSongId)
+				return
+			}
+
 			if (response.housekeeping.refresh === "yes") {
 				dispatch(getSong())
 			} else if (response.housekeeping.refresh === "no") {
 				dispatch(addIntermision(response))
-
-				console.log("response timeout", response)
 
 				setTimeout(() => {
 					dispatch(checkForRefresh(currentSongId))

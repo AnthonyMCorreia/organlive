@@ -1,31 +1,40 @@
 .radioInfoArtist {
 	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.radioInfoArtistLinkCont {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .radioInfoArtistPic {
-	max-width: 9rem;
-	max-height: 9rem;
+	max-width: 15rem;
+	max-height: 15rem;
 	margin-right: 0.5rem;
 	border-radius: 0.25rem;
 }
 
 .radioInfoArtistLink {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .radioInfoArtistName {
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
+	font-size: 2.2rem;
+	margin-bottom: 0.5rem;
 }
 
 .radioInfoArtistInfo {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 }
 
 .radioInfoAritstBioBttn {
-	font-size: 1.5rem;
+	font-size: 1.75rem;
 	background-color: $darkBlue;
 	text-decoration: none;
 	border-radius: 0.25rem;

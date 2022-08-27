@@ -32,6 +32,10 @@ export default function ForwardButton() {
 			const howLongBehindPositive = p(howLongBehind)
 			const behindPositiveSeconds = howLongBehindPositive / 1000
 
+			if (howLongBehind === 0) {
+				return
+			}
+
 			if (
 				timeLeft >= tenSecondsToMilliseconds &&
 				howLongBehindPositive >= tenSecondsToMilliseconds
@@ -75,7 +79,6 @@ export default function ForwardButton() {
 			timeLeft is greater than or equal and howLongBehind is less than > plus howLongBehind
 			timeLeft is less than and howLongBehind is greater than or equal > plus timeLeft
 			*/
-
 		}
 	}
 

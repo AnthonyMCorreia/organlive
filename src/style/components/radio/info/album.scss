@@ -1,6 +1,14 @@
 .radioInfoAlbum {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
+.radioInfoAlbumLinkCont {
+	width: 100%;
+
+	display: flex;
+	justify-content: center;
 }
 
 .radioInfoAlbumLink {
@@ -8,12 +16,17 @@
 }
 
 .radioInfoAlbumPic {
-	max-width: 9rem;
-	max-height: 9rem;
+	max-width: 15rem;
+	max-height: 15rem;
 
 	border-radius: 0.5rem;
 
 	margin-right: 0.5rem;
+
+	@media screen and (max-height: $mobile-max-width-portrait) {
+		max-height: 7rem;
+		max-width: 7rem;
+	}
 }
 
 .radioInfoAlbumInfoContainer {
@@ -22,18 +35,31 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-self: center;
 }
 
 .radioInfoAlbumTitle {
-	font-size: 1.6rem;
+	font-size: 2rem;
 	margin-bottom: 0.5rem;
+	font-weight: 300;
+	text-align: center;
 }
 
-.radioInfoAlbumBuyCD {
+.radioInfoAlbumInfoBttnContainer {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.radioInfoAlbumBttn {
 	font-size: 1.35rem;
 	background-color: $darkBlue;
 	text-decoration: none;
 	border-radius: 0.5rem;
 	padding: 0.45rem;
 	display: inline-block;
+
+	&:first-child {
+		margin-right: 1rem;
+	}
 }

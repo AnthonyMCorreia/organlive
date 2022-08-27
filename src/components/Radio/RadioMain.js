@@ -21,7 +21,7 @@ const RadioMain = () => {
 			<div id="radioInner">
 				{radioInfo ? <MusicInfo /> : null}
 				<PlayProgress />
-				{!isMobile && <VolumeControls />}
+				<VolumeControls />
 				{housekeeping && <Listerners />}
 				<span
 					id="radio-x"

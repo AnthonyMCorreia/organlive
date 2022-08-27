@@ -21,7 +21,7 @@ const Home = () => {
 			<div id="home-inner">
 				<h1 id="home-title">Organlive</h1>
 				<p id="home-text">{text}</p>
-				<button id="home-listen-now" onClick={play}>
+				<button className="home-listen-now pointer" onClick={play}>
 					Listen Now
 				</button>
 			</div>
