@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { Route, Routes, useLocation } from "react-router-dom"
+import { Route, Routes, useLocation, useParams } from "react-router-dom"
 
 // Components
 import Home from "./Home"
@@ -10,6 +10,8 @@ import Contact from "./Contact"
 import OtherStations from "./OtherStations"
 import SubmitRecordings from "./SubmitRecordings"
 import SearchResultsList from "./Library/Search/SearchResultsList"
+
+// import Radio from '../radio/src/App'
 
 //Library Items
 import DetailedAlbum from "./Library/detailedItem/DetailedAlbum"
@@ -23,19 +25,30 @@ const AppRoutes = () => {
 		window.scrollTo(0, 0)
 	}, [location])
 
+	console.log("locaiton", useParams())
+
 	return (
 		<Routes>
 			<Route exact path="" element={<Home />} />
 			<Route exact path="contact" element={<Contact />} />
 			<Route exact path="library/albums/:id" element={<DetailedAlbum />} />
-			<Route exact path="library/organists/:id" element={<DetailedOrganists />} />
-			<Route exact path="library/composers/:id" element={<DetailedComposer />} />
+			<Route
+				exact
+				path="library/organists/:id"
+				element={<DetailedOrganists />}
+			/>
+			<Route
+				exact
+				path="library/composers/:id"
+				element={<DetailedComposer />}
+			/>
 			<Route exact path="library" element={<Library />} />
 			<Route exact path="nowplaying" />
 			<Route exact path="otherstations" element={<OtherStations />} />
 			<Route exact path="schedule" element={<Schedule />} />
 			<Route exact path="submitrecordings" element={<SubmitRecordings />} />
 			<Route path="library/search" element={<SearchResultsList />} />
+			{/* <Route path="radio" element={<Radio />} /> */}
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	)
