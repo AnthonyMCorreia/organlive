@@ -10,7 +10,7 @@
 	background-color: $darkBlue;
 
 	height: 10rem;
-	width: 100vw;
+	width: 100%;
 
 	@media screen and (max-height: $mobile-max) {
 		padding: 1rem;
@@ -19,4 +19,9 @@
 
 #footer-text {
 	text-align: center;
+}
+
+.organ-media-fotter-link {
+	color: white;
+	opacity: .8;
 }

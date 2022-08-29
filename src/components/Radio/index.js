@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 
+
 // Components
 import RadioMain from "./RadioMain"
 import RadioSmall from "./RadioSmall"
@@ -9,10 +10,7 @@ const Player = () => {
 
 	return (
 		<>
-			<audio id="stream" src="https://play.organlive.com:7010/320">
-				Your browser does not support this player.
-			</audio>
-			{radioOpen ? <RadioMain /> : isMobile ? null : <RadioSmall />}
+			{/* {radioOpen ? <RadioMain /> : isMobile ? null : <RadioSmall />} */}
 		</>
 	)
 }

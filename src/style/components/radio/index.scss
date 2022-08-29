@@ -1,22 +1,14 @@
 #radio {
-	position: fixed;
-
-	height: 40rem;
-	max-height: 100%;
-
-	width: 35rem;
-	max-width: 95vw;
-
-	bottom: 1rem;
+	width: 100vw;
+	height: 100vh;
 
 	z-index: 1;
 
 	background-color: $darkGray;
-	border-radius: 2rem;
-	box-shadow: 0 0.2rem 2rem $transparent-playerBackground;
 
-	@media screen and (max-height: $mobile-max-width-portrait) {
-		max-height: calc(95vh - $navbar-height);
+	@include iPhoneNotchFix;
+	@media screen and (max-height: $mobile-max) and (max-width: $mobile-max) {
+		// padding: 0 4rem;
 	}
 }
 

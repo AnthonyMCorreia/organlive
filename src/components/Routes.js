@@ -1,5 +1,4 @@
-import React, { useEffect } from "react"
-import { Route, Routes, useLocation, useParams } from "react-router-dom"
+import { Route, Routes } from "react-router-dom"
 
 // Components
 import Home from "./Home"
@@ -10,8 +9,7 @@ import Contact from "./Contact"
 import OtherStations from "./OtherStations"
 import SubmitRecordings from "./SubmitRecordings"
 import SearchResultsList from "./Library/Search/SearchResultsList"
-
-// import Radio from '../radio/src/App'
+import Radio from "./Radio/RadioMain"
 
 //Library Items
 import DetailedAlbum from "./Library/detailedItem/DetailedAlbum"
@@ -19,14 +17,6 @@ import DetailedOrganists from "./Library/detailedItem/DetailedOrganists"
 import DetailedComposer from "./Library/detailedItem/DetailedComposer"
 
 const AppRoutes = () => {
-	const location = useLocation()
-
-	useEffect(() => {
-		window.scrollTo(0, 0)
-	}, [location])
-
-	console.log("locaiton", useParams())
-
 	return (
 		<Routes>
 			<Route exact path="" element={<Home />} />
@@ -48,7 +38,7 @@ const AppRoutes = () => {
 			<Route exact path="schedule" element={<Schedule />} />
 			<Route exact path="submitrecordings" element={<SubmitRecordings />} />
 			<Route path="library/search" element={<SearchResultsList />} />
-			{/* <Route path="radio" element={<Radio />} /> */}
+			<Route path="radio" element={<Radio />} />
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	)

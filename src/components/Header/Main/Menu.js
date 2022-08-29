@@ -16,18 +16,31 @@ const MainMenu = () => {
 
 	const dropdownMenu = useSelector((state) => state.ui.dropdownMenu)
 
+	const radioBttnFunc = () => {
+		window.open(
+			`${window.location.origin}/radio`,
+			null,
+			"popup,width=350,height=400"
+		)
+	}
+
 	return (
 		<div id="header-content">
 			<div id="links">
-				<Link className="link" to="/schedule">
-					Schedule
-				</Link>
 				<Link className="link" to="/library">
 					Library
+				</Link>
+				<Link className="link" to="/schedule">
+					Schedule
 				</Link>
 				<Link className="link" to="/contact">
 					Contact
 				</Link>
+				<button
+					className="material-icons radio-button pointer"
+					onClick={radioBttnFunc}>
+					radio
+				</button>
 				{!dropdownMenu ? (
 					<button
 						className="material-icons link dropdown-arrow"

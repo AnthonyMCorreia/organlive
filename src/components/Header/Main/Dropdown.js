@@ -33,6 +33,7 @@ const Dropdown = forwardRef((props, ref) => {
 						rel="noreferrer"
 						href="http://organ.media/support"
 						target="_blank"
+						onClick={() => toggleMenu(false)}
 						className="dropdown-links">
 						Donate
 					</a>

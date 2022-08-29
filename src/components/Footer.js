@@ -1,12 +1,17 @@
-import React from "react"
-
 const Footer = () => {
 	return (
 		<div id="footer">
 			<p id="footer-text">
-				Organlive is a production of the Organ Media Foundation. Visit
-				organ.media for more information. All content Copyright © 2022 Organ
-				Media Foundation, All Rights Reserved. Thanks for listening!
+				Organlive is a production of the Organ Media Foundation. Visit{" "}
+				<a
+					href="http://organ.media"
+					target="_blank"
+					rel="noreferrer"
+					className="organ-media-fotter-link">
+					organ.media
+				</a>{" "}
+				for more information. All content Copyright © {new Date().getFullYear()}{" "}
+				Organ Media Foundation, All Rights Reserved. Thanks for listening!
 			</p>
 		</div>
 	)

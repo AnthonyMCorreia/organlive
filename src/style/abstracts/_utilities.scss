@@ -7,11 +7,13 @@
 }
 
 .hoverOpacity {
+	transition: all 180ms;
+
 	&:hover {
-		opacity: 80%;
+		color: gray;
 	}
 }
 
 .whiteUnderline {
-	border-bottom: .1rem solid white !important;
+	border-bottom: 0.1rem solid white !important;
 }

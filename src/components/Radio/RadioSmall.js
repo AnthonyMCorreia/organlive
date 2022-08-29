@@ -1,11 +1,7 @@
 import { useRef } from "react"
-import { useDispatch, useSelector } from "react-redux"
-
-// State
-import { toggleRadio } from "../../state/ui"
+import { useSelector } from "react-redux"
 
 const RadioSmall = () => {
-	const dispatch = useDispatch()
 	const nodeRef = useRef(null)
 
 	const isMobile = useSelector((state) => state.ui.isMobile)
@@ -15,7 +11,13 @@ const RadioSmall = () => {
 			<span
 				id="radio-small-icon"
 				className="material-icons"
-				onClick={() => dispatch(toggleRadio(true))}>
+				onClick={() =>
+					window.open(
+						`${window.location.origin}/radio`,
+						null,
+						"popup,width=350,height=400"
+					)
+				}>
 				radio
 			</span>
 		</div>

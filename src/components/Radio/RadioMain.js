@@ -1,3 +1,4 @@
+import {useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux"
 
 // Components
@@ -7,28 +8,27 @@ import VolumeControls from "./VolumeControls"
 import Listerners from "./Listeners"
 
 // State
-import { toggleRadio } from "../../state/ui"
+import {setDocumentTitle} from '../../state/ui'
+
+import { isMobile } from "react-device-detect"
 
 const RadioMain = () => {
 	const dispatch = useDispatch()
 
 	const radioInfo = useSelector((state) => state.radio.song.artist)
 	const housekeeping = useSelector((state) => state.radio.song.housekeeping)
-	const isMobile = useSelector((state) => state.ui.isMobile)
+
+	useEffect(() => {
+		dispatch(setDocumentTitle("Organlive | Radio"))
+	}, [])
 
 	return (
 		<div id="radio">
 			<div id="radioInner">
 				{radioInfo ? <MusicInfo /> : null}
 				<PlayProgress />
-				<VolumeControls />
+				{!isMobile && <VolumeControls />}
 				{housekeeping && <Listerners />}
-				<span
-					id="radio-x"
-					className="material-icons"
-					onClick={() => dispatch(toggleRadio(false))}>
-					close
-				</span>
 			</div>
 		</div>
 	)

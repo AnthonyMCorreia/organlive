@@ -1,10 +1,12 @@
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useLocation } from "react-router-dom"
 
 import Header from "./Header"
 import Routes from "./Routes"
 
 import { useResizeDetector } from "react-resize-detector"
+import { isMobile } from "react-device-detect"
 
 // Components
 import Radio from "./Radio"
@@ -13,13 +15,12 @@ import DocHead from "./DocHead"
 
 // State
 import { toggleMobile } from "../state/ui"
-import { getLibrary } from "../state/library"
 
 function App() {
 	const dispatch = useDispatch()
+	const { pathname } = useLocation()
 
 	const { searchForm } = useSelector((state) => state.ui)
-	const dataFetched = useSelector((state) => state.library.dataFetched)
 
 	const { width, ref } = useResizeDetector()
 
@@ -32,21 +33,26 @@ function App() {
 	}, [dispatch, width])
 
 	useEffect(() => {
-		if (!dataFetched) {
-			dispatch(getLibrary())
+		if (pathname === "/radio" && !isMobile) {
+			document.getElementsByTagName("html")[0].classList.add("overflowR")
+		} else if (pathname !== "/radio") {
+			document.getElementsByTagName("html")[0].classList.remove("overflowR")
 		}
-	}, [])
+	}, [pathname])
 
 	return (
 		<div
 			className="App"
 			style={{ overflow: searchForm ? "hidden" : "visible" }}
 			ref={ref}>
-			<Header />
+			{pathname !== "/radio" && <Header />}
 			<Routes />
-			<Radio />
-			<Footer />
+			{pathname !== "/radio" && <Radio />}
+			{pathname !== "/radio" && <Footer />}
 			<DocHead />
+			<audio id="stream" src="https://play.organlive.com:7010/320">
+				Your browser does not support this player.
+			</audio>
 		</div>
 	)
 }

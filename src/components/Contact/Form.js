@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 
 import TexAreaAutoSize from "react-textarea-autosize"
 import { validate } from "email-validator"

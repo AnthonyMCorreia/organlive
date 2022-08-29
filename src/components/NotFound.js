@@ -1,8 +1,8 @@
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 
 import { setDocumentTitle } from "../state/ui"
-import {notFound} from '../state/library'
+import { notFound } from "../state/library"
 
 const NotFound = () => {
 	const dispatch = useDispatch()

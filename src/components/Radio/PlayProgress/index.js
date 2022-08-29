@@ -1,4 +1,3 @@
-import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 // Components
@@ -9,6 +8,8 @@ import ForwardButton from "./ForwardButton"
 // State
 import { changePlaying, pause, unPause } from "../../../state/radio"
 import { getSong } from "../../../state/radioContinuousTimer"
+
+import { isMobile } from "react-device-detect"
 
 const PlayProgress = () => {
 	const dispatch = useDispatch()
@@ -46,7 +47,10 @@ const PlayProgress = () => {
 
 	return (
 		<>
-			<div className="play-progress-buttons-cont">
+			<div
+				className={
+					isMobile ? "play-progress-buttons-cont play-progress-buttons-cont-mobile" : "play-progress-buttons-cont play-progress-buttons-cont-desktop"
+				}>
 				{song.housekeeping && <BackButton />}
 				<button
 					className="material-icons playButton"

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useLocation } from "react-router-dom"
 
 // State
-import { setListLength, setList } from "../../state/library"
+import { setListLength, setList, getLibrary } from "../../state/library"
 
 // Components
 import AlbumItem from "./listItems/AlbumItem"
@@ -13,8 +13,6 @@ import Skeleton from "./listItems/Skeleton"
 
 const LibraryList = () => {
 	const dispatch = useDispatch()
-
-	const { pathname } = useLocation()
 
 	const [lastLengthChange, setChange] = useState(Date.now())
 
@@ -31,6 +29,7 @@ const LibraryList = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0)
 	}, [selectedList])
+
 
 	useEffect(() => {
 		function scrollFunc() {
@@ -62,6 +61,12 @@ const LibraryList = () => {
 			document.removeEventListener("scroll", scrollFunc)
 		}
 	}, [dataFetched, dispatch, lastLengthChange, listLength, selectedList])
+
+	useEffect(() => {
+		if (!dataFetched) {
+			dispatch(getLibrary())
+		}
+	}, [])
 
 	return (
 		<div id="library-list">

@@ -1,6 +1,6 @@
 @mixin mainBackground {
 	position: relative;
-	width: 100vw;
+	width: 100%;
 	min-height: $main-height;
 
 	background-image: linear-gradient(rgba($black, 0.6), rgba($black, 0.6)),
@@ -11,7 +11,7 @@
 
 @mixin mainGrayBackground {
 	position: relative;
-	width: 100vw;
+	width: 100%;
 	min-height: $main-height;
 
 	background-color: $offBlack;

@@ -1,4 +1,3 @@
-import React from "react"
 import { Link } from "react-router-dom"
 
 import errorPic from "../../../images/not-found.png"
@@ -9,7 +8,9 @@ const OrganistItem = ({ val }) => {
 		elm.target.src = errorPic
 	}
 
-	const imageSrc = `https://s3.amazonaws.com/pictures.organlive.com/organists/${val.picture ? val.picture : errorPic}`
+	const imageSrc = `https://s3.amazonaws.com/pictures.organlive.com/organists/${
+		val.picture ? val.picture : errorPic
+	}`
 
 	return (
 		<Link to={`/library/organists/${val.id}`} className="list-link">

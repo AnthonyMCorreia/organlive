@@ -11,15 +11,15 @@
 }
 
 .radioInfoArtistPic {
-	max-width: 15rem;
-	max-height: 15rem;
+	max-width: 20rem;
+	max-height: 20rem;
 	margin-right: 0.5rem;
 	border-radius: 0.25rem;
 
-	@media screen and (max-height: $mobile-max-width-portrait) {
-		max-height: 7rem;
-		max-width: 7rem;
-	}
+	// @media screen and (max-height: $mobile-max-width-portrait) {
+	// 	max-height: 7rem;
+	// 	max-width: 7rem;
+	// }
 }
 
 .radioInfoArtistLink {
