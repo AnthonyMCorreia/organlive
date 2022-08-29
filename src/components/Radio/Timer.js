@@ -2,9 +2,9 @@ import { useEffect, useRef, useCallback, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 
 //State
-import { changeCurrentTime, setDate } from "../../../state/radio"
+import { changeCurrentTime, setDate } from "../../state/radio"
 
-import { removeSongAndChangeSelected } from "../../../state/radioContinuousTimer"
+import { removeSongAndChangeSelected } from "../../state/radioContinuousTimer"
 
 export default function Timer() {
 	const dispatch = useDispatch()
@@ -36,7 +36,7 @@ export default function Timer() {
 			}
 		} else if (typeof currentDate !== "number") {
 			const newTimePlus1000 = currentTime + 1000
-			
+
 			if (newTimePlus1000 < song_duration) {
 				dispatch(setDate(new Date().getTime()))
 				dispatch(changeCurrentTime(currentTime + 1000))
@@ -71,6 +71,8 @@ export default function Timer() {
 			} else {
 			}
 		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	useEffect(() => {

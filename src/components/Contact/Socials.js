@@ -12,14 +12,14 @@ const Socials = () => {
 				rel="noreferrer">
 				<img src={youtube} alt="youtube" className="social-icon" />
 			</a>
-			<a href="https://twitter.com/organlive" target="_blank" rel="noreferrer">
-				<img src={twitter} alt="twitter" className="social-icon" />
-			</a>
 			<a
 				href="https://www.facebook.com/Organlive/"
 				target="_blank"
 				rel="noreferrer">
 				<img src={facebook} alt="facebook" className="social-icon" />
+			</a>
+			<a href="https://twitter.com/organlive" target="_blank" rel="noreferrer">
+				<img src={twitter} alt="twitter" className="social-icon" />
 			</a>
 			<a
 				href="https://www.instagram.com/organmediafoundation/"

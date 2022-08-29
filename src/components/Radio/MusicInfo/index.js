@@ -15,11 +15,6 @@ const MusicInfo = () => {
 
 	return (
 		<div className="radioInfo">
-			<span
-				className="material-icons expandMore"
-				onClick={() => setMenuOpen(!menuOpen)}>
-				{menuOpen ? "expand_less" : "expand_more"}
-			</span>
 			{menuOpen && <Menu setMenuOpen={setMenuOpen} />}
 			{infoSelected === "work" && <Work />}
 			{infoSelected === "album" && <Album />}

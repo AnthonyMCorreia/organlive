@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useLocation } from "react-router-dom"
 
 // State
 import { setListLength, setList, getLibrary } from "../../state/library"
@@ -24,12 +23,13 @@ const LibraryList = () => {
 
 	useEffect(() => {
 		dispatch(setList(selectedListsCache[selectedType][sort]))
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	useEffect(() => {
 		window.scrollTo(0, 0)
 	}, [selectedList])
-
 
 	useEffect(() => {
 		function scrollFunc() {
@@ -66,6 +66,7 @@ const LibraryList = () => {
 		if (!dataFetched) {
 			dispatch(getLibrary())
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (

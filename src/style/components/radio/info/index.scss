@@ -1,7 +1,8 @@
 .radioInfo {
 	position: absolute;
 	bottom: 11rem;
-	left: 1rem;
+	left: 50%;
+	transform: translateX(-50%);
 
 	width: 94%;
 
@@ -18,7 +19,6 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	// transform: translateX(50%);
 
 	margin: 0;
 	padding: 0;

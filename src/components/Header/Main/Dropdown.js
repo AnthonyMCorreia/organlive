@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 // State
 import { toggleMenu } from "../../../state/ui"
@@ -12,8 +12,6 @@ import useClickOutside from "../../../customHooks/useClickOutside"
 
 const Dropdown = forwardRef((props, ref) => {
 	const dispatch = useDispatch()
-
-	const menuOpen = useSelector((state) => state.ui.dropdownMenu)
 
 	// Closes menu if it's open and clicked outside of it
 	useClickOutside(ref, (e) => {

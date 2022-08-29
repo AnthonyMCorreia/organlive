@@ -51,10 +51,10 @@ export const checkForRefresh = (currentSongId) => {
 				`https://api.organlive.com/1/playing/${currentSongId}`
 			)
 
-			console.log(response);
-
 			if (!response.housekeeping.timeout) {
 				console.log('timeout  undefined');
+				console.log('currentSongId', currentSongId);
+				console.log('response error', response);
 
 				checkForRefresh(currentSongId)
 				return

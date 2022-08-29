@@ -9,6 +9,7 @@ export default function Album() {
 			{album.picture && (
 				<div className="radioInfoAlbumLinkCont">
 					<Link
+						target="_blank"
 						to={`/library/albums/${album.album_id}`}
 						className="radioInfoAlbumLink">
 						<img
@@ -21,6 +22,7 @@ export default function Album() {
 			)}
 			<div className="radioInfoAlbumInfoContainer">
 				<Link
+					target="_blank"
 					to={`/library/albums/${album.album_id}`}
 					className="radioInfoAlbumLink">
 					<h4 className="radioInfoAlbumTitle hoverOpacity">
@@ -28,28 +30,28 @@ export default function Album() {
 					</h4>
 				</Link>
 				<div className="radioInfoAlbumInfoBttnContainer">
-				{album.buycd && (
-					<div>
-						<a
-							href={album.buycd}
-							target="_blank"
-							className="radioInfoAlbumBttn hoverOpacity"
-							rel="noreferrer">
-							Buy CD
-						</a>
-					</div>
-				)}
-				{album.buymp3album && (
-					<div>
-						<a
-							href={album.buymp3album}
-							target="_blank"
-							className="radioInfoAlbumBttn hoverOpacity"
-							rel="noreferrer">
-							Buy MP3 Album
-						</a>
-					</div>
-				)}
+					{album.buycd && (
+						<div>
+							<a
+								href={album.buycd}
+								target="_blank"
+								className="radioInfoAlbumBttn hoverOpacity"
+								rel="noreferrer">
+								Buy CD
+							</a>
+						</div>
+					)}
+					{album.buymp3album && (
+						<div>
+							<a
+								href={album.buymp3album}
+								target="_blank"
+								className="radioInfoAlbumBttn hoverOpacity"
+								rel="noreferrer">
+								Buy MP3 Album
+							</a>
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

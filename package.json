@@ -1,18 +1,10 @@
 {
 	"name": "organlive",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"dependencies": {
-		"@react-aria/select": "^3.6.0",
-		"@testing-library/jest-dom": "^5.16.1",
-		"@testing-library/react": "^12.1.2",
-		"@testing-library/user-event": "^13.5.0",
 		"axios": "^0.24.0",
 		"email-validator": "^2.0.4",
-		"husky": "^7.0.4",
-		"lint-staged": "^12.1.7",
-		"material-design-icons": "^3.0.1",
 		"react": "^17.0.2",
-		"react-aria": "^3.12.0",
 		"react-device-detect": "^2.2.2",
 		"react-dom": "^17.0.2",
 		"react-helmet-async": "^1.2.2",
@@ -50,11 +42,6 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
 	},
 	"devDependencies": {
 		"react-app-rewired": "^2.1.11",

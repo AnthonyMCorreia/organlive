@@ -15,10 +15,11 @@ const Home = () => {
 			window.open(`${window.location.origin}/radio`, null, "popup")
 			return
 		}
+
 		window.open(
 			`${window.location.origin}/radio`,
 			null,
-			"popup,width=500,height=500"
+			"popup=1,width=350,height=400"
 		)
 	}
 
@@ -31,7 +32,9 @@ const Home = () => {
 			<div id="home-inner">
 				<h1 id="home-title">Organlive</h1>
 				<p id="home-text">{text}</p>
-				<button className="home-listen-now pointer" onClick={openRadio}>
+				<button
+					className="home-listen-now pointer hoverOpacity"
+					onClick={openRadio}>
 					Listen Now
 				</button>
 			</div>

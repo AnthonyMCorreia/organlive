@@ -78,7 +78,7 @@ const DetailedOrganist = () => {
 												className="detailedOrganistAlbumContainer"
 												key={value.id}>
 												<Link
-													to={`/albums/${value.id}`}
+													to={`/library/albums/${value.id}`}
 													className="detailedOrganistAlbumLink">
 													<img
 														className="detailedOrganistAlbumImage"

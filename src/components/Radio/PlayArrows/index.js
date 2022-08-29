@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 
 // Components
-import Progress from "./Progress"
 import BackButton from "./BackButton"
 import ForwardButton from "./ForwardButton"
 
@@ -46,10 +45,12 @@ const PlayProgress = () => {
 	}
 
 	return (
-		<>
+		<div className="play-progres-cont">
 			<div
 				className={
-					isMobile ? "play-progress-buttons-cont play-progress-buttons-cont-mobile" : "play-progress-buttons-cont play-progress-buttons-cont-desktop"
+					isMobile
+						? "play-progress-buttons-cont play-progress-buttons-cont-mobile"
+						: "play-progress-buttons-cont play-progress-buttons-cont-desktop"
 				}>
 				{song.housekeeping && <BackButton />}
 				<button
@@ -60,8 +61,7 @@ const PlayProgress = () => {
 				</button>
 				{song.housekeeping && <ForwardButton />}
 			</div>
-			{song.housekeeping && <Progress />}
-		</>
+		</div>
 	)
 }
 

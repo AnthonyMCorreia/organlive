@@ -43,13 +43,13 @@ const MainMenu = () => {
 				</button>
 				{!dropdownMenu ? (
 					<button
-						className="material-icons link dropdown-arrow"
+						className="material-icons link dropdown-arrow pointer"
 						onClick={() => dispatch(toggleMenu(true))}>
 						keyboard_arrow_down
 					</button>
 				) : (
 					<button
-						className="material-icons link dropdown-arrow"
+						className="material-icons link dropdown-arrow pointer"
 						onClick={() => dispatch(toggleMenu(false))}>
 						keyboard_arrow_up
 					</button>

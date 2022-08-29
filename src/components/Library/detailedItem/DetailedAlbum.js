@@ -62,43 +62,47 @@ const DetailedAlbum = () => {
 											{album.albumyear ? ` (${album.albumyear})` : null}
 										</h2>
 									</div>
-									<div id="detailedAlbumOrganist">
-										{!album.organist.name && (
-											<p
-												className={
-													Array.isArray(album.organist)
-														? "detailedAlbumByArray"
-														: "detailedAlbumBy"
-												}>
-												By
-											</p>
-										)}
-										{Array.isArray(album.organist) ? (
-											album.organist.map((organist, index) => {
-												return (
-													<div
-														key={index}
-														className="detailedAlbumOrganistLinkContainer">
-														<Link
-															className="detailedAlbumOrganistLink"
-															to={`/library/organists/${organist.id}`}>
-															{organist.organist[organist.artistID].name}
-														</Link>
-														{index !== album.organist.length - 1 ? ", " : null}
-														{index === album.organist.length - 2
-															? " and "
-															: null}
-													</div>
-												)
-											})
-										) : (
-											<Link
-												className="detailedAlbumOrganistLink"
-												to={`/library/organists/${album.artistID}`}>
-												{album.organist.name}
-											</Link>
-										)}
-									</div>
+									{album.organist.name && (
+										<div id="detailedAlbumOrganist">
+											{album.organist.name && (
+												<p
+													className={
+														Array.isArray(album.organist)
+															? "detailedAlbumByArray"
+															: "detailedAlbumBy"
+													}>
+													By
+												</p>
+											)}
+											{Array.isArray(album.organist) ? (
+												album.organist.map((organist, index) => {
+													return (
+														<div
+															key={index}
+															className="detailedAlbumOrganistLinkContainer">
+															<Link
+																className="detailedAlbumOrganistLink"
+																to={`/library/organists/${organist.id}`}>
+																{organist.organist[organist.artistID].name}
+															</Link>
+															{index !== album.organist.length - 1
+																? ", "
+																: null}
+															{index === album.organist.length - 2
+																? " and "
+																: null}
+														</div>
+													)
+												})
+											) : (
+												<Link
+													className="detailedAlbumOrganistLink"
+													to={`/library/organists/${album.artistID}`}>
+													{album.organist.name}
+												</Link>
+											)}
+										</div>
+									)}
 									<Stars
 										size={15}
 										value={Number(album.albumrating)}

@@ -9,7 +9,6 @@ import { useResizeDetector } from "react-resize-detector"
 import { isMobile } from "react-device-detect"
 
 // Components
-import Radio from "./Radio"
 import Footer from "./Footer"
 import DocHead from "./DocHead"
 
@@ -47,10 +46,12 @@ function App() {
 			ref={ref}>
 			{pathname !== "/radio" && <Header />}
 			<Routes />
-			{pathname !== "/radio" && <Radio />}
 			{pathname !== "/radio" && <Footer />}
 			<DocHead />
-			<audio id="stream" src="https://play.organlive.com:7010/320">
+			<audio
+				id="stream"
+				src="https://play.organlive.com:7010/320"
+				type="audio/mpeg">
 				Your browser does not support this player.
 			</audio>
 		</div>
