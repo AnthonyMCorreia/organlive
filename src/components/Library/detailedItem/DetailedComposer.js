@@ -1,7 +1,6 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useParams, Link } from "react-router-dom"
-import Stars from "react-rating-stars-component"
+import { useParams } from "react-router-dom"
 
 import { setDocumentTitle } from "../../../state/ui"
 
@@ -9,9 +8,7 @@ import { getComposer, setComposer } from "../../../state/library"
 
 import Skeleton from "./Skeleton"
 import NotFound from "../../NotFound"
-import AlbumsList from './AlbumsList'
-
-import errorPic from "../../../images/not-found.png"
+import AlbumsList from "./AlbumsList"
 
 const DetailedComposer = () => {
 	const dispatch = useDispatch()
@@ -72,7 +69,7 @@ const DetailedComposer = () => {
 										Here is some of the work that features {composer.composer}
 									</p>
 								) : null}
-								<AlbumsList albumList={composer.albums}/>
+								<AlbumsList albumList={composer.albums} />
 							</div>
 						</div>
 					) : (

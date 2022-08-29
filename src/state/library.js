@@ -343,6 +343,7 @@ function reducer(state = initialState, action) {
 				...state,
 				listLength: 100,
 				selectedList: state.lists[arrType]
+					// eslint-disable-next-line array-callback-return
 					.filter((item) => {
 						if (item) {
 							if (item.artist) {
@@ -360,6 +361,7 @@ function reducer(state = initialState, action) {
 							}
 						}
 					})
+					// eslint-disable-next-line array-callback-return
 					.sort((a, b) => {
 						const sort = action.sort
 

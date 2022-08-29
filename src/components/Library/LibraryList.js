@@ -73,6 +73,7 @@ const LibraryList = () => {
 		<div id="library-list">
 			{!selectedList.length > 0
 				? arr.map((item, id) => <Skeleton key={id} />)
+				// eslint-disable-next-line array-callback-return
 				: selectedList.slice(0, listLength).map((val) => {
 						const type = val.type
 

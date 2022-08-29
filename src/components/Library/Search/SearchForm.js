@@ -55,6 +55,7 @@ export default function SearchForm() {
 			dispatch(setSort("a-z"))
 			dispatch(setType("album"))
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	useEffect(() => {

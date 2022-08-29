@@ -16,7 +16,7 @@ export default function AlbumsList({ albumList }) {
 		elm.target.src = errorPic
 	}
 
-    // All of this useEffect is to fetch more albums when the user scrolls to the bottom of the list
+	// All of this useEffect is to fetch more albums when the user scrolls to the bottom of the list
 	useEffect(() => {
 		function scrollFunc() {
 			const list = albumsListRef.current
@@ -46,6 +46,8 @@ export default function AlbumsList({ albumList }) {
 		return () => {
 			document.removeEventListener("scroll", scrollFunc)
 		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [lastLengthChange, albumsLength])
 	return (
 		<div className="detailedAlbumList">
