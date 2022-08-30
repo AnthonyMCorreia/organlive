@@ -3,15 +3,15 @@ import axios from "axios"
 import { setSong } from "./radio"
 
 const ADD_SONG = "ADD_SONG"
-const ADD_INTERMISION = "ADD_INTERMISION"
+const ADD_INTERMISSION = "ADD_INTERMISSION"
 const REMOVE_FIRST_SONG = "REMOVE_FIRST_SONG"
 
 export const removeSong = () => ({
 	type: REMOVE_FIRST_SONG
 })
 
-export const addIntermision = (info) => ({
-	type: ADD_INTERMISION,
+export const addIntermission = (info) => ({
+	type: ADD_INTERMISSION,
 	info
 })
 
@@ -52,9 +52,9 @@ export const checkForRefresh = (currentSongId) => {
 			)
 
 			if (!response.housekeeping.timeout) {
-				console.log('timeout  undefined');
-				console.log('currentSongId', currentSongId);
-				console.log('response error', response);
+				console.log("timeout  undefined")
+				console.log("currentSongId", currentSongId)
+				console.log("response error", response)
 
 				checkForRefresh(currentSongId)
 				return
@@ -63,7 +63,7 @@ export const checkForRefresh = (currentSongId) => {
 			if (response.housekeeping.refresh === "yes") {
 				dispatch(getSong())
 			} else if (response.housekeeping.refresh === "no") {
-				dispatch(addIntermision(response))
+				dispatch(addIntermission(response))
 
 				setTimeout(() => {
 					dispatch(checkForRefresh(currentSongId))
@@ -93,12 +93,16 @@ export default function Player(state = initialState, action) {
 				...state,
 				songList: [...state.songList, { ...action.song, timeAdded: Date.now() }]
 			}
-		case ADD_INTERMISION:
+		case ADD_INTERMISSION:
+			console.log(action)
 			return {
 				...state,
 				songList: [
 					...state.songList,
-					{ intermision: true, length: action.housekeeping.timeout }
+					{
+						intermission: true,
+						housekeeping: { timeout: action.info.housekeeping.timeout }
+					}
 				]
 			}
 		case REMOVE_FIRST_SONG:

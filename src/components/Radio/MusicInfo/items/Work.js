@@ -1,19 +1,26 @@
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
 export default function Work() {
+	const [intermission, setIntermission] = useState(false)
+
 	const work = useSelector((state) => state.radio.song.work)
 	let list = useSelector((state) => state.continuousTimer.songList)
 
-	let intermisionCheck = false
-
-	if (list[0]) {
-		if (list[0].intermision) intermisionCheck = true
-	}
+	useEffect(() => {
+		if (list[0]) {
+			if (list[0].intermission) {
+				setIntermission(true)
+			} else if (!list[0].intermission) {
+				setIntermission(false)
+			}
+		}
+	}, [list])
 
 	return (
 		<>
-			{intermisionCheck ? (
-				<p className="radioInfoIntermision">Intermision</p>
+			{intermission ? (
+				<p className="radioInfoIntermission">Intermission</p>
 			) : (
 				<>
 					{work && (

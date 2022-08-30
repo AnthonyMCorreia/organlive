@@ -11,8 +11,8 @@ const millisecondsToMinutesAndSeconds = (milliseconds) => {
 	milliseconds = +milliseconds
 	const seconds = Math.floor(milliseconds / 1000)
 
-	let minutes = Math.floor(seconds / 60)
-	let remainingSeconds = seconds - minutes * 60
+	let minutes = Math.abs(Math.floor(seconds / 60))
+	let remainingSeconds = Math.abs(seconds - minutes * 60)
 
 	if (`${remainingSeconds}`.length === 1) {
 		remainingSeconds = `0${remainingSeconds}`
@@ -28,6 +28,7 @@ const Progress = () => {
 	const songTotal = useSelector(
 		(state) => state.radio.song.housekeeping.song_duration
 	)
+	const intermission = useSelector(state => state.radio.song.intermission)
 
 	return (
 		<div id="progress-container">
@@ -38,7 +39,7 @@ const Progress = () => {
 				</small>
 			) : null}
 			<div id="progress-background">
-				{songTotal ? (
+				{songTotal && !intermission ? (
 					<div
 						id="progress"
 						style={{
@@ -47,7 +48,7 @@ const Progress = () => {
 						}}></div>
 				) : null}
 			</div>
-			{songTotal ? (
+			{songTotal && !intermission ? (
 				<small className="song-nums">
 					{millisecondsToMinutesAndSeconds(songTotal)}
 				</small>
