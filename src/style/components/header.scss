@@ -239,8 +239,6 @@
 	align-items: flex-end;
 	text-align: right;
 
-	// @include iPhoneNotchFix;
-
 	@media screen and (max-width: $mobile-max-landscape-width) and (orientation: landscape) {
 		font-size: 3rem;
 	}
@@ -275,6 +273,4 @@
 
 #x-toggle {
 	font-size: 4.5rem;
-
-	// @include iPhoneNotchFix;
 }

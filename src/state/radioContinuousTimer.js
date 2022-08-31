@@ -51,15 +51,6 @@ export const checkForRefresh = (currentSongId) => {
 				`https://api.organlive.com/1/playing/${currentSongId}`
 			)
 
-			if (!response.housekeeping.timeout) {
-				console.log("timeout  undefined")
-				console.log("currentSongId", currentSongId)
-				console.log("response error", response)
-
-				checkForRefresh(currentSongId)
-				return
-			}
-
 			if (response.housekeeping.refresh === "yes") {
 				dispatch(getSong())
 			} else if (response.housekeeping.refresh === "no") {
@@ -94,7 +85,6 @@ export default function Player(state = initialState, action) {
 				songList: [...state.songList, { ...action.song, timeAdded: Date.now() }]
 			}
 		case ADD_INTERMISSION:
-			console.log(action)
 			return {
 				...state,
 				songList: [

@@ -18,13 +18,6 @@ const reducer = combineReducers({
 	continuousTimer
 })
 
-// const middleware =
-// 	process.env.NODE_ENV === "development"
-// 		? composeWithDevTools(
-// 				applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
-// 		  )
-// 		: composeWithDevTools(applyMiddleware(thunkMiddleware))
-
 const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
 const store = createStore(reducer, middleware)

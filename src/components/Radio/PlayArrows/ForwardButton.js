@@ -70,15 +70,6 @@ export default function ForwardButton() {
 				dispatch(jumpForward(timeLeft))
 				audio.currentTime = audio.currentTime + timeLeftInSeconds
 			}
-
-			/* 
-			both are greater than or equal > plus 10
-			both are less than
-				timeLeft is greater than howLongBehind > plus howlongBehind
-				timeLeft is less than howLongBehind > plus timeLeft
-			timeLeft is greater than or equal and howLongBehind is less than > plus howLongBehind
-			timeLeft is less than and howLongBehind is greater than or equal > plus timeLeft
-			*/
 		}
 	}
 
