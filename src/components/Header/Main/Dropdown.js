@@ -21,6 +21,11 @@ const Dropdown = forwardRef((props, ref) => {
 		}
 	})
 
+	const donateClickFunc = () => {
+		dispatch(toggleMenu(false))
+		console.log("click")
+	}
+
 	return (
 		<div id="dropdown" ref={ref}>
 			<nav className="dropdown-list">
@@ -31,7 +36,7 @@ const Dropdown = forwardRef((props, ref) => {
 						rel="noreferrer"
 						href="http://organ.media/support"
 						target="_blank"
-						onClick={() => toggleMenu(false)}
+						onClick={donateClickFunc}
 						className="dropdown-links">
 						Donate
 					</a>
