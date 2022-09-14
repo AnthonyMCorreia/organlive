@@ -98,7 +98,7 @@ export default function Player(state = initialState, action) {
 					{
 						intermission: true,
 						housekeeping: {
-							timeout: action.info.housekeeping.timeout
+							...action.info.housekeeping
 						},
 						timeAdded: Date.now()
 					}
