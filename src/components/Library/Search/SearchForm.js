@@ -1,37 +1,82 @@
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-import { setError, setSort, setType, setText } from "../../../state/search"
+import { setError } from "../../../state/search"
 import { toggleSearch } from "../../../state/ui"
 
 export default function SearchForm() {
 	const dispatch = useDispatch()
 
+	const [titleText, setTitleText] = useState("")
+	const titleRef = useRef(null)
+
+	const [organistText, setOrganistText] = useState("")
+	const organistRef = useRef(null)
+
+	const [composerText, setComposerText] = useState("")
+	const composerRef = useRef(null)
+
+	const [albumText, setAlbumText] = useState("")
+	const albumRef = useRef(null)
+
+	const [sort, setSort] = useState("a-z")
+
 	const navigate = useNavigate()
 
-	const inputLabelRef = useRef(null)
-
 	const { error, results } = useSelector((state) => state.search)
-	const { text, sort, type } = useSelector((state) => state.search.params)
 
 	const submitHandler = (e) => {
 		e.preventDefault()
-		if (text.length < 1) {
+		if (!titleText && !organistText && !composerText && !albumText) {
 			dispatch(setError("Text is required"))
 			return
-		} else if (text.length > 0) {
+		} else if (titleText && organistText && composerText && albumText) {
 			dispatch(setError(""))
 		}
 
-		navigate(`/library/search?text=${text}&sort=${sort}&type=${type}`)
+		let params
+
+		if (titleText) {
+			if (!params) {
+				params = `title=${titleText}`
+			} else {
+				params += `&title=${titleText}`
+			}
+		}
+
+		if (organistText) {
+			if (!params) {
+				params = `organist=${organistText}`
+			} else {
+				params += `&organist=${organistText}`
+			}
+		}
+
+		if (composerText) {
+			if (!params) {
+				params = `composer=${composerText}`
+			} else {
+				params += `&composer=${composerText}`
+			}
+		}
+
+		if (albumText) {
+			if (!params) {
+				params = `album=${albumText}`
+			} else {
+				params += `&album=${albumText}`
+			}
+		}
+
+		navigate(`/library/search?${params}&sort=${sort}`)
 	}
 
-	const inputChange = (elm) => {
+	const inputChange = (elm, func, ref) => {
 		elm.preventDefault()
 
 		const value = elm.target.value
-		const label = inputLabelRef.current
+		const label = ref.current
 
 		if (value === "") {
 			label.style.opacity = "1"
@@ -39,21 +84,18 @@ export default function SearchForm() {
 			label.style.opacity = "0"
 		}
 
-		dispatch(setText(elm.target.value))
+		func(elm.target.value)
 	}
 
 	useEffect(() => {
-		document.getElementsByTagName("html")[0].style.overflow = "hidden"
-
 		dispatch(setError(""))
 
 		return () => {
-			document.getElementsByTagName("html")[0].style.overflow = "auto"
-
-			// Reset search params
-			dispatch(setText(""))
-			dispatch(setSort("a-z"))
-			dispatch(setType("album"))
+			// Reset search form
+			setTitleText("")
+			setOrganistText("")
+			setComposerText("")
+			setAlbumText("")
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
@@ -67,69 +109,85 @@ export default function SearchForm() {
 	return (
 		<div className="search-form-cont">
 			<div className="search-form-inner">
-				<span
-					className="material-icons search-x"
-					onClick={() => dispatch(toggleSearch(false))}>
-					close
-				</span>
 				<h3 className="searchFormTitle">Search Our Library</h3>
 				<form onSubmit={submitHandler} className="search-form">
-					<div className="searchInputLabelContainer">
-						<input
-							autoFocus
-							type="text"
-							id="searchInput"
-							className="searchInputWidth"
-							name="searchInput"
-							value={text}
-							onChange={inputChange}
-						/>
-						<label
-							id="searchInputLabel"
-							ref={inputLabelRef}
-							htmlFor="searchInput">
-							Search
-						</label>
-					</div>
-					<div className="labelSelectArrowCont">
-						<label htmlFor="searchSelect" className="selectSearchLabel">
-							Type
-						</label>
-						<div className="selectArrowCont selectArrowContWidth">
-							<select
-								name="lists"
-								className="searchSelect searchSelectWidth"
-								onChange={(e) => dispatch(setType(e.target.value))}>
-								<option value="albums">Albums</option>
-								<option value="organists">Organists</option>
-								<option value="composers">Composers</option>
-							</select>
-							<span className="material-icons selectArrowDown">
-								expand_more
-							</span>
+					<div className="searchFormInputsCont">
+						<div className="searchInputLabelContainer">
+							<input
+								type="text"
+								id="searchInput"
+								className="searchInputWidth"
+								name="searchInput"
+								value={titleText}
+								onChange={(e) => inputChange(e, setTitleText, titleRef)}
+							/>
+							<label id="searchInputLabel" ref={titleRef} htmlFor="searchInput">
+								Title
+							</label>
+						</div>
+						<div className="searchInputLabelContainer">
+							<input
+								type="text"
+								id="searchInput"
+								className="searchInputWidth"
+								name="searchInput"
+								value={organistText}
+								onChange={(e) => inputChange(e, setOrganistText, organistRef)}
+							/>
+							<label
+								id="searchInputLabel"
+								ref={organistRef}
+								htmlFor="searchInput">
+								Organist
+							</label>
+						</div>
+						<div className="searchInputLabelContainer">
+							<input
+								type="text"
+								id="searchInput"
+								className="searchInputWidth"
+								name="searchInput"
+								value={composerText}
+								onChange={(e) => inputChange(e, setComposerText, composerRef)}
+							/>
+							<label
+								id="searchInputLabel"
+								ref={composerRef}
+								htmlFor="searchInput">
+								Composer
+							</label>
+						</div>
+						<div className="searchInputLabelContainer">
+							<input
+								type="text"
+								id="searchInput"
+								className="searchInputWidth"
+								name="searchInput"
+								value={albumText}
+								onChange={(e) => inputChange(e, setAlbumText, albumRef)}
+							/>
+							<label id="searchInputLabel" ref={albumRef} htmlFor="searchInput">
+								Album
+							</label>
 						</div>
 					</div>
 					<div className="labelSelectArrowCont">
 						<label htmlFor="searchSelect" className="selectSearchLabel">
-							Order By
+							Order
 						</label>
 						<div className="selectArrowCont selectArrowContWidth">
 							<select
 								className="searchSelect searchSelectWidth"
-								onChange={(e) => dispatch(setSort(e.target.value))}>
+								onChange={(e) => setSort(e.target.value)}>
 								<option value="a-z" className="sort-options">
 									Name: A-Z
 								</option>
 								<option value="z-a" className="sort-options">
 									Name: Z-A
 								</option>
-								{type === "albums" ? (
-									<>
-										<option value="rating" className="sort-options">
-											Rating
-										</option>
-									</>
-								) : null}
+								<option value="rating" className="sort-options">
+									Rating
+								</option>
 							</select>
 							<span className="material-icons selectArrowDown">
 								expand_more

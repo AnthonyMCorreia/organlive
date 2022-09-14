@@ -7,6 +7,9 @@ export default function Work() {
 	const work = useSelector((state) => state.radio.song.work)
 	let list = useSelector((state) => state.continuousTimer.songList)
 
+	console.log("intermission check in work component", list[0].intermission)
+	console.log("isIntermission var work component", intermission)
+	console.log("continuous timer songlist", list)
 	useEffect(() => {
 		if (list[0]) {
 			if (list[0].intermission) {

@@ -6,12 +6,17 @@ const SET_LIST = "SET_LIST"
 const SET_ALBUM = "SET_ALBUM"
 const SET_COMPOSER = "SET_COMPOSER"
 const SET_ORGANIST = "SET_ORGANIST"
-const SET_FILTER = "SET_FILTER"
-const SET_FILTERED_ARRAY = "SET_FILTERED_ARRAY"
-const SET_SORT = "SET_SORT"
 const SELECTED_LIST = "SELECTED_LIST"
 const CACHE_LIST = "CACHE_LIST"
 const NOT_FOUND = "NOT_FOUND"
+const CACHE_ITEM = "CACHE_ITEM"
+
+export const cacheItem = (itemType, item, id) => ({
+	type: CACHE_ITEM,
+	itemType,
+	item,
+	id
+})
 
 export const notFound = (notFound) => ({
 	type: NOT_FOUND,
@@ -30,23 +35,10 @@ export const selectList = (list) => ({
 	list
 })
 
-export const setSort = (sort) => ({
-	type: SET_SORT,
-	sort
-})
-
-export const setFilter = (filter) => ({
-	type: SET_FILTER,
-	filter
-})
-
-export const setFilteredArray = () => ({
-	type: SET_FILTERED_ARRAY
-})
-
-export const setComposer = (composer) => ({
+export const setComposer = (composer, id) => ({
 	type: SET_COMPOSER,
-	composer
+	composer,
+	id
 })
 
 export const setOrganist = (organist) => ({
@@ -59,9 +51,10 @@ export const setList = (list) => ({
 	list
 })
 
-export const setAlbum = (album) => ({
+export const setAlbum = (album, id) => ({
 	type: SET_ALBUM,
-	album
+	album,
+	id
 })
 
 const setLibrary = (library) => ({
@@ -179,7 +172,9 @@ export const getAlbum = (albumId) => {
 			}
 
 			dispatch(setAlbum(albumAndOrganist))
+			dispatch(cacheItem("albums", albumAndOrganist, albumId))
 		} catch (error) {
+			console.log("error", error)
 			if (error.response.status === 404) {
 				dispatch(notFound(true))
 			}
@@ -210,6 +205,7 @@ export const getOrganist = (id) => {
 			organist.albums = albumList
 
 			dispatch(setOrganist(organist))
+			dispatch(cacheItem("organists", organist, organist.id))
 		} catch (error) {
 			if (error.response.status === 404) {
 				dispatch(notFound(true))
@@ -239,6 +235,7 @@ export const getComposer = (id) => {
 			composer.albums = albums
 
 			dispatch(setComposer(composer))
+			dispatch(cacheItem("composers", composer, id))
 		} catch (error) {
 			if (error.response.status === 404) {
 				dispatch(notFound(true))
@@ -265,13 +262,16 @@ const initialState = {
 			"z-a": []
 		}
 	},
+	itemsCache: {
+		albums: {},
+		organists: {},
+		composers: {}
+	},
 	selectedType: "albums",
 	listLength: 100,
 	selectedAlbum: null,
 	selectedOrganist: null,
 	selectedComposer: null,
-	filter: "",
-	sort: "a-z",
 	notFound: false,
 	dataFetched: false
 }
@@ -327,71 +327,36 @@ function reducer(state = initialState, action) {
 				selectedType: action.list
 			}
 		case SET_ALBUM:
-			return { ...state, selectedAlbum: action.album }
+			return {
+				...state,
+				selectedAlbum: action.album
+			}
 		case SET_ORGANIST:
-			return { ...state, selectedOrganist: action.organist }
+			return {
+				...state,
+				selectedOrganist: action.organist
+			}
 		case SET_COMPOSER:
-			return { ...state, selectedComposer: action.composer }
+			return {
+				...state,
+				selectedComposer: action.composer
+			}
+		case CACHE_ITEM:
+			return {
+				...state,
+				itemsCache: {
+					...state.itemsCache,
+					[action.itemType]: {
+						...state.itemsCache[action.itemType],
+						[action.id]: action.item
+					}
+				}
+			}
 		case SET_LIST:
 			return { ...state, selectedList: action.list }
-		case SET_FILTER:
-			return { ...state, filter: action.filter }
-		case SET_FILTERED_ARRAY:
-			const arrType = state.selectedType
-
-			return {
-				...state,
-				listLength: 100,
-				selectedList: state.lists[arrType]
-					// eslint-disable-next-line array-callback-return
-					.filter((item) => {
-						if (item) {
-							if (item.artist) {
-								return item.artist
-									.toLowerCase()
-									.includes(state.filter.toLowerCase())
-							} else if (item.composer) {
-								return item.composer
-									.toLowerCase()
-									.includes(state.filter.toLowerCase())
-							} else if (item.album) {
-								return item.album
-									.toLowerCase()
-									.includes(state.filter.toLowerCase())
-							}
-						}
-					})
-					// eslint-disable-next-line array-callback-return
-					.sort((a, b) => {
-						const sort = action.sort
-
-						if (a.artist && b.artist) {
-							if (sort === "a-z") {
-								return a.artist.toLowerCase() > b.artist.toLowerCase() ? 1 : -1
-							}
-						} else if (a.album && b.album) {
-							if (sort === "a-z") {
-								return a.album.toLowerCase() > b.album.toLowerCase() ? 1 : -1
-							}
-						} else {
-							if (sort === "a-z") {
-								return a.composer.toLowerCase() > b.composer.toLowerCase()
-									? 1
-									: -1
-							}
-						}
-					})
-			}
-		case SET_SORT:
-			return {
-				...state,
-				sort: action.sort
-			}
 		case CACHE_LIST:
-			const listTypeMinusS = state.selectedType.slice(0, -1)
-
 			const list = action.value.map((value) => {
-				return { ...value, type: listTypeMinusS }
+				return { ...value, type: action.listType }
 			})
 
 			return {

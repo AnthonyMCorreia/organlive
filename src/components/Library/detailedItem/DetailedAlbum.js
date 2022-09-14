@@ -20,6 +20,7 @@ const DetailedAlbum = () => {
 	const paramId = useParams().id
 	const album = useSelector((state) => state.library.selectedAlbum)
 	const notFound = useSelector((state) => state.library.notFound)
+	const cachedAlbum = useSelector((state) => state.library.itemsCache.albums)
 
 	const imageError = (elm) => {
 		elm.target.onError = null
@@ -37,7 +38,11 @@ const DetailedAlbum = () => {
 	}, [dispatch, album])
 
 	useEffect(() => {
-		dispatch(getAlbum(paramId))
+		if (cachedAlbum[paramId]) {
+			dispatch(setAlbum(cachedAlbum[paramId]))
+		} else if (!cachedAlbum[paramId]) {
+			dispatch(getAlbum(paramId))
+		}
 
 		return () => {
 			dispatch(setAlbum(null))
@@ -46,6 +51,10 @@ const DetailedAlbum = () => {
 
 	const imageLoaded = (elm) => {
 		elm.target.classList.remove("albumImageNotLoaded")
+	}
+
+	const songRequestFunc = (songId) => {
+		window.open(`https://api.organlive.com/request/${songId}`)
 	}
 
 	return (
@@ -185,6 +194,15 @@ const DetailedAlbum = () => {
 																	target="_blank">
 																	Buy Sheet Music
 																</a>
+															</div>
+														)}
+														{track.requestavailable && (
+															<div className="detailedAlbumSongListContainer">
+																<button
+																	onClick={() => songRequestFunc(track.songid)}
+																	className="detailedAlbumSongListSheetMusicBttn">
+																	Request
+																</button>
 															</div>
 														)}
 													</div>

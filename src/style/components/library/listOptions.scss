@@ -1,0 +1,25 @@
+.libraryListOptions {
+    width: 55rem;
+    max-width: 98%;
+}
+
+.libraryListOptionsTitle {
+    font-size: 4rem;
+    text-decoration: underline;
+    margin-bottom: 1rem;
+    font-weight: 300;
+}
+
+.libraryListOptionsWords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.libraryListOptionsWord {
+    text-decoration: none;
+    color: $white;
+
+    font-size: 3rem;
+    font-weight: 300;
+}

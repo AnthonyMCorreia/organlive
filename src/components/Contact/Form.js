@@ -1,17 +1,20 @@
 import { useState } from "react"
+import axios from "axios"
 
 import TexAreaAutoSize from "react-textarea-autosize"
 import { validate } from "email-validator"
+import { toast } from "react-hot-toast"
 
 const Contact = () => {
 	const [name, setName] = useState("")
-	const [email, setEmail] = useState("")
 	const [message, setMessage] = useState("")
 
+	const [email, setEmail] = useState("")
 	const [validEmail, setValidEmail] = useState(true)
+
 	const [submitAttempt, setSubmitAttempt] = useState(false)
 
-	const submitHandler = (evt) => {
+	const submitHandler = async (evt) => {
 		evt.preventDefault()
 		setSubmitAttempt(true)
 
@@ -19,20 +22,24 @@ const Contact = () => {
 			setValidEmail(false)
 		}
 
-		if (
-			name !== "" &&
-			name &&
-			name !== "" &&
-			name &&
-			email !== "" &&
-			email &&
-			validEmail
-		) {
-			// const formContent = {
-			// 	name,
-			// 	email,
-			// 	message
-			// }
+		if (name && message && email && validEmail) {
+			const formContent = {
+				name,
+				email,
+				message
+			}
+
+			const info = axios.post("api.orgalnive.com/send", formContent)
+
+			toast.promise(info, {
+				loading: "Sending...",
+				success: "Message Sent!",
+				error: (e) => `Something went wrong: ${e.errors[0]}`,
+				icon: "🎵",
+				style: {
+					padding: "0.5rem"
+				}
+			})
 		}
 	}
 
@@ -79,11 +86,10 @@ const Contact = () => {
 					className="contact-form-input"
 					onChange={changeHandler}
 					required
-					autoComplete="off"
 					value={name}
 				/>
 				<label className="contact-label" htmlFor="name">
-					{name === "" && !name && submitAttempt ? (
+					{!name && submitAttempt ? (
 						<span className="contact-input-error">Please Enter Your Name</span>
 					) : null}
 					<span className="label-content">Name</span>
@@ -119,7 +125,7 @@ const Contact = () => {
 					value={message}
 				/>
 				<label id="contact-message-label" htmlFor="message">
-					{!message && message === "" && submitAttempt ? (
+					{!message && submitAttempt ? (
 						<span className="contact-input-error">Please Enter A Message</span>
 					) : null}
 					<span id="contact-message-content">Message</span>

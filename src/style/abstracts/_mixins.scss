@@ -1,5 +1,4 @@
 @mixin mainBackground {
-	position: relative;
 	width: 100%;
 	min-height: $main-height;
 
@@ -10,11 +9,11 @@
 }
 
 @mixin mainGrayBackground {
-	position: relative;
 	width: 100%;
 	min-height: $main-height;
 
 	background-color: $offBlack;
+	position: relative;
 }
 
 @mixin centerElm {
@@ -28,5 +27,5 @@
 }
 
 @mixin pointer {
-		cursor: pointer;
+	cursor: pointer;
 }

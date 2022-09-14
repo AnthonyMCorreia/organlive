@@ -5,8 +5,8 @@ import { useDispatch } from "react-redux"
 import { setDocumentTitle } from "../../state/ui"
 
 // Components
-import Search from "./Search"
-import LibraryList from "./LibraryList"
+import Search from "./Search/SearchForm"
+import ListOptions from "./ListOptions"
 
 const Library = () => {
 	const dispatch = useDispatch()
@@ -19,7 +19,7 @@ const Library = () => {
 	return (
 		<div id="library">
 			<Search />
-			<LibraryList />
+			<ListOptions />
 		</div>
 	)
 }

@@ -51,7 +51,7 @@
 	border: none;
 	outline: none;
 	background: transparent;
-	background-color: $darkGray;
+	background-color: $offBlack;
 
 	-webkit-appearance: none;
 	box-shadow: none;
@@ -96,18 +96,7 @@
 	display: grid;
 	place-items: center;
 
-	overflow: auto;
-
-	position: fixed;
-	height: 100%;
-	width: 100vw;
-	top: 0;
-	left: 0;
 	padding: 1rem;
-
-	background-color: rgba(0, 0, 0, 0.7);
-
-	z-index: 11;
 }
 
 .search-form-inner {
@@ -117,11 +106,10 @@
 
 	position: relative;
 
-	background-color: $offBlack;
+	background-color: $darkGray;
 	box-shadow: -0.2rem 0 0 0 #fff;
-	border-radius: 0.45rem;
 
-	padding: 6rem 3rem;
+	padding: 2rem 1rem;
 
 	& > * {
 		margin: 2rem 0;
@@ -132,8 +120,8 @@
 	}
 
 	@media screen and (min-width: $tablet-max) {
-		width: 40rem;
-		height: 45rem;
+		// width: 40rem;
+		// height: 45rem;
 	}
 }
 
@@ -143,11 +131,20 @@
 	display: flex;
 	flex-direction: column;
 
-	width: 80%;
+	width: 55rem;
+	max-width: 98%;
 
 	& > * {
 		margin: 1rem 0;
 	}
+}
+
+.searchFormInputsCont {
+	width: 100%;
+
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 2fr));
+	grid-gap: 1rem;
 }
 
 .searchBttnMessage {
@@ -159,18 +156,6 @@
 	font-size: 1.75rem;
 	margin-left: 1rem;
 	color: rgb(255, 34, 34);
-}
-
-.search-x {
-	font-size: 2.5rem;
-	cursor: pointer;
-
-	position: absolute;
-	top: 0;
-	right: 0;
-
-	margin: 0;
-	padding: 0;
 }
 
 // Title
@@ -198,6 +183,16 @@
 	width: 100%;
 }
 
+.libraryListSortContainer {
+	position: absolute;
+	top: 1rem;
+	right: -1rem;
+}
+
+.libraryListSortInput {
+	background-color: $darkGray;
+}
+
 // Text Input
 
 .searchInputLabelContainer {
@@ -206,10 +201,6 @@
 	position: relative;
 
 	width: 25rem;
-
-	@media screen and (max-width: 29rem) {
-		max-width: 100%;
-	}
 }
 
 #searchInput {
@@ -224,7 +215,7 @@
 	font-weight: 300;
 	color: $white;
 
-	background-color: #2a2a2a;
+	background-color: $offBlack;
 	border-radius: 0.25rem;
 
 	height: 3.5rem;
@@ -255,7 +246,7 @@
 	color: $white;
 	font-weight: 300;
 
-	background-color: $darkGray;
+	background-color: $offBlack;
 }
 
 // No results component
@@ -272,7 +263,6 @@
 	font-size: 3.5rem;
 }
 
-
 // Search Results
 
 // Container
@@ -284,7 +274,7 @@
 
 	box-shadow: -0.2rem 0 0 0 $white;
 	background-color: $darkGray;
-	
+
 	padding: 1rem;
 }
 
@@ -304,7 +294,6 @@
 
 	margin-bottom: 0.5rem;
 
-	
 	&:hover {
 		opacity: 70%;
 	}
@@ -319,11 +308,10 @@
 	background: none;
 	border: none;
 	outline: none;
-	cursor: pointer;
 
 	position: absolute;
-	bottom: .5rem;
-	right: .5rem;
+	bottom: 0.5rem;
+	right: 0.5rem;
 
 	font-size: 1.5rem;
 	color: $white;
@@ -332,10 +320,4 @@
 	background-color: #2d2d2d;
 
 	padding: 0.5rem 1rem;
-	transition: all 0.25s;
-
-	&:hover {
-		background: $bttnColor;
-		color: $white;
-	}
 }

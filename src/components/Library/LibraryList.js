@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
+import { useParams, useSearchParams, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 
 // State
-import { setListLength, setList, getLibrary } from "../../state/library"
+import { setListLength, setList, getList } from "../../state/library"
 
 // Components
 import AlbumItem from "./listItems/AlbumItem"
@@ -12,25 +13,41 @@ import Skeleton from "./listItems/Skeleton"
 
 const LibraryList = () => {
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	const [lastLengthChange, setChange] = useState(Date.now())
 
-	const { selectedList, listLength, selectedListsCache, selectedType, sort } =
-		useSelector((state) => state.library)
+	// URL Info
+	const { type: typeParam } = useParams()
+	const [searchParams] = useSearchParams()
+	const sortParam = searchParams.get("sort")
+
+	const { selectedList, listLength, selectedListsCache } = useSelector(
+		(state) => state.library
+	)
 	const dataFetched = useSelector((state) => state.library.dataFetched)
 
+	// Placeholder array while list is being requested
 	const arr = new Array(100).fill(null)
 
-	useEffect(() => {
-		dispatch(setList(selectedListsCache[selectedType][sort]))
+	// The below code will default to sort a-z if there isn't a url param specifiying it
+	const sortWithDefaultValue = sortParam ? sortParam : "a-z"
 
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	useEffect(() => {
+		if (selectedListsCache[typeParam][sortWithDefaultValue].length > 0) {
+			dispatch(setList(selectedListsCache[typeParam][sortWithDefaultValue]))
+		} else if (
+			selectedListsCache[typeParam][sortWithDefaultValue].length === 0
+		) {
+			dispatch(getList(typeParam, sortWithDefaultValue))
+		}
+	}, [typeParam, sortWithDefaultValue, selectedListsCache, dispatch])
 
 	useEffect(() => {
 		window.scrollTo(0, 0)
 	}, [selectedList])
 
+	// This whole useEffect adds more items to the end of the list when the user is getting close the the bottom of the list
 	useEffect(() => {
 		function scrollFunc() {
 			const list = document.getElementById("library-list")
@@ -62,29 +79,47 @@ const LibraryList = () => {
 		}
 	}, [dataFetched, dispatch, lastLengthChange, listLength, selectedList])
 
-	useEffect(() => {
-		if (!dataFetched) {
-			dispatch(getLibrary())
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
 	return (
-		<div id="library-list">
-			{!selectedList.length > 0
-				? arr.map((item, id) => <Skeleton key={id} />)
-				// eslint-disable-next-line array-callback-return
-				: selectedList.slice(0, listLength).map((val) => {
-						const type = val.type
+		<div id="library">
+			<div className="labelSelectArrowCont libraryListSort libraryListSortContainer">
+				<div className="selectArrowCont selectArrowContWidth">
+					<select
+						value={sortWithDefaultValue}
+						className="searchSelect searchSelectWidth libraryListSortInput"
+						onChange={(e) =>
+							navigate(`/library/list/${typeParam}?sort=${e.target.value}`)
+						}>
+						<option value="a-z" className="sort-options">
+							Name: A-Z
+						</option>
+						<option value="z-a" className="sort-options">
+							Name: Z-A
+						</option>
+						{typeParam === "albums" && (
+							<option value="rating" className="sort-options">
+								Rating
+							</option>
+						)}
+					</select>
+					<span className="material-icons selectArrowDown">expand_more</span>
+				</div>
+			</div>
+			<div id="library-list">
+				{!selectedList.length > 0
+					? arr.map((item, id) => <Skeleton key={id} />)
+					: // eslint-disable-next-line array-callback-return
+					  selectedList.slice(0, listLength).map((val) => {
+							const type = val.type
 
-						if (type === "album" || type === "albums") {
-							return <AlbumItem val={val} key={val.id} />
-						} else if (type === "organist" || type === "organists") {
-							return <OrganistItem val={val} key={val.id} />
-						} else if (type === "composer" || type === "composers") {
-							return <ComposerItem val={val} key={val.id} />
-						}
-				  })}
+							if (type === "album" || type === "albums") {
+								return <AlbumItem val={val} key={val.id} />
+							} else if (type === "organist" || type === "organists") {
+								return <OrganistItem val={val} key={val.id} />
+							} else if (type === "composer" || type === "composers") {
+								return <ComposerItem val={val} key={val.id} />
+							}
+					  })}
+			</div>
 		</div>
 	)
 }

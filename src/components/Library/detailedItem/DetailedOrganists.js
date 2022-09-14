@@ -17,6 +17,9 @@ const DetailedOrganist = () => {
 	const { id } = useParams()
 	const organist = useSelector((state) => state.library.selectedOrganist)
 	const notFound = useSelector((state) => state.library.notFound)
+	const organistsCache = useSelector(
+		(state) => state.library.itemsCache.organists
+	)
 
 	const imageError = (elm) => {
 		elm.target.onError = null
@@ -30,11 +33,16 @@ const DetailedOrganist = () => {
 	}, [dispatch, organist])
 
 	useEffect(() => {
-		dispatch(getOrganist(id))
+		if (organistsCache[id]) {
+			dispatch(setOrganist(organistsCache[id]))
+		} else if (!organistsCache[id]) {
+			dispatch(getOrganist(id))
+		}
 
 		return () => {
 			dispatch(setOrganist(null))
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch, id])
 
 	return (
@@ -82,7 +90,7 @@ const DetailedOrganist = () => {
 													className="detailedOrganistAlbumLink">
 													<img
 														className="detailedOrganistAlbumImage"
-														src={`https://s3.amazonaws.com/pictures.organlive.com/${value.picture}`}
+														src={`https://s3.amazonaws.com/pictures.organlive.com/large/${value.picture}`}
 														alt={value.album}
 													/>
 													<div className="detailedOrganistAlbumInfo">

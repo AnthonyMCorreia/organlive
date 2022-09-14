@@ -28,12 +28,12 @@ const Progress = () => {
 	const songTotal = useSelector(
 		(state) => state.radio.song.housekeeping.song_duration
 	)
-	const intermission = useSelector(state => state.radio.song.intermission)
+	const intermission = useSelector((state) => state.radio.song.intermission)
 
 	return (
 		<div id="progress-container">
 			{isPlaying && <Timer />}
-			{currentTime ? (
+			{currentTime && currentTime <= songTotal ? (
 				<small className="song-nums">
 					{millisecondsToMinutesAndSeconds(currentTime)}
 				</small>

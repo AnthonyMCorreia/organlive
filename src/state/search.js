@@ -6,28 +6,10 @@ const SET_ERROR = "SET_ERROR"
 const NO_RESULTS = "NO_RESULTS"
 const SUCCESS = "SUCCESS"
 const LIST_LENGTH = "LIST_LENGTH"
-const SET_SORT = "SET_SORT"
-const SET_TYPE = "SET_TYPE"
-const SET_TEXT = "SET_TEXT"
 const RESET_SEARCH = "RESET_SEARCH"
 
 export const resetSearch = () => ({
 	type: RESET_SEARCH
-})
-
-export const setSort = (sort) => ({
-	type: SET_SORT,
-	sort
-})
-
-export const setType = (searchType) => ({
-	type: SET_TYPE,
-	searchType
-})
-
-export const setText = (text) => ({
-	type: SET_TEXT,
-	text
 })
 
 export const setListLength = (listLength) => ({
@@ -57,13 +39,44 @@ export const setList = (list) => ({
 
 // Thunks
 
-export const getSearch = (type, text, order) => {
-	const correctType =
-		type[type.length - 1] === "s" ? type.slice(0, type.length - 1) : type
+export const getSearch = (title, organist, composer, album, order) => {
+	let params
+
+	if (title) {
+		if (!params) {
+			params = `title=${title}`
+		} else {
+			params += `&title=${title}`
+		}
+	}
+
+	if (organist) {
+		if (!params) {
+			params = `organist=${organist}`
+		} else {
+			params += `&organist=${organist}`
+		}
+	}
+
+	if (composer) {
+		if (!params) {
+			params = `composer=${composer}`
+		} else {
+			params += `&composer=${composer}`
+		}
+	}
+
+	if (album) {
+		if (!params) {
+			params = `album=${album}`
+		} else {
+			params += `&album=${album}`
+		}
+	}
 
 	return async (dispatch) => {
 		const searchString = encodeURI(
-			`https://api.organlive.com/search?${correctType}=${text}&${
+			`https://api.organlive.com/search?${params}&${
 				order ? `order=${order}` : ""
 			}`
 		)
@@ -79,8 +92,6 @@ export const getSearch = (type, text, order) => {
 				return
 			}
 
-
-
 			dispatch(succesfulSearch(true))
 			dispatch(noResults(false))
 			dispatch(setError(""))
@@ -95,11 +106,6 @@ export const getSearch = (type, text, order) => {
 }
 
 const initialState = {
-	params: {
-		text: "",
-		sort: "a-z",
-		type: "album"
-	},
 	list: [],
 	error: "",
 	noResults: true,
@@ -133,30 +139,6 @@ export default function reducer(state = initialState, action) {
 			return {
 				...state,
 				listLength: action.listLength
-			}
-		case SET_SORT:
-			return {
-				...state,
-				params: {
-					...state.params,
-					sort: action.sort
-				}
-			}
-		case SET_TYPE:
-			return {
-				...state,
-				params: {
-					...state.params,
-					type: action.searchType
-				}
-			}
-		case SET_TEXT:
-			return {
-				...state,
-				params: {
-					...state.params,
-					text: action.text
-				}
 			}
 		case RESET_SEARCH:
 			return {

@@ -178,8 +178,8 @@
 }
 
 .detailedAlbumSongListItem {
-	width: 40rem;
-	height: 20rem;
+	width: 54rem;
+	height: 25rem;
 	margin: 1rem;
 	padding: 1rem;
 
@@ -225,7 +225,6 @@
 	@media screen and (max-width: 28rem) {
 		font-size: 1.5rem;
 	}
-
 }
 
 .detailedALbumSongListDuration {
@@ -238,10 +237,12 @@
 
 .detailedAlbumSongListBuyingOptions {
 	display: flex;
+	align-items: center;
 	flex-wrap: wrap;
+	row-gap: 1.5rem;
 
 	position: absolute;
-	bottom: 1.75rem;
+	bottom: 0.75rem;
 	left: 0.25rem;
 }
 
@@ -254,6 +255,29 @@
 }
 
 .detailedAlbumSongListSheetMusicBttn {
+	background: none;
+	border: none;
+	outline: none;
+	text-decoration: none;
+
+	background-color: $bttnColor;
+	color: $white;
+	font-size: 1.5rem;
+
+	padding: 1rem;
+	border-radius: 0.2rem;
+
+	@media screen and (max-width: $mobile-max-width-portrait) {
+		font-size: 1.25rem;
+	}
+
+	@media screen and (max-width: 28rem) {
+		padding: 0.5rem;
+	}
+}
+
+// Request Button
+.detailedAlbumSongListRequestBttn {
 	background: none;
 	border: none;
 	outline: none;
@@ -317,12 +341,11 @@
 		max-width: 50%;
 	}
 
-
 	transition: all 0.2s ease;
 
-	&:hover {
-		filter: brightness(0.8);
-	}
+	// &:hover {
+	// 	filter: brightness(0.8);
+	// }
 }
 
 .detailedAlbumListInfo {
@@ -340,4 +363,3 @@
 		font-size: 1.5rem;
 	}
 }
-

@@ -14,7 +14,7 @@ const AlbumItem = ({ val }) => {
 			<div className="list-container">
 				<img
 					className="pics"
-					src={`https://s3.amazonaws.com/pictures.organlive.com/${val.picture}`}
+					src={`https://s3.amazonaws.com/pictures.organlive.com/large/${val.picture}`}
 					onError={imageError}
 					alt={val.name}
 				/>

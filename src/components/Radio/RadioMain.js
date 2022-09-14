@@ -25,6 +25,10 @@ const RadioMain = () => {
 	useEffect(() => {
 		dispatch(setDocumentTitle("Organlive | Radio"))
 
+		if (isMobile) {
+			window.scrollTo(0, document.body.scrollHeight)
+		}
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 

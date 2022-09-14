@@ -16,6 +16,9 @@ import DetailedAlbum from "./Library/detailedItem/DetailedAlbum"
 import DetailedOrganists from "./Library/detailedItem/DetailedOrganists"
 import DetailedComposer from "./Library/detailedItem/DetailedComposer"
 
+//Library List
+import LibraryList from "./Library/LibraryList"
+
 const AppRoutes = () => {
 	return (
 		<Routes>
@@ -32,6 +35,7 @@ const AppRoutes = () => {
 				path="library/composers/:id"
 				element={<DetailedComposer />}
 			/>
+			<Route exact path="library/list/:type" element={<LibraryList />} />
 			<Route exact path="library" element={<Library />} />
 			<Route exact path="nowplaying" />
 			<Route exact path="otherstations" element={<OtherStations />} />

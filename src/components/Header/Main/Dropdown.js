@@ -23,7 +23,6 @@ const Dropdown = forwardRef((props, ref) => {
 
 	const donateClickFunc = () => {
 		dispatch(toggleMenu(false))
-		console.log("click")
 	}
 
 	return (

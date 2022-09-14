@@ -36,6 +36,16 @@
 		height: 2rem;
 		border-radius: 50%;
 	}
+
+	&::-moz-range-thumb {
+		appearance: none;
+		-webkit-appearance: none !important;
+		background: $playerBackground;
+		border: 0.1rem solid $white;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 50%;
+	}
 }
 
 #mute {

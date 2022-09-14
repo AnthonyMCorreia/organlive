@@ -11,6 +11,7 @@ import { isMobile } from "react-device-detect"
 // Components
 import Footer from "./Footer"
 import DocHead from "./DocHead"
+import { Toaster } from "react-hot-toast"
 
 // State
 import { toggleMobile } from "../state/ui"
@@ -54,6 +55,11 @@ function App() {
 				type="audio/mpeg">
 				Your browser does not support this player.
 			</audio>
+			<Toaster
+				toastOptions={{
+					style: { fontSize: "2rem" }
+				}}
+			/>
 		</div>
 	)
 }

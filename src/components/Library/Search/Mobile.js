@@ -13,7 +13,7 @@ import { toggleSearch } from "../../../state/ui"
 
 import SearchForm from "./SearchForm"
 
-const MobileSearch = () => {
+export default function MobileSearch(){
 	const dispatch = useDispatch()
 
 	const selectRef = useRef(null)
@@ -95,5 +95,3 @@ const MobileSearch = () => {
 		</>
 	)
 }
-
-export default MobileSearch

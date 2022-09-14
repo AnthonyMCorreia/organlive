@@ -54,11 +54,17 @@ export const checkForRefresh = (currentSongId) => {
 			if (response.housekeeping.refresh === "yes") {
 				dispatch(getSong())
 			} else if (response.housekeeping.refresh === "no") {
+				const setTimeoutTime =
+					response.housekeeping.timeout === 0
+						? 1000
+						: response.housekeeping.timeout
+
+				console.log("housekeeping === no", response)
 				dispatch(addIntermission(response))
 
 				setTimeout(() => {
 					dispatch(checkForRefresh(currentSongId))
-				}, response.housekeeping.timeout)
+				}, setTimeoutTime)
 			}
 		} catch (err) {
 			console.log(err)
@@ -91,7 +97,10 @@ export default function Player(state = initialState, action) {
 					...state.songList,
 					{
 						intermission: true,
-						housekeeping: { timeout: action.info.housekeeping.timeout }
+						housekeeping: {
+							timeout: action.info.housekeeping.timeout
+						},
+						timeAdded: Date.now()
 					}
 				]
 			}

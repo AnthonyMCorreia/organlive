@@ -33,7 +33,7 @@ const Dropdown = forwardRef((props, ref) => {
 				<DropdownItem link="/library" innerHTML="Library" />
 				<DropdownItem link="/contact" innerHTML="Contact" />
 				<DropdownItem link="/schedule" innerHTML="Schedule" />
-				<DropdownItem link="/submitrecording" innerHTML="Submit Recording" />
+				<DropdownItem link="/submitrecordings" innerHTML="Submit Recording" />
 				<DropdownItem link="/otherstations" innerHTML="Other Stations" />
 				<a
 					rel="noreferrer"

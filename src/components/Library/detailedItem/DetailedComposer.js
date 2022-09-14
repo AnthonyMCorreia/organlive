@@ -18,6 +18,9 @@ const DetailedComposer = () => {
 	const [moreInfoName, setmoreInfoName] = useState("")
 
 	const notFound = useSelector((state) => state.library.notFound)
+	const composersCache = useSelector(
+		(state) => state.library.itemsCache.composers
+	)
 
 	useEffect(() => {
 		if (composer) {
@@ -39,11 +42,16 @@ const DetailedComposer = () => {
 	}, [dispatch, composer])
 
 	useEffect(() => {
-		dispatch(getComposer(paramId))
+		if (composersCache[paramId]) {
+			dispatch(setComposer(composersCache[paramId], paramId))
+		} else if (!composersCache[paramId]) {
+			dispatch(getComposer(paramId))
+		}
 
 		return () => {
 			dispatch(setComposer(null))
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dispatch, paramId])
 
 	return (

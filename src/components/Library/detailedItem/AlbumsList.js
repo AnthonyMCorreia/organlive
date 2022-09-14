@@ -60,7 +60,7 @@ export default function AlbumsList({ albumList }) {
 						<Link to={`/albums/${value.id}`} className="detailedAlbumListLink">
 							<img
 								className="detailedAlbumListImage"
-								src={`https://s3.amazonaws.com/pictures.organlive.com/${value.picture}`}
+								src={`https://s3.amazonaws.com/pictures.organlive.com/large/${value.picture}`}
 								alt={value.album}
 								onError={imageError}
 							/>

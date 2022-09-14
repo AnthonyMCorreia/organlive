@@ -3,11 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useNavigate, useSearchParams, useLocation } from "react-router-dom"
 
 // State
-import {
-	setListLength,
-	getSearch,
-	resetSearch
-} from "../../../state/search"
+import { setListLength, getSearch, resetSearch } from "../../../state/search"
 
 // Components
 import SearchItem from "./SearchItem"
@@ -24,11 +20,13 @@ export default function LibraryList() {
 
 	const [lastLengthChange, setChange] = useState(Date.now())
 
-	const { list, listLength, noResults } = useSelector(
-		(state) => state.search
-	)
+	const { list, listLength, noResults } = useSelector((state) => state.search)
 
-	const { type, text, sort } = useSelector((state) => state.search.params)
+	const titleParam = searchParams.get("title")
+	const organistParam = searchParams.get("organist")
+	const composerParam = searchParams.get("composer")
+	const albumParam = searchParams.get("album")
+	const orderParam = searchParams.get("sort")
 
 	const arr = new Array(100).fill(null)
 
@@ -40,14 +38,23 @@ export default function LibraryList() {
 	}, [location, navigate])
 
 	useEffect(() => {
-		const textParam = searchParams.get("text")
-		const typeParam = searchParams.get("type")
-		const sortParam = searchParams.get("sort")
-
-		if (textParam && typeParam && sortParam) {
-			dispatch(getSearch(typeParam, textParam, sortParam))
+		if (!titleParam && !organistParam && !composerParam && !albumParam) {
+			navigate("/library")
+			return
 		}
-	}, [dispatch, searchParams, location, text, type, sort])
+
+		if (titleParam || organistParam || composerParam || albumParam) {
+			dispatch(
+				getSearch(
+					titleParam,
+					organistParam,
+					composerParam,
+					albumParam,
+					orderParam
+				)
+			)
+		}
+	}, [dispatch, titleParam, organistParam, location, composerParam, albumParam, navigate, orderParam])
 
 	useEffect(() => {
 		window.scrollTo(0, 0)
@@ -91,20 +98,20 @@ export default function LibraryList() {
 	}, [dispatch])
 
 	return (
-			<div id="library">
-				{noResults ? (
-					<div className="no-results">
-						<h2 className="noResultsText">No Results Found</h2>
-					</div>
-				) : (
-					<div id="library-list" ref={listRef}>
-						{!list.length > 0
-							? arr.map((item, id) => <Skeleton key={id} />)
-							: list.slice(0, listLength).map((val) => {
-									return <SearchItem val={val} key={val.songid} />
-							  })}
-					</div>
-				)}
-			</div>
+		<div id="library">
+			{noResults ? (
+				<div className="no-results">
+					<h2 className="noResultsText">No Results Found</h2>
+				</div>
+			) : (
+				<div id="library-list" ref={listRef}>
+					{!list.length > 0
+						? arr.map((item, id) => <Skeleton key={id} />)
+						: list.slice(0, listLength).map((val) => {
+								return <SearchItem val={val} key={val.songid} />
+						  })}
+				</div>
+			)}
+		</div>
 	)
 }
