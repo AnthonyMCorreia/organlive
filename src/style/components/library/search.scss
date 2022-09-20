@@ -309,15 +309,11 @@
 	border: none;
 	outline: none;
 
-	position: absolute;
-	bottom: 0.5rem;
-	right: 0.5rem;
-
 	font-size: 1.5rem;
 	color: $white;
 	font-weight: 300;
 	border-radius: 0.5rem;
-	background-color: #2d2d2d;
+	background-color: $darkBlue;
 
 	padding: 0.5rem 1rem;
 }

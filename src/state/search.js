@@ -108,7 +108,7 @@ export const getSearch = (title, organist, composer, album, order) => {
 const initialState = {
 	list: [],
 	error: "",
-	noResults: true,
+	noResults: false,
 	success: true,
 	listLength: 50
 }

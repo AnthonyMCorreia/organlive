@@ -9,6 +9,7 @@ import { changePlaying, pause, unPause } from "../../../state/radio"
 import { getSong } from "../../../state/radioContinuousTimer"
 
 import { isMobile } from "react-device-detect"
+import { useEffect } from "react"
 
 const PlayProgress = () => {
 	const dispatch = useDispatch()
@@ -43,6 +44,15 @@ const PlayProgress = () => {
 			dispatch(changePlaying(!isPlaying))
 		}
 	}
+
+	useEffect(() => {
+		if (audio) {
+			dispatch(getSong(true))
+			dispatch(changePlaying(true))
+			audio.play()
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [audio])
 
 	return (
 		<div className="play-progres-cont">

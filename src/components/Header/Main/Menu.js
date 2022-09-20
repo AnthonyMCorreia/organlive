@@ -37,9 +37,9 @@ const MainMenu = () => {
 					Contact
 				</Link>
 				<button
-					className="material-icons radio-button pointer"
+					className="link radio-link pointer hoverOpacity"
 					onClick={radioBttnFunc}>
-					radio
+					Listen
 				</button>
 				{!dropdownMenu ? (
 					<button

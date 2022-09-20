@@ -54,7 +54,16 @@ export default function LibraryList() {
 				)
 			)
 		}
-	}, [dispatch, titleParam, organistParam, location, composerParam, albumParam, navigate, orderParam])
+	}, [
+		dispatch,
+		titleParam,
+		organistParam,
+		location,
+		composerParam,
+		albumParam,
+		navigate,
+		orderParam
+	])
 
 	useEffect(() => {
 		window.scrollTo(0, 0)
