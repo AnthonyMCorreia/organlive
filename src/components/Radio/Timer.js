@@ -28,7 +28,6 @@ export default function Timer() {
 		const newCurrentTime = currentTime + addedTime
 
 		setSongDone(newCurrentTime >= song_duration)
-		console.log('timer update');
 
 		if (typeof currentDate === "number") {
 			if (newCurrentTime < song_duration) {

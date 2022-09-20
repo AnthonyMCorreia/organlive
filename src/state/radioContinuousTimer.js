@@ -59,7 +59,6 @@ export const checkForRefresh = (currentSongId) => {
 						? 1000
 						: response.housekeeping.timeout
 
-				console.log("housekeeping === no", response)
 				dispatch(addIntermission(response))
 
 				setTimeout(() => {
