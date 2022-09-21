@@ -34,14 +34,19 @@
 }
 
 #radio-small-icon {
-	font-size: 4rem;
+	outline: none;
+	border: none;
+	background: none;
+
+	color: $white;
+	font-size: 2.5rem;
+	@include font;
+
+	margin-right: 1rem;
 
 	cursor: pointer;
 	user-select: none;
 
-	@media screen and (max-width: $mobile-max) and (max-height: $mobile-max) {
-		font-size: 3.4rem;
-	}
 }
 
 // Radio listener count

@@ -1,34 +1,33 @@
 import { useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useLocation } from "react-router-dom"
 
 import { CSSTransition } from "react-transition-group"
 
 // Components
 import Dropdown from "./Dropdown"
-import RadioSmall from "../../Radio/RadioSmall"
 
 // State
-import { toggleMenu, toggleSearch } from "../../../state/ui"
+import { toggleMenu } from "../../../state/ui"
 
 const PhoneMenu = () => {
 	const dispatch = useDispatch()
 	const nodeRef = useRef(null)
 
-	const { pathname } = useLocation()
-
 	const { dropdownMenu } = useSelector((state) => state.ui)
 
 	return (
 		<div id="header-content-mobile">
-			{pathname.includes("library") && (
-				<span
-					className="material-icons searchBttn"
-					onClick={() => dispatch(toggleSearch(true))}>
-					search
-				</span>
-			)}
-			<RadioSmall />
+				<button
+					id="radio-small-icon"
+					onClick={() =>
+						window.open(
+							`${window.location.origin}/radio`,
+							null,
+							"popup,width=350,height=400"
+						)
+					}>
+					Listen
+				</button>
 			{!dropdownMenu ? (
 				<button
 					className="material-icons mobile-content-item"
